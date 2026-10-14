@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode toggled via <html class="dark"> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------
+   Design tokens — "Exaggerated Minimalism"
+   (per ui-ux-pro-max style guide: fashion / luxury / editorial →
+    oversized typography, high contrast, negative space, ONE accent)
+
+   Deliberate departure from where this started: the previous palette was a
+   warm cream (#faf8f4) + high-contrast serif + gold accent, which is the
+   single most common AI-generated look. Cream is gone. The neutrals are now
+   truly neutral, the black is truly black (not warm-tinted), and brass is the
+   only accent colour on the site.
+----------------------------------------------------------------*/
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+
+  /* Brass — the site's single accent */
+  --color-gold: #c8a44d;
+  --color-gold-light: #e2cd92;
+  --color-gold-dark: #a8873f;
+  /* Text-safe brass: 4.5:1+ on white */
+  --color-gold-ink: #7a5c14;
+
+  /* True black (neutral, not tinted) */
+  --color-obsidian: #0a0a0a;
+  --color-obsidian-light: #1c1c1c;
+
+  /* Surfaces — cool neutral, never cream */
+  --color-silk: #ffffff;
+  --color-mist: #f4f4f2;
+  --color-card: #ffffff;
+
+  --color-border: #e4e4e1;
+  --color-input: #e4e4e1;
+  --color-ring: #c8a44d;
+
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  /* Editorial type scale — built for oversized display */
+  --text-display: clamp(2.75rem, 9vw, 8.5rem);
+  --text-headline: clamp(2rem, 5vw, 3.75rem);
+}
+
+/* Dark theme — token overrides cascade to every utility */
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #f5f5f3;
+
+  --color-gold: #d9bd79;
+  --color-gold-light: #e8d6a8;
+  --color-gold-dark: #b99b4f;
+  --color-gold-ink: #e0c78a;
+
+  --color-obsidian: #f5f5f3;
+  --color-obsidian-light: #ded8cd;
+
+  --color-silk: #141414;
+  --color-mist: #1a1a1a;
+  --color-card: #141414;
+
+  --color-border: #2a2a2a;
+  --color-input: #2a2a2a;
+}
+
+/* ---------------------------------------------------------------
+   Base
+----------------------------------------------------------------*/
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Lenis drives scrolling; native smooth-scroll fights it. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Affordance */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+summary,
+label[for],
+select,
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+  cursor: pointer;
+}
+button:disabled { cursor: not-allowed; }
+
+/* Hide the native cursor only where the custom one is actually active */
+@media (hover: hover) and (pointer: fine) {
+  html[data-cursor="on"],
+  html[data-cursor="on"] a,
+  html[data-cursor="on"] button { cursor: none; }
+}
+
+img, svg, video { max-width: 100%; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(in oklab, var(--color-foreground) 22%, transparent);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--color-gold); }
+
+/* Accessible focus */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #0a0a0a;
+}
+
+/* ---------------------------------------------------------------
+   Typography — editorial display treatment
+----------------------------------------------------------------*/
+@utility display {
+  font-family: var(--font-serif);
+  font-size: var(--text-display);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+@utility headline {
+  font-family: var(--font-serif);
+  font-size: var(--text-headline);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+/* Small structural label. Used sparingly — not above every heading. */
+@utility label-xs {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold-ink);
+}
+
+/* Hairline rule used as a section divider */
+.hr-gold {
+  height: 1px;
+  border: 0;
+  background: color-mix(in oklab, var(--color-foreground) 14%, transparent);
+}
+
+/* ---------------------------------------------------------------
+   Custom cursor
+----------------------------------------------------------------*/
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  border-radius: 999px;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: var(--color-gold);
+}
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1px solid color-mix(in oklab, var(--color-gold) 70%, transparent);
+  transition: width 0.28s cubic-bezier(0.23, 1, 0.32, 1),
+              height 0.28s cubic-bezier(0.23, 1, 0.32, 1),
+              margin 0.28s cubic-bezier(0.23, 1, 0.32, 1),
+              background-color 0.28s, opacity 0.28s;
+}
+.cursor-ring[data-hover="true"] {
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  background: color-mix(in oklab, var(--color-gold) 14%, transparent);
+}
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ---------------------------------------------------------------
+   Motion
+----------------------------------------------------------------*/
+@keyframes lumiere-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: lumiere-fade-up 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes lumiere-shimmer {
+  to { background-position: -200% 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-mist) 25%,
+    color-mix(in oklab, var(--color-border) 80%, transparent) 50%,
+    var(--color-mist) 75%
+  );
+  background-size: 200% 100%;
+  animation: lumiere-shimmer 1.4s infinite;
+}
+
+@keyframes lumiere-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: lumiere-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+/* Mega-menu stagger */
+@keyframes lumiere-mega-col {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mega-col {
+  animation: lumiere-mega-col 0.4s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Hero: scroll cue */
+@keyframes lumiere-cue {
+  0% { transform: translateY(-45%); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(45%); opacity: 0; }
+}
+.scroll-cue-line {
+  animation: lumiere-cue 2.1s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* ---------------------------------------------------------------
+   Reduced motion + no-JS safety
+----------------------------------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track { animation: none !important; }
+  [data-progress] { display: none !important; }
+}
+
+/* Content must never be stuck hidden if scripting is unavailable. */
+@media (scripting: none) {
+  [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
