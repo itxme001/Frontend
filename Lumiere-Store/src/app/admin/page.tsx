@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { products as defaultProducts, type Product } from "@/data/products";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
 // ─── Types ───────────────────────────────────────────────────────────
 interface DbOrder {
@@ -382,8 +383,11 @@ export default function AdminPage() {
               </div>
             </div>
 
-            {/* Revenue chart (simple bar) */}
+            {/* Analytics Charts */}
             <RevenueChart orders={orders} />
+
+            {/* Top products */}
+            <TopProductsView orders={orders} />
           </div>
         )}
 
@@ -702,36 +706,127 @@ function ImageThumb({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function RevenueChart({ orders }: { orders: DbOrder[] }) {
-  const months = React.useMemo(() => {
-    const m: Record<string, number> = {};
-    orders.filter((o) => o.status === "paid").forEach((o) => {
-      const d = new Date(o.date);
-      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-      const label = d.toLocaleString("en-US", { month: "short" });
-      m[key] = (m[key] || 0) + o.total;
+function TopProductsView({ orders }: { orders: DbOrder[] }) {
+  const top = React.useMemo(() => {
+    const map = new Map<string, number>();
+    orders.forEach((o) => {
+      o.items.forEach((item) => {
+        map.set(item.name, (map.get(item.name) ?? 0) + item.quantity);
+      });
     });
-    return Object.entries(m).sort(([a], [b]) => a.localeCompare(b)).slice(-6);
+    return [...map.entries()].sort(([, a], [, b]) => b - a).slice(0, 5);
   }, [orders]);
 
-  const max = Math.max(...months.map(([, v]) => v), 1);
+  if (top.length === 0) return null;
 
   return (
     <div className="rounded-xl border border-white/10 bg-slate-900/50 p-6">
-      <h2 className="mb-6 font-medium text-white">Revenue (Last 6 Months)</h2>
-      <div className="flex items-end gap-3" style={{ height: 160 }}>
-        {months.map(([key, revenue]) => (
-          <div key={key} className="flex flex-1 flex-col items-center gap-2">
-            <span className="text-xs font-medium text-gold">{fmt(revenue)}</span>
-            <div className="w-full rounded-t bg-gradient-to-t from-gold/80 to-gold/40 transition-all hover:to-gold" style={{ height: `${(revenue / max) * 120}px` }} />
-            <span className="text-xs text-white/40">{new Date(key + "-01").toLocaleString("en-US", { month: "short" })}</span>
+      <h2 className="mb-4 font-medium text-white">Top Selling Products</h2>
+      <div className="space-y-3">
+        {top.map(([name, qty], i) => (
+          <div key={name} className="flex items-center gap-4">
+            <span className="font-mono text-xs text-white/30 w-6">#{i + 1}</span>
+            <div className="flex-1 min-w-0">
+              <p className="truncate text-sm text-white/80">{name}</p>
+            </div>
+            <span className="text-sm font-medium text-gold">{qty} sold</span>
           </div>
         ))}
-        {months.length === 0 && (
-          <div className="flex flex-1 items-center justify-center text-sm text-white/30">
-            No revenue data yet
-          </div>
-        )}
+      </div>
+    </div>
+  );
+}
+  const chartData = React.useMemo(() => {
+    const m: Record<string, number> = {};
+    orders.filter((o) => o.status === "paid").forEach((o) => {
+      const d = new Date(o.date);
+      const key = d.toLocaleString("en-US", { month: "short", year: "2-digit" });
+      m[key] = (m[key] || 0) + o.total;
+    });
+    return Object.entries(m)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .slice(-6)
+      .map(([label, value]) => ({ label, value }));
+  }, [orders]);
+
+  const categoryData = React.useMemo(() => {
+    const counts: Record<string, number> = {};
+    orders.forEach((o) => {
+      o.items.forEach((item) => {
+        // Infer category from product name — simplified heuristic
+        counts["Sales"] = (counts["Sales"] || 0) + item.quantity;
+      });
+    });
+    return [{ name: "Total Items Sold", value: Object.values(counts)[0] ?? 0 }];
+  }, [orders]);
+
+  if (orders.length === 0) {
+    return (
+      <div className="rounded-xl border border-white/10 bg-slate-900/50 p-6">
+        <h2 className="mb-4 font-medium text-white">Revenue Overview</h2>
+        <p className="text-sm text-white/30">No order data yet. Revenue will appear here once orders come in.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid gap-6 lg:grid-cols-2">
+      {/* Bar chart */}
+      <div className="rounded-xl border border-white/10 bg-slate-900/50 p-6">
+        <h2 className="mb-4 font-medium text-white">Revenue (Last 6 Months)</h2>
+        <ResponsiveContainer width="100%" height={200}>
+          <BarChart data={chartData} margin={{ top: 8, right: 12, left: -20, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+            <XAxis dataKey="label" tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis
+              tickFormatter={(v: number) => `$${v >= 1000 ? `${(v / 1000).toFixed(1)}k` : v}`}
+              tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <Tooltip
+              contentStyle={{ backgroundColor: "#1e293b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, fontSize: 13 }}
+              labelStyle={{ color: "rgba(255,255,255,0.6)", marginBottom: 4 }}
+              formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}
+            />
+            <Bar dataKey="value" fill="#c5a059" radius={[4, 4, 0, 0]} barSize={32} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Category distribution */}
+      <div className="rounded-xl border border-white/10 bg-slate-900/50 p-6">
+        <h2 className="mb-4 font-medium text-white">Orders by Status</h2>
+        <ResponsiveContainer width="100%" height={200}>
+          <PieChart>
+            <Pie
+              data={[
+                { name: "Paid", value: orders.filter((o) => o.status === "paid").length },
+                { name: "Pending", value: orders.filter((o) => o.status === "pending").length },
+                { name: "Demo", value: orders.filter((o) => o.status === "demo").length },
+              ]}
+              cx="50%"
+              cy="50%"
+              innerRadius={55}
+              outerRadius={80}
+              paddingAngle={4}
+              dataKey="value"
+            >
+              {[0, 1, 2].map((i) => (
+                <Cell key={`cell-${i}`} fill={i === 0 ? "#22c55e" : i === 1 ? "#eab308" : "#3b82f6"} />
+              ))}
+            </Pie>
+            <Tooltip
+              contentStyle={{ backgroundColor: "#1e293b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8 }}
+              formatter={(value: number, name: string) => [`${value} orders`, name]}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+        <div className="mt-3 flex justify-center gap-5 text-xs text-white/50">
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Paid ({orders.filter(o => o.status === 'paid').length})</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-yellow-500" /> Pending ({orders.filter(o => o.status === 'pending').length})</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-blue-500" /> Demo ({orders.filter(o => o.status === 'demo').length})</span>
+        </div>
       </div>
     </div>
   );

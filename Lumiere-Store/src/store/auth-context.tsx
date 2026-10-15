@@ -18,11 +18,21 @@ interface AuthState {
   loading: boolean;
   login: (email: string, password: string) => Promise<AuthResult>;
   signup: (name: string, email: string, password: string) => Promise<AuthResult>;
+  loginWithGoogle: (idToken: string) => Promise<AuthResult>;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
 
 const AuthContext = React.createContext<AuthState | undefined>(undefined);
+
+/** Normalise whatever the server sent into something the UI can render. */
+function messageFrom(data: unknown, fallback: string): string {
+  if (data && typeof data === "object" && "error" in data) {
+    const err = (data as { error?: unknown }).error;
+    if (typeof err === "string" && err.trim()) return err;
+  }
+  return fallback;
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = React.useState<AuthUser | null>(null);
@@ -44,63 +54,62 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     void refresh();
   }, [refresh]);
 
-  const login = React.useCallback(async (email: string, password: string): Promise<AuthResult> => {
-    try {
-      // Fetch a fresh CSRF token from the server.
-      const csrfRes = await fetch("/api/csrf", { cache: "no-store" });
-      const csrfData = await csrfRes.json();
-      const csrfToken = csrfData?.token ?? "";
-
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-csrf-token": csrfToken },
-        body: JSON.stringify({ email, password, _csrf: csrfToken }),
-      });
-      const data = await res.json();
-      if (!res.ok) return { ok: false, error: data?.error || "Unable to sign in." };
-      setUser(data.user);
-      return { ok: true };
-    } catch {
-      return { ok: false, error: "Network error. Please try again." };
-    }
-  }, []);
-
-  const signup = React.useCallback(
-    async (name: string, email: string, password: string): Promise<AuthResult> => {
+  /** POST a JSON body to an auth route, returning a UI-ready result. */
+  const post = React.useCallback(
+    async (url: string, body: Record<string, unknown>, fallback: string): Promise<AuthResult> => {
       try {
-        // Fetch a fresh CSRF token from the server.
-        const csrfRes = await fetch("/api/csrf", { cache: "no-store" });
-        const csrfData = await csrfRes.json();
-        const csrfToken = csrfData?.token ?? "";
-
-        const res = await fetch("/api/auth/signup", {
+        const res = await fetch(url, {
           method: "POST",
-          headers: { "Content-Type": "application/json", "x-csrf-token": csrfToken },
-          body: JSON.stringify({ name, email, password, _csrf: csrfToken }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
         });
-        const data = await res.json();
-        if (!res.ok) return { ok: false, error: data?.error || "Unable to create your account." };
-        setUser(data.user);
+        let data: unknown = null;
+        try {
+          data = await res.json();
+        } catch {
+          // non-JSON response (e.g. a 500 HTML page)
+        }
+        if (!res.ok) return { ok: false, error: messageFrom(data, fallback) };
+        const nextUser = (data as { user?: AuthUser })?.user ?? null;
+        if (nextUser) setUser(nextUser);
         return { ok: true };
       } catch {
-        return { ok: false, error: "Network error. Please try again." };
+        return { ok: false, error: "We couldn't reach the server. Check your connection and try again." };
       }
     },
     []
+  );
+
+  const login = React.useCallback(
+    (email: string, password: string) =>
+      post("/api/auth/login", { email, password }, "Those details don't match our records."),
+    [post]
+  );
+
+  const signup = React.useCallback(
+    (name: string, email: string, password: string) =>
+      post("/api/auth/signup", { name, email, password }, "We couldn't create your account."),
+    [post]
+  );
+
+  const loginWithGoogle = React.useCallback(
+    (idToken: string) =>
+      post("/api/auth/google", { id_token: idToken }, "Google sign-in failed. Please try again."),
+    [post]
   );
 
   const logout = React.useCallback(async () => {
     try {
       await fetch("/api/auth/logout", { method: "POST" });
     } catch {
-      // ignore
+      // ignore — we clear local state regardless
     }
     setUser(null);
   }, []);
 
   const value = React.useMemo<AuthState>(
-    () => ({ user, loading, login, signup, logout, refresh }),
-    [user, loading, login, signup, logout, refresh]
+    () => ({ user, loading, login, signup, loginWithGoogle, logout, refresh }),
+    [user, loading, login, signup, loginWithGoogle, logout, refresh]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
