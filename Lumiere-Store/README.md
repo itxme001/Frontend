@@ -101,6 +101,29 @@ Lumiere-Store/
 
 ---
 
+## 📊 Product Catalog
+
+### Current Products
+- **Total:** 155 unique products across 4 categories
+- **Apparel:** 45 items (dresses, coats, tops, bottoms)
+- **Accessories:** 45 items (bags, jewelry, watches, hats)
+- **Living:** 35 items (home decor, kitchen, textiles)
+- **Fragrance:** 30 items (perfumes, candles, diffusers)
+
+### Image Placeholder System
+All product images use placeholder paths that you should replace with your own:
+```
+/photos/products/{slug}-1.webp   → Front view
+/photos/products/{slug}-2.webp   → Hover/alternate view
+```
+
+**To add your own images:**
+1. Place `.webp` files in `public/photos/products/`
+2. Update `src/data/products.ts` with your image paths
+3. Rebuild: `npm run build`
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
