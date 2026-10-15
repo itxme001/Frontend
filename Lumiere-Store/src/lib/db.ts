@@ -1,61 +1,18 @@
 /**
- * Order & user persistence layer.
+ * Order & user persistence layer — backed by MongoDB (Mongoose).
  *
- * Uses atomic JSON file writes with file-level locking (flock) for
- * concurrency safety. No native dependencies — works in any Node.js
- * environment including Vercel Edge and Turbopack.
+ * Local dev:  mongodb://localhost:27017/lumiere (or set MONGODB_URI in .env.local)
+ * Production: MongoDB Atlas connection string in Vercel env vars.
  *
- * Schema (single file per entity):
- *   .data/users.json  — [{ id, name, email, passwordHash, createdAt }]
- *   .data/orders.json — [{ id, date, status, items, subtotal, shipping, tax, total, email, customerName, stripeSessionId }]
+ * Public interfaces (StoredUser, OrderItem, StoredOrder) kept stable so
+ * the rest of the codebase barely changes.
  */
 import crypto from "node:crypto";
-import fs from "node:fs";
-import path from "node:path";
+import { connectDB } from "./mongodb";
+import { User } from "@/models/User";
+import { Order } from "@/models/Order";
 
-const DATA_DIR = path.join(process.cwd(), ".data");
-
-// ---------- helpers ----------
-function ensureDir(): void {
-  try {
-    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-  } catch {
-    // Read-only filesystem — silent fallback.
-  }
-}
-
-function readJson<T>(filePath: string, fallback: T): T {
-  try {
-    const raw = fs.readFileSync(filePath, "utf8");
-    const parsed = JSON.parse(raw) as unknown;
-    if (parsed === null || parsed === undefined) return fallback;
-    if (Array.isArray(parsed)) return parsed as unknown as T;
-    return parsed as unknown as T;
-  } catch {
-    return fallback;
-  }
-}
-
-function writeJson<T>(filePath: string, data: T): void {
-  try {
-    ensureDir();
-    const tmp = filePath + `.tmp.${process.pid}`;
-    fs.writeFileSync(tmp, JSON.stringify(data, null, 2), "utf8");
-    fs.renameSync(tmp, filePath);
-  } catch {
-    // Non-fatal — data is in-memory only this session.
-  }
-}
-
-function usersPath() {
-  return path.join(DATA_DIR, "users.json");
-}
-
-function ordersPath() {
-  return path.join(DATA_DIR, "orders.json");
-}
-
-// ---------- password hashing (kept here since db.ts needs it for user creation) ----------
+// ---------- password hashing ----------
 export function hashPassword(password: string): string {
   const salt = crypto.randomBytes(16).toString("hex");
   const derived = crypto.scryptSync(password, salt, 64).toString("hex");
@@ -81,28 +38,42 @@ export interface StoredUser {
   createdAt: number;
 }
 
-export function findAllUsers(): StoredUser[] {
-  ensureDir();
-  return readJson<StoredUser[]>(usersPath(), []);
+function toStoredUser(doc: any): StoredUser {
+  return {
+    id: String(doc.id),
+    name: String(doc.name),
+    email: String(doc.email),
+    passwordHash: String(doc.passwordHash),
+    createdAt: typeof doc.createdAt === "number" ? doc.createdAt : new Date(doc.createdAt).getTime(),
+  };
 }
 
-export function findUserByEmail(email: string): StoredUser | undefined {
-  return findAllUsers().find((u) => u.email === email);
+export async function findAllUsers(): Promise<StoredUser[]> {
+  await connectDB();
+  const docs = await User.find().lean();
+  return docs.map(toStoredUser);
 }
 
-export function createUser(user: Omit<StoredUser, "passwordHash"> & { password: string }): StoredUser {
-  const existing = findUserByEmail(user.email);
+export async function findUserByEmail(email: string): Promise<StoredUser | undefined> {
+  await connectDB();
+  const doc = await User.findOne({ email: email.trim().toLowerCase() }).lean();
+  return doc ? toStoredUser(doc) : undefined;
+}
+
+export async function createUser(user: Omit<StoredUser, "passwordHash"> & { password: string }): Promise<StoredUser> {
+  await connectDB();
+  const existing = await User.findOne({ email: user.email.trim().toLowerCase() }).lean();
   if (existing) throw new Error("email_exists");
 
-  const record: StoredUser = {
-    ...user,
+  const record = new User({
+    id: user.id,
+    name: user.name.trim(),
+    email: user.email.trim().toLowerCase(),
     passwordHash: hashPassword(user.password),
-    createdAt: Date.now(),
-  };
-  const users = findAllUsers();
-  users.push(record);
-  writeJson(usersPath(), users);
-  return record;
+    createdAt: typeof user.createdAt === "number" ? user.createdAt : Date.now(),
+  });
+  await record.save();
+  return toStoredUser(record.toObject());
 }
 
 // ---------- orders ----------
@@ -130,30 +101,65 @@ export interface StoredOrder {
   stripeSessionId?: string;
 }
 
-export function findAllOrders(): StoredOrder[] {
-  ensureDir();
-  return readJson<StoredOrder[]>(ordersPath(), []);
+function toStoredOrder(doc: any): StoredOrder {
+  return {
+    id: String(doc.id),
+    date: String(doc.date),
+    status: doc.status,
+    items: (doc.items ?? []).map((it: any) => ({
+      id: String(it.id),
+      name: String(it.name),
+      price: Number(it.price),
+      quantity: Number(it.quantity),
+      image: String(it.image ?? ""),
+      color: it.color,
+      size: it.size,
+    })),
+    subtotal: Number(doc.subtotal ?? 0),
+    shipping: Number(doc.shipping ?? 0),
+    tax: Number(doc.tax ?? 0),
+    total: Number(doc.total ?? 0),
+    email: doc.email,
+    customerName: doc.customerName,
+    stripeSessionId: doc.stripeSessionId,
+  };
 }
 
-export function saveOrder(order: StoredOrder): void {
-  const orders = findAllOrders();
-  const idx = orders.findIndex((o) => o.id === order.id);
-  if (idx >= 0) {
-    orders[idx] = order;
-  } else {
-    orders.unshift(order);
-  }
-  writeJson(ordersPath(), orders.slice(0, 200)); // Keep last 200 orders
+export async function findAllOrders(): Promise<StoredOrder[]> {
+  await connectDB();
+  const docs = await Order.find().sort({ date: -1 }).limit(200).lean();
+  return docs.map(toStoredOrder);
 }
 
-export function getOrder(id: string): StoredOrder | undefined {
-  return findAllOrders().find((o) => o.id === id);
+export async function saveOrder(order: StoredOrder): Promise<void> {
+  await connectDB();
+  const update = {
+    id: order.id,
+    date: order.date,
+    status: order.status,
+    items: order.items,
+    subtotal: order.subtotal,
+    shipping: order.shipping,
+    tax: order.tax,
+    total: order.total,
+    email: order.email,
+    customerName: order.customerName,
+    stripeSessionId: order.stripeSessionId,
+  };
+  await Order.findOneAndUpdate({ id: order.id }, update, { upsert: true, new: true });
 }
 
-export function listOrdersByEmail(email?: string): StoredOrder[] {
-  const all = findAllOrders();
-  if (!email) return all.slice(0, 50);
-  return all.filter((o) => o.email === email).slice(0, 50);
+export async function getOrder(id: string): Promise<StoredOrder | undefined> {
+  await connectDB();
+  const doc = await Order.findOne({ id }).lean();
+  return doc ? toStoredOrder(doc) : undefined;
+}
+
+export async function listOrdersByEmail(email?: string): Promise<StoredOrder[]> {
+  await connectDB();
+  const q = email ? { email: email.trim().toLowerCase() } : {};
+  const docs = await Order.find(q).sort({ date: -1 }).limit(50).lean();
+  return docs.map(toStoredOrder);
 }
 
 // ---------- pending-order helper (client-side localStorage) ----------

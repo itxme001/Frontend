@@ -11,7 +11,6 @@ import { useToast } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 import { useCurrency } from "@/store/currency-context";
 import { products } from "@/data/products";
-import { listOrdersByEmail } from "@/lib/db";
 
 export default function AccountPage() {
   const router = useRouter();

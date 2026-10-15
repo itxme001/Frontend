@@ -18,6 +18,6 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const orders = listOrdersByEmail(email || user?.email);
+  const orders = await listOrdersByEmail(email || user?.email);
   return NextResponse.json({ orders });
 }

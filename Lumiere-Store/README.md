@@ -16,6 +16,33 @@ Open `http://localhost:3000`
 
 ---
 
+## 🗄️ Database (MongoDB)
+
+This project uses **MongoDB** for persistence (users, orders, admin-added products).
+
+### Local development
+1. Install & start MongoDB locally (already installed on this machine — `mongod` daemon running on port 27017).
+2. The default `.env.local` already contains:
+   ```
+   MONGODB_URI=mongodb://localhost:27017/lumiere
+   ```
+3. On first boot the app seeds the admin account into the `lumiere` database (auto-creates on first connection).
+4. Browse data with **MongoDB Compass** → connect to `mongodb://localhost:27017`.
+
+### Production (Vercel)
+1. Create a free MongoDB Atlas cluster: https://cloud.mongodb.com
+2. Create a database user and whitelist `0.0.0.0/0`.
+3. Copy the connection string, e.g. `mongodb+srv://user:pass@cluster.mongodb.net/lumiere`.
+4. In Vercel → Project → Settings → Environment Variables:
+   - `MONGODB_URI` = the Atlas connection string.
+   - `AUTH_SECRET` = a long random string.
+5. Redeploy. The seed will create the admin account on first boot.
+
+> **Note:** Product images in code (`src/data/products.ts`) are always available.
+> Admin-added products are stored in MongoDB and persist across deploys once Atlas is configured.
+
+---
+
 ## 🔐 Login Credentials
 
 | Role | Email | Password |

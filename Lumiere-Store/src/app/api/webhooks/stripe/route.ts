@@ -138,7 +138,7 @@ export async function POST(req: Request) {
       stripeSessionId: session.id,
     };
 
-    saveOrder(order);
+    await saveOrder(order);
 
     if (order.email) {
       void sendOrderConfirmation({

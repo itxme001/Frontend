@@ -38,7 +38,7 @@ export async function POST(req: Request) {
   }
 
   // Find or create user
-  const user = upsertGoogleUser(googleInfo);
+  const user = await upsertGoogleUser(googleInfo);
 
   // Set session cookie
   const store = await cookies();

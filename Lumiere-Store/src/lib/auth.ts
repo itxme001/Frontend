@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { cookies } from "next/headers";
 import { generateCsrfToken, signCsrfToken, verifyCsrfToken, CSRF_TOKEN_HEADER } from "./csrf";
-import { findAllUsers, findUserByEmail, createUser as dbCreateUser, listOrdersByEmail, hashPassword, verifyPassword } from "./db";
+import { findAllUsers, findUserByEmail, createUser as dbCreateUser, listOrdersByEmail, saveOrder, hashPassword, verifyPassword } from "./db";
 
 export const SESSION_COOKIE = "lumiere_session";
 export const CSRF_COOKIE = "lumiere_csrf";
@@ -103,7 +103,9 @@ export async function verifyRequestCsrf(
   if (!verified) {
     return { ok: false, error: "Invalid CSRF token" };
   }
-  if (bodyToken !== verified) {
+  // Body/header token may be signed OR raw; verify its signature too.
+  const bodyVerified = verifyCsrfToken(bodyToken, secret());
+  if (!bodyVerified || bodyVerified !== verified) {
     return { ok: false, error: "CSRF token mismatch" };
   }
   return { ok: true };
@@ -152,7 +154,7 @@ export interface AuthResult {
   user?: SessionUser;
 }
 
-export function createUser(input: CreateUserInput): AuthResult {
+export async function createUser(input: CreateUserInput): Promise<AuthResult> {
   const name = input.name.trim();
   const email = normalizeEmail(input.email);
 
@@ -163,7 +165,7 @@ export function createUser(input: CreateUserInput): AuthResult {
     return { ok: false, error: "Password must be at least 6 characters." };
 
   try {
-    const result = dbCreateUser({ id: crypto.randomUUID(), name, email, password: input.password, createdAt: Date.now() });
+    const result = await dbCreateUser({ id: crypto.randomUUID(), name, email, password: input.password, createdAt: Date.now() });
     return { ok: true, user: { id: result.id, name: result.name, email: result.email } };
   } catch (e) {
     if (e instanceof Error && e.message === "email_exists") {
@@ -173,18 +175,18 @@ export function createUser(input: CreateUserInput): AuthResult {
   }
 }
 
-export function authenticate(
+export async function authenticate(
   email: string,
   password: string
-): SessionUser | null {
-  const user = findUserByEmail(normalizeEmail(email));
+): Promise<SessionUser | null> {
+  const user = await findUserByEmail(normalizeEmail(email));
   if (!user) return null;
   if (!verifyPassword(password, user.passwordHash)) return null;
   return { id: user.id, name: user.name, email: user.email };
 }
 
-export function getUserByEmail(email: string): SessionUser | null {
-  const user = findUserByEmail(normalizeEmail(email));
+export async function getUserByEmail(email: string): Promise<SessionUser | null> {
+  const user = await findUserByEmail(normalizeEmail(email));
   if (!user) return null;
   return { id: user.id, name: user.name, email: user.email };
 }
@@ -225,15 +227,15 @@ export async function verifyGoogleToken(idToken: string): Promise<GoogleUserInfo
  * Find or create a user from Google OAuth info.
  * Creates a user with a null password (OAuth-only account).
  */
-export function upsertGoogleUser(info: GoogleUserInfo): SessionUser {
+export async function upsertGoogleUser(info: GoogleUserInfo): Promise<SessionUser> {
   const email = normalizeEmail(info.email);
-  const existing = findUserByEmail(email);
+  const existing = await findUserByEmail(email);
   if (existing) {
     return { id: existing.id, name: existing.name, email: existing.email };
   }
   // Create new user with dummy password hash — login only via OAuth
   try {
-    const result = dbCreateUser({
+    const result = await dbCreateUser({
       id: crypto.randomUUID(),
       name: info.name,
       email,
@@ -243,7 +245,7 @@ export function upsertGoogleUser(info: GoogleUserInfo): SessionUser {
     return { id: result.id, name: result.name, email: result.email };
   } catch {
     // Race condition — user was created by another request
-    const fresh = findUserByEmail(email);
+    const fresh = await findUserByEmail(email);
     if (!fresh) throw new Error("Failed to create user");
     return { id: fresh.id, name: fresh.name, email: fresh.email };
   }

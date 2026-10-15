@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Name, email and password are required." }, { status: 400 });
   }
 
-  const result = createUser({ name, email, password });
+  const result = await createUser({ name, email, password });
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
