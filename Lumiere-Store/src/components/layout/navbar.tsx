@@ -277,7 +277,7 @@ export function Navbar() {
               type="button"
               onClick={() => setCartOpen(true)}
               aria-label={`Open shopping bag, ${itemCount} ${itemCount === 1 ? "item" : "items"}`}
-              className="relative rounded-full p-2 text-slate-500 transition-colors hover:bg-mist hover:text-foreground"
+              className="relative rounded-full bg-shell p-2.5 text-foreground transition-colors hover:bg-gold/20 hover:text-gold-ink"
             >
               <ShoppingBag className="h-5 w-5" aria-hidden />
               {itemCount > 0 && <CountBadge value={itemCount} />}

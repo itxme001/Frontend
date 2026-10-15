@@ -47,11 +47,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 693,
     "originalPrice": null,
-    "image": "/photos/products/silhouette-midi-dress-1.webp",
-    "heroImage": "/photos/products/silhouette-midi-dress-1.webp",
+    "image": "/photos/products/abdullah-raafat--rnMlsKuh3I-unsplash.jpg",
+    "heroImage": "/photos/products/abdullah-raafat--rnMlsKuh3I-unsplash.jpg",
     "images": [
-      "/photos/products/silhouette-midi-dress-1.webp",
-      "/photos/products/silhouette-midi-dress-2.webp"
+      "/photos/products/abdullah-raafat--rnMlsKuh3I-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -84,11 +83,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1602,
     "originalPrice": null,
-    "image": "/photos/products/structured-blazer-1.webp",
-    "heroImage": "/photos/products/structured-blazer-1.webp",
+    "image": "/photos/products/adam-kenton-E-HdFoOyyX0-unsplash.jpg",
+    "heroImage": "/photos/products/adam-kenton-E-HdFoOyyX0-unsplash.jpg",
     "images": [
-      "/photos/products/structured-blazer-1.webp",
-      "/photos/products/structured-blazer-2.webp"
+      "/photos/products/adam-kenton-E-HdFoOyyX0-unsplash.jpg"
     ],
     "colors": [
       "Forest",
@@ -119,11 +117,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1131,
     "originalPrice": null,
-    "image": "/photos/products/cashmere-coat-1.webp",
-    "heroImage": "/photos/products/cashmere-coat-1.webp",
+    "image": "/photos/products/admin.jpeg",
+    "heroImage": "/photos/products/admin.jpeg",
     "images": [
-      "/photos/products/cashmere-coat-1.webp",
-      "/photos/products/cashmere-coat-2.webp"
+      "/photos/products/admin.jpeg"
     ],
     "colors": [
       "Taupe",
@@ -155,11 +152,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2068,
     "originalPrice": null,
-    "image": "/photos/products/silk-blouse-1.webp",
-    "heroImage": "/photos/products/silk-blouse-1.webp",
+    "image": "/photos/products/aleksandrs-karevs-4fz3fM8Pbnw-unsplash.jpg",
+    "heroImage": "/photos/products/aleksandrs-karevs-4fz3fM8Pbnw-unsplash.jpg",
     "images": [
-      "/photos/products/silk-blouse-1.webp",
-      "/photos/products/silk-blouse-2.webp"
+      "/photos/products/aleksandrs-karevs-4fz3fM8Pbnw-unsplash.jpg"
     ],
     "colors": [
       "Moss",
@@ -193,11 +189,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1901,
     "originalPrice": null,
-    "image": "/photos/products/wool-trousers-1.webp",
-    "heroImage": "/photos/products/wool-trousers-1.webp",
+    "image": "/photos/products/aleksandrs-karevs-riaw3M3l0mI-unsplash.jpg",
+    "heroImage": "/photos/products/aleksandrs-karevs-riaw3M3l0mI-unsplash.jpg",
     "images": [
-      "/photos/products/wool-trousers-1.webp",
-      "/photos/products/wool-trousers-2.webp"
+      "/photos/products/aleksandrs-karevs-riaw3M3l0mI-unsplash.jpg"
     ],
     "colors": [
       "Stone",
@@ -230,11 +225,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 284,
     "originalPrice": null,
-    "image": "/photos/products/linen-shirt-1.webp",
-    "heroImage": "/photos/products/linen-shirt-1.webp",
+    "image": "/photos/products/aleksandrs-karevs-zv2-u_4ceRQ-unsplash.jpg",
+    "heroImage": "/photos/products/aleksandrs-karevs-zv2-u_4ceRQ-unsplash.jpg",
     "images": [
-      "/photos/products/linen-shirt-1.webp",
-      "/photos/products/linen-shirt-2.webp"
+      "/photos/products/aleksandrs-karevs-zv2-u_4ceRQ-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -267,11 +261,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1693,
     "originalPrice": null,
-    "image": "/photos/products/denim-jacket-1.webp",
-    "heroImage": "/photos/products/denim-jacket-1.webp",
+    "image": "/photos/products/alex-tyson-OHO0IgoB72o-unsplash.jpg",
+    "heroImage": "/photos/products/alex-tyson-OHO0IgoB72o-unsplash.jpg",
     "images": [
-      "/photos/products/denim-jacket-1.webp",
-      "/photos/products/denim-jacket-2.webp"
+      "/photos/products/alex-tyson-OHO0IgoB72o-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -302,11 +295,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1883,
     "originalPrice": null,
-    "image": "/photos/products/knit-sweater-1.webp",
-    "heroImage": "/photos/products/knit-sweater-1.webp",
+    "image": "/photos/products/alexandar-todov-6vtsGipAadE-unsplash.jpg",
+    "heroImage": "/photos/products/alexandar-todov-6vtsGipAadE-unsplash.jpg",
     "images": [
-      "/photos/products/knit-sweater-1.webp",
-      "/photos/products/knit-sweater-2.webp"
+      "/photos/products/alexandar-todov-6vtsGipAadE-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -339,11 +331,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2553,
     "originalPrice": 3302,
-    "image": "/photos/products/leather-bag-1.webp",
-    "heroImage": "/photos/products/leather-bag-1.webp",
+    "image": "/photos/products/ali-bakhtiari-7ic3yF64FS8-unsplash.jpg",
+    "heroImage": "/photos/products/ali-bakhtiari-7ic3yF64FS8-unsplash.jpg",
     "images": [
-      "/photos/products/leather-bag-1.webp",
-      "/photos/products/leather-bag-2.webp"
+      "/photos/products/ali-bakhtiari-7ic3yF64FS8-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -377,11 +368,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 762,
     "originalPrice": null,
-    "image": "/photos/products/gold-earrings-1.webp",
-    "heroImage": "/photos/products/gold-earrings-1.webp",
+    "image": "/photos/products/aman-chaturvedi-AAkjysvbDYM-unsplash.jpg",
+    "heroImage": "/photos/products/aman-chaturvedi-AAkjysvbDYM-unsplash.jpg",
     "images": [
-      "/photos/products/gold-earrings-1.webp",
-      "/photos/products/gold-earrings-2.webp"
+      "/photos/products/aman-chaturvedi-AAkjysvbDYM-unsplash.jpg"
     ],
     "colors": [
       "Mauve",
@@ -414,11 +404,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 192,
     "originalPrice": 277,
-    "image": "/photos/products/silk-scarf-1.webp",
-    "heroImage": "/photos/products/silk-scarf-1.webp",
+    "image": "/photos/products/amr-taha-z4CsM71d7Co-unsplash.jpg",
+    "heroImage": "/photos/products/amr-taha-z4CsM71d7Co-unsplash.jpg",
     "images": [
-      "/photos/products/silk-scarf-1.webp",
-      "/photos/products/silk-scarf-2.webp"
+      "/photos/products/amr-taha-z4CsM71d7Co-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -451,11 +440,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 684,
     "originalPrice": null,
-    "image": "/photos/products/ceramic-vase-1.webp",
-    "heroImage": "/photos/products/ceramic-vase-1.webp",
+    "image": "/photos/products/andrey-zvyagintsev-x0c6vTO5ibA-unsplash.jpg",
+    "heroImage": "/photos/products/andrey-zvyagintsev-x0c6vTO5ibA-unsplash.jpg",
     "images": [
-      "/photos/products/ceramic-vase-1.webp",
-      "/photos/products/ceramic-vase-2.webp"
+      "/photos/products/andrey-zvyagintsev-x0c6vTO5ibA-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -488,11 +476,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 399,
     "originalPrice": null,
-    "image": "/photos/products/candle-set-1.webp",
-    "heroImage": "/photos/products/candle-set-1.webp",
+    "image": "/photos/products/andrijana-bozic-xBSrwygHrzg-unsplash.jpg",
+    "heroImage": "/photos/products/andrijana-bozic-xBSrwygHrzg-unsplash.jpg",
     "images": [
-      "/photos/products/candle-set-1.webp",
-      "/photos/products/candle-set-2.webp"
+      "/photos/products/andrijana-bozic-xBSrwygHrzg-unsplash.jpg"
     ],
     "colors": [
       "Rose",
@@ -525,11 +512,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1060,
     "originalPrice": null,
-    "image": "/photos/products/perfume-bottle-1.webp",
-    "heroImage": "/photos/products/perfume-bottle-1.webp",
+    "image": "/photos/products/arno-senoner-q1WqpjAyG9k-unsplash.jpg",
+    "heroImage": "/photos/products/arno-senoner-q1WqpjAyG9k-unsplash.jpg",
     "images": [
-      "/photos/products/perfume-bottle-1.webp",
-      "/photos/products/perfume-bottle-2.webp"
+      "/photos/products/arno-senoner-q1WqpjAyG9k-unsplash.jpg"
     ],
     "colors": [
       "Champagne",
@@ -560,11 +546,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1411,
     "originalPrice": null,
-    "image": "/photos/products/watch-1.webp",
-    "heroImage": "/photos/products/watch-1.webp",
+    "image": "/photos/products/artem-ivanchencko-I-4bg_c7N24-unsplash.jpg",
+    "heroImage": "/photos/products/artem-ivanchencko-I-4bg_c7N24-unsplash.jpg",
     "images": [
-      "/photos/products/watch-1.webp",
-      "/photos/products/watch-2.webp"
+      "/photos/products/artem-ivanchencko-I-4bg_c7N24-unsplash.jpg"
     ],
     "colors": [
       "Dusty-rose"
@@ -594,11 +579,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1064,
     "originalPrice": null,
-    "image": "/photos/products/sunglasses-1.webp",
-    "heroImage": "/photos/products/sunglasses-1.webp",
+    "image": "/photos/products/behrooz-9_dIcLd3_P8-unsplash.jpg",
+    "heroImage": "/photos/products/behrooz-9_dIcLd3_P8-unsplash.jpg",
     "images": [
-      "/photos/products/sunglasses-1.webp",
-      "/photos/products/sunglasses-2.webp"
+      "/photos/products/behrooz-9_dIcLd3_P8-unsplash.jpg"
     ],
     "colors": [
       "Forest",
@@ -630,11 +614,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1552,
     "originalPrice": null,
-    "image": "/photos/products/belt-1.webp",
-    "heroImage": "/photos/products/belt-1.webp",
+    "image": "/photos/products/behrooz-MMBBQ2p1Dsk-unsplash.jpg",
+    "heroImage": "/photos/products/behrooz-MMBBQ2p1Dsk-unsplash.jpg",
     "images": [
-      "/photos/products/belt-1.webp",
-      "/photos/products/belt-2.webp"
+      "/photos/products/behrooz-MMBBQ2p1Dsk-unsplash.jpg"
     ],
     "colors": [
       "Rose",
@@ -666,11 +649,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1225,
     "originalPrice": null,
-    "image": "/photos/products/sneakers-1.webp",
-    "heroImage": "/photos/products/sneakers-1.webp",
+    "image": "/photos/products/bozhin-karaivanov-6yU7_W7-D0w-unsplash.jpg",
+    "heroImage": "/photos/products/bozhin-karaivanov-6yU7_W7-D0w-unsplash.jpg",
     "images": [
-      "/photos/products/sneakers-1.webp",
-      "/photos/products/sneakers-2.webp"
+      "/photos/products/bozhin-karaivanov-6yU7_W7-D0w-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -702,11 +684,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 657,
     "originalPrice": null,
-    "image": "/photos/products/boots-1.webp",
-    "heroImage": "/photos/products/boots-1.webp",
+    "image": "/photos/products/brian-lawson-4A5ItQSnbNY-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-4A5ItQSnbNY-unsplash.jpg",
     "images": [
-      "/photos/products/boots-1.webp",
-      "/photos/products/boots-2.webp"
+      "/photos/products/brian-lawson-4A5ItQSnbNY-unsplash.jpg"
     ],
     "colors": [
       "Ivory",
@@ -738,11 +719,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1971,
     "originalPrice": null,
-    "image": "/photos/products/sandals-1.webp",
-    "heroImage": "/photos/products/sandals-1.webp",
+    "image": "/photos/products/brian-lawson-6qvCcNrNjcM-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-6qvCcNrNjcM-unsplash.jpg",
     "images": [
-      "/photos/products/sandals-1.webp",
-      "/photos/products/sandals-2.webp"
+      "/photos/products/brian-lawson-6qvCcNrNjcM-unsplash.jpg"
     ],
     "colors": [
       "Dusty-rose",
@@ -775,11 +755,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2273,
     "originalPrice": null,
-    "image": "/photos/products/ring-1.webp",
-    "heroImage": "/photos/products/ring-1.webp",
+    "image": "/photos/products/brian-lawson-9vzfoIpHTbs-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-9vzfoIpHTbs-unsplash.jpg",
     "images": [
-      "/photos/products/ring-1.webp",
-      "/photos/products/ring-2.webp"
+      "/photos/products/brian-lawson-9vzfoIpHTbs-unsplash.jpg"
     ],
     "colors": [
       "Ebony",
@@ -812,11 +791,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1998,
     "originalPrice": 2706,
-    "image": "/photos/products/necklace-1.webp",
-    "heroImage": "/photos/products/necklace-1.webp",
+    "image": "/photos/products/brian-lawson-AXH6s4M8qVQ-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-AXH6s4M8qVQ-unsplash.jpg",
     "images": [
-      "/photos/products/necklace-1.webp",
-      "/photos/products/necklace-2.webp"
+      "/photos/products/brian-lawson-AXH6s4M8qVQ-unsplash.jpg"
     ],
     "colors": [
       "White",
@@ -849,11 +827,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 451,
     "originalPrice": 630,
-    "image": "/photos/products/bracelet-1.webp",
-    "heroImage": "/photos/products/bracelet-1.webp",
+    "image": "/photos/products/brian-lawson-AldAsYrniYg-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-AldAsYrniYg-unsplash.jpg",
     "images": [
-      "/photos/products/bracelet-1.webp",
-      "/photos/products/bracelet-2.webp"
+      "/photos/products/brian-lawson-AldAsYrniYg-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -887,11 +864,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 325,
     "originalPrice": null,
-    "image": "/photos/products/hat-1.webp",
-    "heroImage": "/photos/products/hat-1.webp",
+    "image": "/photos/products/brian-lawson-C4NZk9-VP84-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-C4NZk9-VP84-unsplash.jpg",
     "images": [
-      "/photos/products/hat-1.webp",
-      "/photos/products/hat-2.webp"
+      "/photos/products/brian-lawson-C4NZk9-VP84-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -923,11 +899,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1733,
     "originalPrice": null,
-    "image": "/photos/products/gloves-1.webp",
-    "heroImage": "/photos/products/gloves-1.webp",
+    "image": "/photos/products/brian-lawson-FbKHGSQxOdE-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-FbKHGSQxOdE-unsplash.jpg",
     "images": [
-      "/photos/products/gloves-1.webp",
-      "/photos/products/gloves-2.webp"
+      "/photos/products/brian-lawson-FbKHGSQxOdE-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -959,11 +934,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1626,
     "originalPrice": 2200,
-    "image": "/photos/products/wallet-1.webp",
-    "heroImage": "/photos/products/wallet-1.webp",
+    "image": "/photos/products/brian-lawson-REW0pkn4nx0-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-REW0pkn4nx0-unsplash.jpg",
     "images": [
-      "/photos/products/wallet-1.webp",
-      "/photos/products/wallet-2.webp"
+      "/photos/products/brian-lawson-REW0pkn4nx0-unsplash.jpg"
     ],
     "colors": [
       "Walnut",
@@ -999,11 +973,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1611,
     "originalPrice": null,
-    "image": "/photos/products/backpack-1.webp",
-    "heroImage": "/photos/products/backpack-1.webp",
+    "image": "/photos/products/brian-lawson-_XKzo-Du-3w-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-_XKzo-Du-3w-unsplash.jpg",
     "images": [
-      "/photos/products/backpack-1.webp",
-      "/photos/products/backpack-2.webp"
+      "/photos/products/brian-lawson-_XKzo-Du-3w-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -1035,11 +1008,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 333,
     "originalPrice": null,
-    "image": "/photos/products/tote-bag-1.webp",
-    "heroImage": "/photos/products/tote-bag-1.webp",
+    "image": "/photos/products/brian-lawson-a-mtphgCGo8-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-a-mtphgCGo8-unsplash.jpg",
     "images": [
-      "/photos/products/tote-bag-1.webp",
-      "/photos/products/tote-bag-2.webp"
+      "/photos/products/brian-lawson-a-mtphgCGo8-unsplash.jpg"
     ],
     "colors": [
       "Navy",
@@ -1070,11 +1042,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1810,
     "originalPrice": 2227,
-    "image": "/photos/products/clutch-1.webp",
-    "heroImage": "/photos/products/clutch-1.webp",
+    "image": "/photos/products/brian-lawson-fPGYVaUuAHI-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-fPGYVaUuAHI-unsplash.jpg",
     "images": [
-      "/photos/products/clutch-1.webp",
-      "/photos/products/clutch-2.webp"
+      "/photos/products/brian-lawson-fPGYVaUuAHI-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -1107,11 +1078,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1006,
     "originalPrice": null,
-    "image": "/photos/products/throw-pillow-1.webp",
-    "heroImage": "/photos/products/throw-pillow-1.webp",
+    "image": "/photos/products/brian-lawson-gy-cxc0D0fQ-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-gy-cxc0D0fQ-unsplash.jpg",
     "images": [
-      "/photos/products/throw-pillow-1.webp",
-      "/photos/products/throw-pillow-2.webp"
+      "/photos/products/brian-lawson-gy-cxc0D0fQ-unsplash.jpg"
     ],
     "colors": [
       "Cream",
@@ -1142,11 +1112,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2243,
     "originalPrice": null,
-    "image": "/photos/products/table-lamp-1.webp",
-    "heroImage": "/photos/products/table-lamp-1.webp",
+    "image": "/photos/products/brian-lawson-hSl4cWp27FA-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-hSl4cWp27FA-unsplash.jpg",
     "images": [
-      "/photos/products/table-lamp-1.webp",
-      "/photos/products/table-lamp-2.webp"
+      "/photos/products/brian-lawson-hSl4cWp27FA-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -1179,11 +1148,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2262,
     "originalPrice": null,
-    "image": "/photos/products/cushion-1.webp",
-    "heroImage": "/photos/products/cushion-1.webp",
+    "image": "/photos/products/brian-lawson-hpmHV56fpEY-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-hpmHV56fpEY-unsplash.jpg",
     "images": [
-      "/photos/products/cushion-1.webp",
-      "/photos/products/cushion-2.webp"
+      "/photos/products/brian-lawson-hpmHV56fpEY-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -1216,11 +1184,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2105,
     "originalPrice": 2592,
-    "image": "/photos/products/blanket-1.webp",
-    "heroImage": "/photos/products/blanket-1.webp",
+    "image": "/photos/products/brian-lawson-ov150m0K7Ag-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-ov150m0K7Ag-unsplash.jpg",
     "images": [
-      "/photos/products/blanket-1.webp",
-      "/photos/products/blanket-2.webp"
+      "/photos/products/brian-lawson-ov150m0K7Ag-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -1252,11 +1219,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 126,
     "originalPrice": 165,
-    "image": "/photos/products/mirror-1.webp",
-    "heroImage": "/photos/products/mirror-1.webp",
+    "image": "/photos/products/brian-lawson-t9DENSNdzPg-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-t9DENSNdzPg-unsplash.jpg",
     "images": [
-      "/photos/products/mirror-1.webp",
-      "/photos/products/mirror-2.webp"
+      "/photos/products/brian-lawson-t9DENSNdzPg-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -1289,11 +1255,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 88,
     "originalPrice": null,
-    "image": "/photos/products/frame-set-1.webp",
-    "heroImage": "/photos/products/frame-set-1.webp",
+    "image": "/photos/products/brian-lawson-tdC8x_ank-Q-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-tdC8x_ank-Q-unsplash.jpg",
     "images": [
-      "/photos/products/frame-set-1.webp",
-      "/photos/products/frame-set-2.webp"
+      "/photos/products/brian-lawson-tdC8x_ank-Q-unsplash.jpg"
     ],
     "colors": [
       "Blush"
@@ -1323,11 +1288,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 946,
     "originalPrice": null,
-    "image": "/photos/products/diffuser-1.webp",
-    "heroImage": "/photos/products/diffuser-1.webp",
+    "image": "/photos/products/brian-lawson-vdYzT-wo3NA-unsplash.jpg",
+    "heroImage": "/photos/products/brian-lawson-vdYzT-wo3NA-unsplash.jpg",
     "images": [
-      "/photos/products/diffuser-1.webp",
-      "/photos/products/diffuser-2.webp"
+      "/photos/products/brian-lawson-vdYzT-wo3NA-unsplash.jpg"
     ],
     "colors": [
       "Forest",
@@ -1361,11 +1325,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1543,
     "originalPrice": null,
-    "image": "/photos/products/tray-1.webp",
-    "heroImage": "/photos/products/tray-1.webp",
+    "image": "/photos/products/caroline-badran-aDtv0uDomA0-unsplash.jpg",
+    "heroImage": "/photos/products/caroline-badran-aDtv0uDomA0-unsplash.jpg",
     "images": [
-      "/photos/products/tray-1.webp",
-      "/photos/products/tray-2.webp"
+      "/photos/products/caroline-badran-aDtv0uDomA0-unsplash.jpg"
     ],
     "colors": [
       "Sand",
@@ -1398,11 +1361,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 782,
     "originalPrice": null,
-    "image": "/photos/products/mug-set-1.webp",
-    "heroImage": "/photos/products/mug-set-1.webp",
+    "image": "/photos/products/crystalweed-cannabis-j-CRNIwEGfk-unsplash.jpg",
+    "heroImage": "/photos/products/crystalweed-cannabis-j-CRNIwEGfk-unsplash.jpg",
     "images": [
-      "/photos/products/mug-set-1.webp",
-      "/photos/products/mug-set-2.webp"
+      "/photos/products/crystalweed-cannabis-j-CRNIwEGfk-unsplash.jpg"
     ],
     "colors": [
       "Mauve",
@@ -1434,11 +1396,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1222,
     "originalPrice": null,
-    "image": "/photos/products/book-end-1.webp",
-    "heroImage": "/photos/products/book-end-1.webp",
+    "image": "/photos/products/daniel-romero-VitXrx5ajeQ-unsplash.jpg",
+    "heroImage": "/photos/products/daniel-romero-VitXrx5ajeQ-unsplash.jpg",
     "images": [
-      "/photos/products/book-end-1.webp",
-      "/photos/products/book-end-2.webp"
+      "/photos/products/daniel-romero-VitXrx5ajeQ-unsplash.jpg"
     ],
     "colors": [
       "Forest",
@@ -1471,11 +1432,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1016,
     "originalPrice": null,
-    "image": "/photos/products/votive-holder-1.webp",
-    "heroImage": "/photos/products/votive-holder-1.webp",
+    "image": "/photos/products/devin-santiago-ij6JGuYzCd4-unsplash.jpg",
+    "heroImage": "/photos/products/devin-santiago-ij6JGuYzCd4-unsplash.jpg",
     "images": [
-      "/photos/products/votive-holder-1.webp",
-      "/photos/products/votive-holder-2.webp"
+      "/photos/products/devin-santiago-ij6JGuYzCd4-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -1507,11 +1467,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 663,
     "originalPrice": null,
-    "image": "/photos/products/journal-1.webp",
-    "heroImage": "/photos/products/journal-1.webp",
+    "image": "/photos/products/dmitry-ganin-8O4hI7XW8Z4-unsplash.jpg",
+    "heroImage": "/photos/products/dmitry-ganin-8O4hI7XW8Z4-unsplash.jpg",
     "images": [
-      "/photos/products/journal-1.webp",
-      "/photos/products/journal-2.webp"
+      "/photos/products/dmitry-ganin-8O4hI7XW8Z4-unsplash.jpg"
     ],
     "colors": [
       "Champagne",
@@ -1542,11 +1501,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 101,
     "originalPrice": null,
-    "image": "/photos/products/pen-set-1.webp",
-    "heroImage": "/photos/products/pen-set-1.webp",
+    "image": "/photos/products/ela-de-pure-32Js0PTnf9I-unsplash.jpg",
+    "heroImage": "/photos/products/ela-de-pure-32Js0PTnf9I-unsplash.jpg",
     "images": [
-      "/photos/products/pen-set-1.webp",
-      "/photos/products/pen-set-2.webp"
+      "/photos/products/ela-de-pure-32Js0PTnf9I-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -1577,11 +1535,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1162,
     "originalPrice": null,
-    "image": "/photos/products/desk-lamp-1.webp",
-    "heroImage": "/photos/products/desk-lamp-1.webp",
+    "image": "/photos/products/ela-de-pure-4uDa0AHvszI-unsplash.jpg",
+    "heroImage": "/photos/products/ela-de-pure-4uDa0AHvszI-unsplash.jpg",
     "images": [
-      "/photos/products/desk-lamp-1.webp",
-      "/photos/products/desk-lamp-2.webp"
+      "/photos/products/ela-de-pure-4uDa0AHvszI-unsplash.jpg"
     ],
     "colors": [
       "Pewter",
@@ -1613,11 +1570,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 2746,
     "originalPrice": null,
-    "image": "/photos/products/candle-holder-1.webp",
-    "heroImage": "/photos/products/candle-holder-1.webp",
+    "image": "/photos/products/ela-de-pure-4yvJ5uVPPYc-unsplash.jpg",
+    "heroImage": "/photos/products/ela-de-pure-4yvJ5uVPPYc-unsplash.jpg",
     "images": [
-      "/photos/products/candle-holder-1.webp",
-      "/photos/products/candle-holder-2.webp"
+      "/photos/products/ela-de-pure-4yvJ5uVPPYc-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -1650,11 +1606,10 @@ export const products: Product[] = [
     "category": "apparel",
     "price": 1763,
     "originalPrice": null,
-    "image": "/photos/products/robe-1.webp",
-    "heroImage": "/photos/products/robe-1.webp",
+    "image": "/photos/products/ela-de-pure-nzisN6dYiV8-unsplash.jpg",
+    "heroImage": "/photos/products/ela-de-pure-nzisN6dYiV8-unsplash.jpg",
     "images": [
-      "/photos/products/robe-1.webp",
-      "/photos/products/robe-2.webp"
+      "/photos/products/ela-de-pure-nzisN6dYiV8-unsplash.jpg"
     ],
     "colors": [
       "Slate",
@@ -1686,11 +1641,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 491,
     "originalPrice": null,
-    "image": "/photos/products/pajama-set-1.webp",
-    "heroImage": "/photos/products/pajama-set-1.webp",
+    "image": "/photos/products/ela-de-pure-wuBiNO345DE-unsplash.jpg",
+    "heroImage": "/photos/products/ela-de-pure-wuBiNO345DE-unsplash.jpg",
     "images": [
-      "/photos/products/pajama-set-1.webp",
-      "/photos/products/pajama-set-2.webp"
+      "/photos/products/ela-de-pure-wuBiNO345DE-unsplash.jpg"
     ],
     "colors": [
       "Forest",
@@ -1722,11 +1676,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 891,
     "originalPrice": null,
-    "image": "/photos/products/cardigan-1.webp",
-    "heroImage": "/photos/products/cardigan-1.webp",
+    "image": "/photos/products/fabio-alves-eAUE_FmclYE-unsplash.jpg",
+    "heroImage": "/photos/products/fabio-alves-eAUE_FmclYE-unsplash.jpg",
     "images": [
-      "/photos/products/cardigan-1.webp",
-      "/photos/products/cardigan-2.webp"
+      "/photos/products/fabio-alves-eAUE_FmclYE-unsplash.jpg"
     ],
     "colors": [
       "Slate",
@@ -1759,11 +1712,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 877,
     "originalPrice": null,
-    "image": "/photos/products/trench-coat-1.webp",
-    "heroImage": "/photos/products/trench-coat-1.webp",
+    "image": "/photos/products/faith-yarn-Wr0TpKqf26s-unsplash.jpg",
+    "heroImage": "/photos/products/faith-yarn-Wr0TpKqf26s-unsplash.jpg",
     "images": [
-      "/photos/products/trench-coat-1.webp",
-      "/photos/products/trench-coat-2.webp"
+      "/photos/products/faith-yarn-Wr0TpKqf26s-unsplash.jpg"
     ],
     "colors": [
       "Moss",
@@ -1796,11 +1748,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 485,
     "originalPrice": null,
-    "image": "/photos/products/miniskirt-1.webp",
-    "heroImage": "/photos/products/miniskirt-1.webp",
+    "image": "/photos/products/faizur-rehman-iwd_99qV7Uk-unsplash.jpg",
+    "heroImage": "/photos/products/faizur-rehman-iwd_99qV7Uk-unsplash.jpg",
     "images": [
-      "/photos/products/miniskirt-1.webp",
-      "/photos/products/miniskirt-2.webp"
+      "/photos/products/faizur-rehman-iwd_99qV7Uk-unsplash.jpg"
     ],
     "colors": [
       "Dusty-rose",
@@ -1833,11 +1784,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 520,
     "originalPrice": null,
-    "image": "/photos/products/maxi-skirt-1.webp",
-    "heroImage": "/photos/products/maxi-skirt-1.webp",
+    "image": "/photos/products/farkas-mario-qLrJZdOZFag-unsplash.jpg",
+    "heroImage": "/photos/products/farkas-mario-qLrJZdOZFag-unsplash.jpg",
     "images": [
-      "/photos/products/maxi-skirt-1.webp",
-      "/photos/products/maxi-skirt-2.webp"
+      "/photos/products/farkas-mario-qLrJZdOZFag-unsplash.jpg"
     ],
     "colors": [
       "Moss",
@@ -1870,11 +1820,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 208,
     "originalPrice": null,
-    "image": "/photos/products/jumpsuit-1.webp",
-    "heroImage": "/photos/products/jumpsuit-1.webp",
+    "image": "/photos/products/feey-H_vUPQtokFI-unsplash.jpg",
+    "heroImage": "/photos/products/feey-H_vUPQtokFI-unsplash.jpg",
     "images": [
-      "/photos/products/jumpsuit-1.webp",
-      "/photos/products/jumpsuit-2.webp"
+      "/photos/products/feey-H_vUPQtokFI-unsplash.jpg"
     ],
     "colors": [
       "Camel",
@@ -1907,11 +1856,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 236,
     "originalPrice": null,
-    "image": "/photos/products/co-ord-set-1.webp",
-    "heroImage": "/photos/products/co-ord-set-1.webp",
+    "image": "/photos/products/filip-baotic-Vq511boXLUk-unsplash.jpg",
+    "heroImage": "/photos/products/filip-baotic-Vq511boXLUk-unsplash.jpg",
     "images": [
-      "/photos/products/co-ord-set-1.webp",
-      "/photos/products/co-ord-set-2.webp"
+      "/photos/products/filip-baotic-Vq511boXLUk-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -1944,11 +1892,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 345,
     "originalPrice": null,
-    "image": "/photos/products/bodycon-dress-1.webp",
-    "heroImage": "/photos/products/bodycon-dress-1.webp",
+    "image": "/photos/products/heidi-walley-m6sh2vS0Yjk-unsplash.jpg",
+    "heroImage": "/photos/products/heidi-walley-m6sh2vS0Yjk-unsplash.jpg",
     "images": [
-      "/photos/products/bodycon-dress-1.webp",
-      "/photos/products/bodycon-dress-2.webp"
+      "/photos/products/heidi-walley-m6sh2vS0Yjk-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -1979,11 +1926,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 197,
     "originalPrice": null,
-    "image": "/photos/products/shirt-dress-1.webp",
-    "heroImage": "/photos/products/shirt-dress-1.webp",
+    "image": "/photos/products/hydra-4x-X4Ya3-wg2OU-unsplash.jpg",
+    "heroImage": "/photos/products/hydra-4x-X4Ya3-wg2OU-unsplash.jpg",
     "images": [
-      "/photos/products/shirt-dress-1.webp",
-      "/photos/products/shirt-dress-2.webp"
+      "/photos/products/hydra-4x-X4Ya3-wg2OU-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -2015,11 +1961,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 992,
     "originalPrice": null,
-    "image": "/photos/products/wrap-dress-1.webp",
-    "heroImage": "/photos/products/wrap-dress-1.webp",
+    "image": "/photos/products/i-m-zion-YZHHrVhyc9I-unsplash.jpg",
+    "heroImage": "/photos/products/i-m-zion-YZHHrVhyc9I-unsplash.jpg",
     "images": [
-      "/photos/products/wrap-dress-1.webp",
-      "/photos/products/wrap-dress-2.webp"
+      "/photos/products/i-m-zion-YZHHrVhyc9I-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -2053,11 +1998,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 449,
     "originalPrice": null,
-    "image": "/photos/products/peacoat-1.webp",
-    "heroImage": "/photos/products/peacoat-1.webp",
+    "image": "/photos/products/i-m-zion-vYxnwamt6HE-unsplash.jpg",
+    "heroImage": "/photos/products/i-m-zion-vYxnwamt6HE-unsplash.jpg",
     "images": [
-      "/photos/products/peacoat-1.webp",
-      "/photos/products/peacoat-2.webp"
+      "/photos/products/i-m-zion-vYxnwamt6HE-unsplash.jpg"
     ],
     "colors": [
       "Pewter",
@@ -2088,11 +2032,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 537,
     "originalPrice": null,
-    "image": "/photos/products/blazer-dress-1.webp",
-    "heroImage": "/photos/products/blazer-dress-1.webp",
+    "image": "/photos/products/imana-l_5sO5-7wGY-unsplash.jpg",
+    "heroImage": "/photos/products/imana-l_5sO5-7wGY-unsplash.jpg",
     "images": [
-      "/photos/products/blazer-dress-1.webp",
-      "/photos/products/blazer-dress-2.webp"
+      "/photos/products/imana-l_5sO5-7wGY-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -2124,11 +2067,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 973,
     "originalPrice": null,
-    "image": "/photos/products/culottes-1.webp",
-    "heroImage": "/photos/products/culottes-1.webp",
+    "image": "/photos/products/imana-zHI1eay3Myo-unsplash.jpg",
+    "heroImage": "/photos/products/imana-zHI1eay3Myo-unsplash.jpg",
     "images": [
-      "/photos/products/culottes-1.webp",
-      "/photos/products/culottes-2.webp"
+      "/photos/products/imana-zHI1eay3Myo-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -2160,11 +2102,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 393,
     "originalPrice": null,
-    "image": "/photos/products/palazzo-pants-1.webp",
-    "heroImage": "/photos/products/palazzo-pants-1.webp",
+    "image": "/photos/products/improve-in-design.jpeg",
+    "heroImage": "/photos/products/improve-in-design.jpeg",
     "images": [
-      "/photos/products/palazzo-pants-1.webp",
-      "/photos/products/palazzo-pants-2.webp"
+      "/photos/products/improve-in-design.jpeg"
     ],
     "colors": [
       "Sand",
@@ -2197,11 +2138,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 915,
     "originalPrice": null,
-    "image": "/photos/products/chino-shorts-1.webp",
-    "heroImage": "/photos/products/chino-shorts-1.webp",
+    "image": "/photos/products/iuliia-pilipeichenko-mS_QzcElEAo-unsplash.jpg",
+    "heroImage": "/photos/products/iuliia-pilipeichenko-mS_QzcElEAo-unsplash.jpg",
     "images": [
-      "/photos/products/chino-shorts-1.webp",
-      "/photos/products/chino-shorts-2.webp"
+      "/photos/products/iuliia-pilipeichenko-mS_QzcElEAo-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -2234,11 +2174,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 831,
     "originalPrice": null,
-    "image": "/photos/products/track-pants-1.webp",
-    "heroImage": "/photos/products/track-pants-1.webp",
+    "image": "/photos/products/jan-kopriva-nBwdYS1_rgA-unsplash.jpg",
+    "heroImage": "/photos/products/jan-kopriva-nBwdYS1_rgA-unsplash.jpg",
     "images": [
-      "/photos/products/track-pants-1.webp",
-      "/photos/products/track-pants-2.webp"
+      "/photos/products/jan-kopriva-nBwdYS1_rgA-unsplash.jpg"
     ],
     "colors": [
       "Dusty-rose",
@@ -2270,11 +2209,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 668,
     "originalPrice": null,
-    "image": "/photos/products/midi-skirt-plisse-1.webp",
-    "heroImage": "/photos/products/midi-skirt-plisse-1.webp",
+    "image": "/photos/products/jean-philippe-delberghe-3EC_3r8-yME-unsplash.jpg",
+    "heroImage": "/photos/products/jean-philippe-delberghe-3EC_3r8-yME-unsplash.jpg",
     "images": [
-      "/photos/products/midi-skirt-plisse-1.webp",
-      "/photos/products/midi-skirt-plisse-2.webp"
+      "/photos/products/jean-philippe-delberghe-3EC_3r8-yME-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -2307,11 +2245,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 982,
     "originalPrice": null,
-    "image": "/photos/products/corset-top-1.webp",
-    "heroImage": "/photos/products/corset-top-1.webp",
+    "image": "/photos/products/jimmy-fermin-bqe0J0b26RQ-unsplash.jpg",
+    "heroImage": "/photos/products/jimmy-fermin-bqe0J0b26RQ-unsplash.jpg",
     "images": [
-      "/photos/products/corset-top-1.webp",
-      "/photos/products/corset-top-2.webp"
+      "/photos/products/jimmy-fermin-bqe0J0b26RQ-unsplash.jpg"
     ],
     "colors": [
       "Cream",
@@ -2342,11 +2279,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 709,
     "originalPrice": null,
-    "image": "/photos/products/tube-top-1.webp",
-    "heroImage": "/photos/products/tube-top-1.webp",
+    "image": "/photos/products/julia-RuCVvjuyNeQ-unsplash.jpg",
+    "heroImage": "/photos/products/julia-RuCVvjuyNeQ-unsplash.jpg",
     "images": [
-      "/photos/products/tube-top-1.webp",
-      "/photos/products/tube-top-2.webp"
+      "/photos/products/julia-RuCVvjuyNeQ-unsplash.jpg"
     ],
     "colors": [
       "Mauve",
@@ -2377,11 +2313,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 966,
     "originalPrice": 1330,
-    "image": "/photos/products/chiffon-blouse-1.webp",
-    "heroImage": "/photos/products/chiffon-blouse-1.webp",
+    "image": "/photos/products/kam-idris-_HqHX3LBN18-unsplash.jpg",
+    "heroImage": "/photos/products/kam-idris-_HqHX3LBN18-unsplash.jpg",
     "images": [
-      "/photos/products/chiffon-blouse-1.webp",
-      "/photos/products/chiffon-blouse-2.webp"
+      "/photos/products/kam-idris-_HqHX3LBN18-unsplash.jpg"
     ],
     "colors": [
       "Champagne",
@@ -2415,11 +2350,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 412,
     "originalPrice": null,
-    "image": "/photos/products/ruched-dress-1.webp",
-    "heroImage": "/photos/products/ruched-dress-1.webp",
+    "image": "/photos/products/karlis-zalans-HSADHC_QboY-unsplash.jpg",
+    "heroImage": "/photos/products/karlis-zalans-HSADHC_QboY-unsplash.jpg",
     "images": [
-      "/photos/products/ruched-dress-1.webp",
-      "/photos/products/ruched-dress-2.webp"
+      "/photos/products/karlis-zalans-HSADHC_QboY-unsplash.jpg"
     ],
     "colors": [
       "Slate",
@@ -2452,11 +2386,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 235,
     "originalPrice": null,
-    "image": "/photos/products/asymmetric-hem-1.webp",
-    "heroImage": "/photos/products/asymmetric-hem-1.webp",
+    "image": "/photos/products/karly-jones-4i9ef6xU738-unsplash.jpg",
+    "heroImage": "/photos/products/karly-jones-4i9ef6xU738-unsplash.jpg",
     "images": [
-      "/photos/products/asymmetric-hem-1.webp",
-      "/photos/products/asymmetric-hem-2.webp"
+      "/photos/products/karly-jones-4i9ef6xU738-unsplash.jpg"
     ],
     "colors": [
       "Burgundy",
@@ -2488,11 +2421,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 968,
     "originalPrice": null,
-    "image": "/photos/products/statement-sleeve-1.webp",
-    "heroImage": "/photos/products/statement-sleeve-1.webp",
+    "image": "/photos/products/katie-puzatova-xtSZ7I6vU1Q-unsplash.jpg",
+    "heroImage": "/photos/products/katie-puzatova-xtSZ7I6vU1Q-unsplash.jpg",
     "images": [
-      "/photos/products/statement-sleeve-1.webp",
-      "/photos/products/statement-sleeve-2.webp"
+      "/photos/products/katie-puzatova-xtSZ7I6vU1Q-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -2523,11 +2455,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 470,
     "originalPrice": null,
-    "image": "/photos/products/cutout-detail-1.webp",
-    "heroImage": "/photos/products/cutout-detail-1.webp",
+    "image": "/photos/products/kelvin-lutan-5f4yovjJw4c-unsplash.jpg",
+    "heroImage": "/photos/products/kelvin-lutan-5f4yovjJw4c-unsplash.jpg",
     "images": [
-      "/photos/products/cutout-detail-1.webp",
-      "/photos/products/cutout-detail-2.webp"
+      "/photos/products/kelvin-lutan-5f4yovjJw4c-unsplash.jpg"
     ],
     "colors": [
       "Copper",
@@ -2558,11 +2489,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 478,
     "originalPrice": null,
-    "image": "/photos/products/embroidered-jacket-1.webp",
-    "heroImage": "/photos/products/embroidered-jacket-1.webp",
+    "image": "/photos/products/kimson-doan-HD8KlyWRYYM-unsplash.jpg",
+    "heroImage": "/photos/products/kimson-doan-HD8KlyWRYYM-unsplash.jpg",
     "images": [
-      "/photos/products/embroidered-jacket-1.webp",
-      "/photos/products/embroidered-jacket-2.webp"
+      "/photos/products/kimson-doan-HD8KlyWRYYM-unsplash.jpg"
     ],
     "colors": [
       "Ebony",
@@ -2594,11 +2524,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 476,
     "originalPrice": null,
-    "image": "/photos/products/lace-trim-1.webp",
-    "heroImage": "/photos/products/lace-trim-1.webp",
+    "image": "/photos/products/kirill-balobanov-2rIs8OH5ng0-unsplash.jpg",
+    "heroImage": "/photos/products/kirill-balobanov-2rIs8OH5ng0-unsplash.jpg",
     "images": [
-      "/photos/products/lace-trim-1.webp",
-      "/photos/products/lace-trim-2.webp"
+      "/photos/products/kirill-balobanov-2rIs8OH5ng0-unsplash.jpg"
     ],
     "colors": [
       "Dusty-rose",
@@ -2631,11 +2560,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 667,
     "originalPrice": null,
-    "image": "/photos/products/fringe-accent-1.webp",
-    "heroImage": "/photos/products/fringe-accent-1.webp",
+    "image": "/photos/products/laura-chouette-3yZzalP1bqA-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-3yZzalP1bqA-unsplash.jpg",
     "images": [
-      "/photos/products/fringe-accent-1.webp",
-      "/photos/products/fringe-accent-2.webp"
+      "/photos/products/laura-chouette-3yZzalP1bqA-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -2668,11 +2596,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 264,
     "originalPrice": null,
-    "image": "/photos/products/chain-detail-1.webp",
-    "heroImage": "/photos/products/chain-detail-1.webp",
+    "image": "/photos/products/laura-chouette-4sKdeIMiFEI-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-4sKdeIMiFEI-unsplash.jpg",
     "images": [
-      "/photos/products/chain-detail-1.webp",
-      "/photos/products/chain-detail-2.webp"
+      "/photos/products/laura-chouette-4sKdeIMiFEI-unsplash.jpg"
     ],
     "colors": [
       "Copper",
@@ -2703,11 +2630,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 499,
     "originalPrice": null,
-    "image": "/photos/products/studded-belt-1.webp",
-    "heroImage": "/photos/products/studded-belt-1.webp",
+    "image": "/photos/products/laura-chouette-9THwaaH18rI-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-9THwaaH18rI-unsplash.jpg",
     "images": [
-      "/photos/products/studded-belt-1.webp",
-      "/photos/products/studded-belt-2.webp"
+      "/photos/products/laura-chouette-9THwaaH18rI-unsplash.jpg"
     ],
     "colors": [
       "Burgundy",
@@ -2740,11 +2666,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 427,
     "originalPrice": null,
-    "image": "/photos/products/woven-strap-1.webp",
-    "heroImage": "/photos/products/woven-strap-1.webp",
+    "image": "/photos/products/laura-chouette-EO_5gG5f48I-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-EO_5gG5f48I-unsplash.jpg",
     "images": [
-      "/photos/products/woven-strap-1.webp",
-      "/photos/products/woven-strap-2.webp"
+      "/photos/products/laura-chouette-EO_5gG5f48I-unsplash.jpg"
     ],
     "colors": [
       "Copper",
@@ -2777,11 +2702,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 877,
     "originalPrice": null,
-    "image": "/photos/products/knotted-handle-1.webp",
-    "heroImage": "/photos/products/knotted-handle-1.webp",
+    "image": "/photos/products/laura-chouette-HD_KAQYngsA-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-HD_KAQYngsA-unsplash.jpg",
     "images": [
-      "/photos/products/knotted-handle-1.webp",
-      "/photos/products/knotted-handle-2.webp"
+      "/photos/products/laura-chouette-HD_KAQYngsA-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -2812,11 +2736,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 884,
     "originalPrice": null,
-    "image": "/photos/products/hardware-gold-1.webp",
-    "heroImage": "/photos/products/hardware-gold-1.webp",
+    "image": "/photos/products/laura-chouette-XiU-KOy3bys-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-XiU-KOy3bys-unsplash.jpg",
     "images": [
-      "/photos/products/hardware-gold-1.webp",
-      "/photos/products/hardware-gold-2.webp"
+      "/photos/products/laura-chouette-XiU-KOy3bys-unsplash.jpg"
     ],
     "colors": [
       "Burgundy",
@@ -2847,11 +2770,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 813,
     "originalPrice": null,
-    "image": "/photos/products/hardware-silver-1.webp",
-    "heroImage": "/photos/products/hardware-silver-1.webp",
+    "image": "/photos/products/laura-chouette-eBndU5LEr7w-unsplash.jpg",
+    "heroImage": "/photos/products/laura-chouette-eBndU5LEr7w-unsplash.jpg",
     "images": [
-      "/photos/products/hardware-silver-1.webp",
-      "/photos/products/hardware-silver-2.webp"
+      "/photos/products/laura-chouette-eBndU5LEr7w-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -2884,11 +2806,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 981,
     "originalPrice": null,
-    "image": "/photos/products/hardware-brass-1.webp",
-    "heroImage": "/photos/products/hardware-brass-1.webp",
+    "image": "/photos/products/leiada-krozjhen-2x5F8pD7T5Q-unsplash.jpg",
+    "heroImage": "/photos/products/leiada-krozjhen-2x5F8pD7T5Q-unsplash.jpg",
     "images": [
-      "/photos/products/hardware-brass-1.webp",
-      "/photos/products/hardware-brass-2.webp"
+      "/photos/products/leiada-krozjhen-2x5F8pD7T5Q-unsplash.jpg"
     ],
     "colors": [
       "Obsidian",
@@ -2921,11 +2842,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 1165,
     "originalPrice": 1691,
-    "image": "/photos/products/matte-black-1.webp",
-    "heroImage": "/photos/products/matte-black-1.webp",
+    "image": "/photos/products/lhon-karwan-jZ3f2TKsgw8-unsplash.jpg",
+    "heroImage": "/photos/products/lhon-karwan-jZ3f2TKsgw8-unsplash.jpg",
     "images": [
-      "/photos/products/matte-black-1.webp",
-      "/photos/products/matte-black-2.webp"
+      "/photos/products/lhon-karwan-jZ3f2TKsgw8-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -2958,11 +2878,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 580,
     "originalPrice": null,
-    "image": "/photos/products/clear-acetate-1.webp",
-    "heroImage": "/photos/products/clear-acetate-1.webp",
+    "image": "/photos/products/liza_rudyuk-2ri8elAF1js-unsplash.jpg",
+    "heroImage": "/photos/products/liza_rudyuk-2ri8elAF1js-unsplash.jpg",
     "images": [
-      "/photos/products/clear-acetate-1.webp",
-      "/photos/products/clear-acetate-2.webp"
+      "/photos/products/liza_rudyuk-2ri8elAF1js-unsplash.jpg"
     ],
     "colors": [
       "Bronze",
@@ -2996,11 +2915,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 577,
     "originalPrice": 791,
-    "image": "/photos/products/tortoise-shell-1.webp",
-    "heroImage": "/photos/products/tortoise-shell-1.webp",
+    "image": "/photos/products/luke-jones-veLNJubUuxo-unsplash.jpg",
+    "heroImage": "/photos/products/luke-jones-veLNJubUuxo-unsplash.jpg",
     "images": [
-      "/photos/products/tortoise-shell-1.webp",
-      "/photos/products/tortoise-shell-2.webp"
+      "/photos/products/luke-jones-veLNJubUuxo-unsplash.jpg"
     ],
     "colors": [
       "Walnut",
@@ -3032,11 +2950,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 362,
     "originalPrice": 536,
-    "image": "/photos/products/cat-eye-1.webp",
-    "heroImage": "/photos/products/cat-eye-1.webp",
+    "image": "/photos/products/maeliss-demaison-Iscfwx2b4FA-unsplash.jpg",
+    "heroImage": "/photos/products/maeliss-demaison-Iscfwx2b4FA-unsplash.jpg",
     "images": [
-      "/photos/products/cat-eye-1.webp",
-      "/photos/products/cat-eye-2.webp"
+      "/photos/products/maeliss-demaison-Iscfwx2b4FA-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -3068,11 +2985,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 123,
     "originalPrice": null,
-    "image": "/photos/products/round-frame-1.webp",
-    "heroImage": "/photos/products/round-frame-1.webp",
+    "image": "/photos/products/malvestida-u79wy47kvVs-unsplash.jpg",
+    "heroImage": "/photos/products/malvestida-u79wy47kvVs-unsplash.jpg",
     "images": [
-      "/photos/products/round-frame-1.webp",
-      "/photos/products/round-frame-2.webp"
+      "/photos/products/malvestida-u79wy47kvVs-unsplash.jpg"
     ],
     "colors": [
       "Walnut",
@@ -3104,11 +3020,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 962,
     "originalPrice": 1258,
-    "image": "/photos/products/square-frame-1.webp",
-    "heroImage": "/photos/products/square-frame-1.webp",
+    "image": "/photos/products/marissa-grootes-D4jRahaUaIc-unsplash.jpg",
+    "heroImage": "/photos/products/marissa-grootes-D4jRahaUaIc-unsplash.jpg",
     "images": [
-      "/photos/products/square-frame-1.webp",
-      "/photos/products/square-frame-2.webp"
+      "/photos/products/marissa-grootes-D4jRahaUaIc-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -3143,11 +3058,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 478,
     "originalPrice": null,
-    "image": "/photos/products/oversized-1.webp",
-    "heroImage": "/photos/products/oversized-1.webp",
+    "image": "/photos/products/mathias-reding-7uyrjHHyWWM-unsplash.jpg",
+    "heroImage": "/photos/products/mathias-reding-7uyrjHHyWWM-unsplash.jpg",
     "images": [
-      "/photos/products/oversized-1.webp",
-      "/photos/products/oversized-2.webp"
+      "/photos/products/mathias-reding-7uyrjHHyWWM-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -3179,11 +3093,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 864,
     "originalPrice": null,
-    "image": "/photos/products/hoop-earrings-1.webp",
-    "heroImage": "/photos/products/hoop-earrings-1.webp",
+    "image": "/photos/products/md-salman-tWOz2_EK5EQ-unsplash.jpg",
+    "heroImage": "/photos/products/md-salman-tWOz2_EK5EQ-unsplash.jpg",
     "images": [
-      "/photos/products/hoop-earrings-1.webp",
-      "/photos/products/hoop-earrings-2.webp"
+      "/photos/products/md-salman-tWOz2_EK5EQ-unsplash.jpg"
     ],
     "colors": [
       "Bronze",
@@ -3216,11 +3129,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 508,
     "originalPrice": null,
-    "image": "/photos/products/stud-earrings-1.webp",
-    "heroImage": "/photos/products/stud-earrings-1.webp",
+    "image": "/photos/products/michael-dam-mEZ3PoFGs_k-unsplash.jpg",
+    "heroImage": "/photos/products/michael-dam-mEZ3PoFGs_k-unsplash.jpg",
     "images": [
-      "/photos/products/stud-earrings-1.webp",
-      "/photos/products/stud-earrings-2.webp"
+      "/photos/products/michael-dam-mEZ3PoFGs_k-unsplash.jpg"
     ],
     "colors": [
       "White",
@@ -3254,11 +3166,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 540,
     "originalPrice": null,
-    "image": "/photos/products/chandelier-1.webp",
-    "heroImage": "/photos/products/chandelier-1.webp",
+    "image": "/photos/products/minh-pham-OtXADkUh3-I-unsplash.jpg",
+    "heroImage": "/photos/products/minh-pham-OtXADkUh3-I-unsplash.jpg",
     "images": [
-      "/photos/products/chandelier-1.webp",
-      "/photos/products/chandelier-2.webp"
+      "/photos/products/minh-pham-OtXADkUh3-I-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -3291,11 +3202,10 @@ export const products: Product[] = [
     "category": "accessories",
     "price": 91,
     "originalPrice": 135,
-    "image": "/photos/products/drop-earrings-1.webp",
-    "heroImage": "/photos/products/drop-earrings-1.webp",
+    "image": "/photos/products/minh-pham-YAPZt8wxMO4-unsplash.jpg",
+    "heroImage": "/photos/products/minh-pham-YAPZt8wxMO4-unsplash.jpg",
     "images": [
-      "/photos/products/drop-earrings-1.webp",
-      "/photos/products/drop-earrings-2.webp"
+      "/photos/products/minh-pham-YAPZt8wxMO4-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -3327,11 +3237,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 91,
     "originalPrice": 123,
-    "image": "/photos/products/choker-1.webp",
-    "heroImage": "/photos/products/choker-1.webp",
+    "image": "/photos/products/mohamadreza-khashay-6BS2lgJ5EX8-unsplash.jpg",
+    "heroImage": "/photos/products/mohamadreza-khashay-6BS2lgJ5EX8-unsplash.jpg",
     "images": [
-      "/photos/products/choker-1.webp",
-      "/photos/products/choker-2.webp"
+      "/photos/products/mohamadreza-khashay-6BS2lgJ5EX8-unsplash.jpg"
     ],
     "colors": [
       "Walnut",
@@ -3364,11 +3273,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 678,
     "originalPrice": null,
-    "image": "/photos/products/pendant-necklace-1.webp",
-    "heroImage": "/photos/products/pendant-necklace-1.webp",
+    "image": "/photos/products/mohammad-hossein-mirzagol-vrAhDgjOD6c-unsplash.jpg",
+    "heroImage": "/photos/products/mohammad-hossein-mirzagol-vrAhDgjOD6c-unsplash.jpg",
     "images": [
-      "/photos/products/pendant-necklace-1.webp",
-      "/photos/products/pendant-necklace-2.webp"
+      "/photos/products/mohammad-hossein-mirzagol-vrAhDgjOD6c-unsplash.jpg"
     ],
     "colors": [
       "Stone",
@@ -3399,11 +3307,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 103,
     "originalPrice": 128,
-    "image": "/photos/products/layered-chain-1.webp",
-    "heroImage": "/photos/products/layered-chain-1.webp",
+    "image": "/photos/products/mohammadreza-babaei-OvgnTfieQq4-unsplash.jpg",
+    "heroImage": "/photos/products/mohammadreza-babaei-OvgnTfieQq4-unsplash.jpg",
     "images": [
-      "/photos/products/layered-chain-1.webp",
-      "/photos/products/layered-chain-2.webp"
+      "/photos/products/mohammadreza-babaei-OvgnTfieQq4-unsplash.jpg"
     ],
     "colors": [
       "Forest",
@@ -3438,11 +3345,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 706,
     "originalPrice": null,
-    "image": "/photos/products/bar-necklace-1.webp",
-    "heroImage": "/photos/products/bar-necklace-1.webp",
+    "image": "/photos/products/muhammad-abdullah-zaeBgN8OTsg-unsplash.jpg",
+    "heroImage": "/photos/products/muhammad-abdullah-zaeBgN8OTsg-unsplash.jpg",
     "images": [
-      "/photos/products/bar-necklace-1.webp",
-      "/photos/products/bar-necklace-2.webp"
+      "/photos/products/muhammad-abdullah-zaeBgN8OTsg-unsplash.jpg"
     ],
     "colors": [
       "Stone",
@@ -3474,11 +3380,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 281,
     "originalPrice": null,
-    "image": "/photos/products/charm-bracelet-1.webp",
-    "heroImage": "/photos/products/charm-bracelet-1.webp",
+    "image": "/photos/products/muneeb-malhotra-LAqgGN072Ac-unsplash.jpg",
+    "heroImage": "/photos/products/muneeb-malhotra-LAqgGN072Ac-unsplash.jpg",
     "images": [
-      "/photos/products/charm-bracelet-1.webp",
-      "/photos/products/charm-bracelet-2.webp"
+      "/photos/products/muneeb-malhotra-LAqgGN072Ac-unsplash.jpg"
     ],
     "colors": [
       "Navy",
@@ -3510,11 +3415,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 341,
     "originalPrice": null,
-    "image": "/photos/products/bangle-set-1.webp",
-    "heroImage": "/photos/products/bangle-set-1.webp",
+    "image": "/photos/products/naeem-ad-4GbbkUJAt-g-unsplash.jpg",
+    "heroImage": "/photos/products/naeem-ad-4GbbkUJAt-g-unsplash.jpg",
     "images": [
-      "/photos/products/bangle-set-1.webp",
-      "/photos/products/bangle-set-2.webp"
+      "/photos/products/naeem-ad-4GbbkUJAt-g-unsplash.jpg"
     ],
     "colors": [
       "Copper",
@@ -3545,11 +3449,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 708,
     "originalPrice": 873,
-    "image": "/photos/products/cuff-bracelet-1.webp",
-    "heroImage": "/photos/products/cuff-bracelet-1.webp",
+    "image": "/photos/products/naeem-ad-GZ6AJCvqL5I-unsplash.jpg",
+    "heroImage": "/photos/products/naeem-ad-GZ6AJCvqL5I-unsplash.jpg",
     "images": [
-      "/photos/products/cuff-bracelet-1.webp",
-      "/photos/products/cuff-bracelet-2.webp"
+      "/photos/products/naeem-ad-GZ6AJCvqL5I-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -3581,11 +3484,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 337,
     "originalPrice": null,
-    "image": "/photos/products/chain-bracelet-1.webp",
-    "heroImage": "/photos/products/chain-bracelet-1.webp",
+    "image": "/photos/products/naeem-ad-Xco0gWXMJf4-unsplash.jpg",
+    "heroImage": "/photos/products/naeem-ad-Xco0gWXMJf4-unsplash.jpg",
     "images": [
-      "/photos/products/chain-bracelet-1.webp",
-      "/photos/products/chain-bracelet-2.webp"
+      "/photos/products/naeem-ad-Xco0gWXMJf4-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -3617,11 +3519,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 609,
     "originalPrice": null,
-    "image": "/photos/products/signet-ring-1.webp",
-    "heroImage": "/photos/products/signet-ring-1.webp",
+    "image": "/photos/products/naris-aly-OX_s2mAzAGE-unsplash.jpg",
+    "heroImage": "/photos/products/naris-aly-OX_s2mAzAGE-unsplash.jpg",
     "images": [
-      "/photos/products/signet-ring-1.webp",
-      "/photos/products/signet-ring-2.webp"
+      "/photos/products/naris-aly-OX_s2mAzAGE-unsplash.jpg"
     ],
     "colors": [
       "Terracotta",
@@ -3655,11 +3556,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 697,
     "originalPrice": null,
-    "image": "/photos/products/stackable-ring-1.webp",
-    "heroImage": "/photos/products/stackable-ring-1.webp",
+    "image": "/photos/products/nikhil-uttam-QSr1f3ZcAcs-unsplash.jpg",
+    "heroImage": "/photos/products/nikhil-uttam-QSr1f3ZcAcs-unsplash.jpg",
     "images": [
-      "/photos/products/stackable-ring-1.webp",
-      "/photos/products/stackable-ring-2.webp"
+      "/photos/products/nikhil-uttam-QSr1f3ZcAcs-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -3690,11 +3590,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 322,
     "originalPrice": 473,
-    "image": "/photos/products/solitaire-ring-1.webp",
-    "heroImage": "/photos/products/solitaire-ring-1.webp",
+    "image": "/photos/products/nikolay-kolosovskiy-MDPBzzwg81w-unsplash.jpg",
+    "heroImage": "/photos/products/nikolay-kolosovskiy-MDPBzzwg81w-unsplash.jpg",
     "images": [
-      "/photos/products/solitaire-ring-1.webp",
-      "/photos/products/solitaire-ring-2.webp"
+      "/photos/products/nikolay-kolosovskiy-MDPBzzwg81w-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -3728,11 +3627,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 193,
     "originalPrice": 269,
-    "image": "/photos/products/anklet-1.webp",
-    "heroImage": "/photos/products/anklet-1.webp",
+    "image": "/photos/products/nimble-made-hMMXhKSZk7k-unsplash.jpg",
+    "heroImage": "/photos/products/nimble-made-hMMXhKSZk7k-unsplash.jpg",
     "images": [
-      "/photos/products/anklet-1.webp",
-      "/photos/products/anklet-2.webp"
+      "/photos/products/nimble-made-hMMXhKSZk7k-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -3765,11 +3663,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 572,
     "originalPrice": null,
-    "image": "/photos/products/body-chain-1.webp",
-    "heroImage": "/photos/products/body-chain-1.webp",
+    "image": "/photos/products/nitin-m-nisar-3qVEX_KQnsI-unsplash.jpg",
+    "heroImage": "/photos/products/nitin-m-nisar-3qVEX_KQnsI-unsplash.jpg",
     "images": [
-      "/photos/products/body-chain-1.webp",
-      "/photos/products/body-chain-2.webp"
+      "/photos/products/nitin-m-nisar-3qVEX_KQnsI-unsplash.jpg"
     ],
     "colors": [
       "Camel",
@@ -3800,11 +3697,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 441,
     "originalPrice": 619,
-    "image": "/photos/products/hair-clip-1.webp",
-    "heroImage": "/photos/products/hair-clip-1.webp",
+    "image": "/photos/products/old-youth-29sudGmuzeo-unsplash.jpg",
+    "heroImage": "/photos/products/old-youth-29sudGmuzeo-unsplash.jpg",
     "images": [
-      "/photos/products/hair-clip-1.webp",
-      "/photos/products/hair-clip-2.webp"
+      "/photos/products/old-youth-29sudGmuzeo-unsplash.jpg"
     ],
     "colors": [
       "Bronze",
@@ -3836,11 +3732,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 365,
     "originalPrice": null,
-    "image": "/photos/products/hair-tie-1.webp",
-    "heroImage": "/photos/products/hair-tie-1.webp",
+    "image": "/photos/products/olena-bohovyk-eh9f505ljSA-unsplash.jpg",
+    "heroImage": "/photos/products/olena-bohovyk-eh9f505ljSA-unsplash.jpg",
     "images": [
-      "/photos/products/hair-tie-1.webp",
-      "/photos/products/hair-tie-2.webp"
+      "/photos/products/olena-bohovyk-eh9f505ljSA-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -3875,11 +3770,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 591,
     "originalPrice": null,
-    "image": "/photos/products/scrunchie-1.webp",
-    "heroImage": "/photos/products/scrunchie-1.webp",
+    "image": "/photos/products/omar-al-ghosson-TaEAE9cdpVU-unsplash.jpg",
+    "heroImage": "/photos/products/omar-al-ghosson-TaEAE9cdpVU-unsplash.jpg",
     "images": [
-      "/photos/products/scrunchie-1.webp",
-      "/photos/products/scrunchie-2.webp"
+      "/photos/products/omar-al-ghosson-TaEAE9cdpVU-unsplash.jpg"
     ],
     "colors": [
       "Oatmeal",
@@ -3913,11 +3807,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 726,
     "originalPrice": null,
-    "image": "/photos/products/headband-1.webp",
-    "heroImage": "/photos/products/headband-1.webp",
+    "image": "/photos/products/pavlo-talpa-1Mhre9qvZeY-unsplash.jpg",
+    "heroImage": "/photos/products/pavlo-talpa-1Mhre9qvZeY-unsplash.jpg",
     "images": [
-      "/photos/products/headband-1.webp",
-      "/photos/products/headband-2.webp"
+      "/photos/products/pavlo-talpa-1Mhre9qvZeY-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -3948,11 +3841,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 736,
     "originalPrice": null,
-    "image": "/photos/products/veil-1.webp",
-    "heroImage": "/photos/products/veil-1.webp",
+    "image": "/photos/products/pavlo-talpa-8LTBMSfytT0-unsplash.jpg",
+    "heroImage": "/photos/products/pavlo-talpa-8LTBMSfytT0-unsplash.jpg",
     "images": [
-      "/photos/products/veil-1.webp",
-      "/photos/products/veil-2.webp"
+      "/photos/products/pavlo-talpa-8LTBMSfytT0-unsplash.jpg"
     ],
     "colors": [
       "Ivory",
@@ -3986,11 +3878,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 151,
     "originalPrice": null,
-    "image": "/photos/products/flower-crown-1.webp",
-    "heroImage": "/photos/products/flower-crown-1.webp",
+    "image": "/photos/products/pavlo-talpa-bpuh0wx0O5I-unsplash.jpg",
+    "heroImage": "/photos/products/pavlo-talpa-bpuh0wx0O5I-unsplash.jpg",
     "images": [
-      "/photos/products/flower-crown-1.webp",
-      "/photos/products/flower-crown-2.webp"
+      "/photos/products/pavlo-talpa-bpuh0wx0O5I-unsplash.jpg"
     ],
     "colors": [
       "Slate",
@@ -4022,11 +3913,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 513,
     "originalPrice": null,
-    "image": "/photos/products/brooch-1.webp",
-    "heroImage": "/photos/products/brooch-1.webp",
+    "image": "/photos/products/perry-merrity-ii-gPrJi5R4RAk-unsplash.jpg",
+    "heroImage": "/photos/products/perry-merrity-ii-gPrJi5R4RAk-unsplash.jpg",
     "images": [
-      "/photos/products/brooch-1.webp",
-      "/photos/products/brooch-2.webp"
+      "/photos/products/perry-merrity-ii-gPrJi5R4RAk-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -4058,11 +3948,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 342,
     "originalPrice": null,
-    "image": "/photos/products/lapel-pin-1.webp",
-    "heroImage": "/photos/products/lapel-pin-1.webp",
+    "image": "/photos/products/pesce-huang-mq73cWf9ZAQ-unsplash.jpg",
+    "heroImage": "/photos/products/pesce-huang-mq73cWf9ZAQ-unsplash.jpg",
     "images": [
-      "/photos/products/lapel-pin-1.webp",
-      "/photos/products/lapel-pin-2.webp"
+      "/photos/products/pesce-huang-mq73cWf9ZAQ-unsplash.jpg"
     ],
     "colors": [
       "Walnut",
@@ -4095,11 +3984,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 142,
     "originalPrice": 213,
-    "image": "/photos/products/keychain-1.webp",
-    "heroImage": "/photos/products/keychain-1.webp",
+    "image": "/photos/products/pexels-akash-tetwal-309778-17076311.jpg",
+    "heroImage": "/photos/products/pexels-akash-tetwal-309778-17076311.jpg",
     "images": [
-      "/photos/products/keychain-1.webp",
-      "/photos/products/keychain-2.webp"
+      "/photos/products/pexels-akash-tetwal-309778-17076311.jpg"
     ],
     "colors": [
       "Champagne",
@@ -4133,11 +4021,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 409,
     "originalPrice": null,
-    "image": "/photos/products/luggage-tag-1.webp",
-    "heroImage": "/photos/products/luggage-tag-1.webp",
+    "image": "/photos/products/pexels-arina-dmitrieva-66352626-14440412.jpg",
+    "heroImage": "/photos/products/pexels-arina-dmitrieva-66352626-14440412.jpg",
     "images": [
-      "/photos/products/luggage-tag-1.webp",
-      "/photos/products/luggage-tag-2.webp"
+      "/photos/products/pexels-arina-dmitrieva-66352626-14440412.jpg"
     ],
     "colors": [
       "Burgundy",
@@ -4170,11 +4057,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 131,
     "originalPrice": null,
-    "image": "/photos/products/card-holder-1.webp",
-    "heroImage": "/photos/products/card-holder-1.webp",
+    "image": "/photos/products/pexels-cottonbro-6616673.jpg",
+    "heroImage": "/photos/products/pexels-cottonbro-6616673.jpg",
     "images": [
-      "/photos/products/card-holder-1.webp",
-      "/photos/products/card-holder-2.webp"
+      "/photos/products/pexels-cottonbro-6616673.jpg"
     ],
     "colors": [
       "Copper",
@@ -4206,11 +4092,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 701,
     "originalPrice": null,
-    "image": "/photos/products/coin-pouch-1.webp",
-    "heroImage": "/photos/products/coin-pouch-1.webp",
+    "image": "/photos/products/pexels-cottonbro-7969812.jpg",
+    "heroImage": "/photos/products/pexels-cottonbro-7969812.jpg",
     "images": [
-      "/photos/products/coin-pouch-1.webp",
-      "/photos/products/coin-pouch-2.webp"
+      "/photos/products/pexels-cottonbro-7969812.jpg"
     ],
     "colors": [
       "Sage"
@@ -4240,11 +4125,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 233,
     "originalPrice": null,
-    "image": "/photos/products/sunglasses-case-1.webp",
-    "heroImage": "/photos/products/sunglasses-case-1.webp",
+    "image": "/photos/products/pexels-farhad-chaudhary-168779643-10952730.jpg",
+    "heroImage": "/photos/products/pexels-farhad-chaudhary-168779643-10952730.jpg",
     "images": [
-      "/photos/products/sunglasses-case-1.webp",
-      "/photos/products/sunglasses-case-2.webp"
+      "/photos/products/pexels-farhad-chaudhary-168779643-10952730.jpg"
     ],
     "colors": [
       "Navy",
@@ -4276,11 +4160,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 349,
     "originalPrice": null,
-    "image": "/photos/products/makeup-bag-1.webp",
-    "heroImage": "/photos/products/makeup-bag-1.webp",
+    "image": "/photos/products/pexels-leistylize-18786589.jpg",
+    "heroImage": "/photos/products/pexels-leistylize-18786589.jpg",
     "images": [
-      "/photos/products/makeup-bag-1.webp",
-      "/photos/products/makeup-bag-2.webp"
+      "/photos/products/pexels-leistylize-18786589.jpg"
     ],
     "colors": [
       "Obsidian",
@@ -4311,11 +4194,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 335,
     "originalPrice": null,
-    "image": "/photos/products/toiletry-kit-1.webp",
-    "heroImage": "/photos/products/toiletry-kit-1.webp",
+    "image": "/photos/products/pexels-marsianin-18199559.jpg",
+    "heroImage": "/photos/products/pexels-marsianin-18199559.jpg",
     "images": [
-      "/photos/products/toiletry-kit-1.webp",
-      "/photos/products/toiletry-kit-2.webp"
+      "/photos/products/pexels-marsianin-18199559.jpg"
     ],
     "colors": [
       "Obsidian",
@@ -4346,11 +4228,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 647,
     "originalPrice": 810,
-    "image": "/photos/products/travel-pillow-1.webp",
-    "heroImage": "/photos/products/travel-pillow-1.webp",
+    "image": "/photos/products/pexels-moh-adbelghaffar-28947727.jpg",
+    "heroImage": "/photos/products/pexels-moh-adbelghaffar-28947727.jpg",
     "images": [
-      "/photos/products/travel-pillow-1.webp",
-      "/photos/products/travel-pillow-2.webp"
+      "/photos/products/pexels-moh-adbelghaffar-28947727.jpg"
     ],
     "colors": [
       "Slate",
@@ -4384,11 +4265,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 799,
     "originalPrice": 1134,
-    "image": "/photos/products/umbrella-1.webp",
-    "heroImage": "/photos/products/umbrella-1.webp",
+    "image": "/photos/products/pexels-pedrofurtadoo-30752853.jpg",
+    "heroImage": "/photos/products/pexels-pedrofurtadoo-30752853.jpg",
     "images": [
-      "/photos/products/umbrella-1.webp",
-      "/photos/products/umbrella-2.webp"
+      "/photos/products/pexels-pedrofurtadoo-30752853.jpg"
     ],
     "colors": [
       "Sand",
@@ -4420,11 +4300,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 212,
     "originalPrice": null,
-    "image": "/photos/products/water-bottle-1.webp",
-    "heroImage": "/photos/products/water-bottle-1.webp",
+    "image": "/photos/products/pexels-ron-lach-8306359.jpg",
+    "heroImage": "/photos/products/pexels-ron-lach-8306359.jpg",
     "images": [
-      "/photos/products/water-bottle-1.webp",
-      "/photos/products/water-bottle-2.webp"
+      "/photos/products/pexels-ron-lach-8306359.jpg"
     ],
     "colors": [
       "Camel",
@@ -4457,11 +4336,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 50,
     "originalPrice": 70,
-    "image": "/photos/products/tumbler-1.webp",
-    "heroImage": "/photos/products/tumbler-1.webp",
+    "image": "/photos/products/pexels-zehra-k-710717493-27866575.jpg",
+    "heroImage": "/photos/products/pexels-zehra-k-710717493-27866575.jpg",
     "images": [
-      "/photos/products/tumbler-1.webp",
-      "/photos/products/tumbler-2.webp"
+      "/photos/products/pexels-zehra-k-710717493-27866575.jpg"
     ],
     "colors": [
       "Walnut",
@@ -4494,11 +4372,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 623,
     "originalPrice": 768,
-    "image": "/photos/products/wine-glass-1.webp",
-    "heroImage": "/photos/products/wine-glass-1.webp",
+    "image": "/photos/products/plantadea-91UJkhxxhDk-unsplash.jpg",
+    "heroImage": "/photos/products/plantadea-91UJkhxxhDk-unsplash.jpg",
     "images": [
-      "/photos/products/wine-glass-1.webp",
-      "/photos/products/wine-glass-2.webp"
+      "/photos/products/plantadea-91UJkhxxhDk-unsplash.jpg"
     ],
     "colors": [
       "Navy",
@@ -4533,11 +4410,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 58,
     "originalPrice": null,
-    "image": "/photos/products/cocktail-shaker-1.webp",
-    "heroImage": "/photos/products/cocktail-shaker-1.webp",
+    "image": "/photos/products/plantadea-G5I-VSKomYI-unsplash.jpg",
+    "heroImage": "/photos/products/plantadea-G5I-VSKomYI-unsplash.jpg",
     "images": [
-      "/photos/products/cocktail-shaker-1.webp",
-      "/photos/products/cocktail-shaker-2.webp"
+      "/photos/products/plantadea-G5I-VSKomYI-unsplash.jpg"
     ],
     "colors": [
       "Slate",
@@ -4569,11 +4445,10 @@ export const products: Product[] = [
     "category": "living",
     "price": 434,
     "originalPrice": null,
-    "image": "/photos/products/cheese-knife-1.webp",
-    "heroImage": "/photos/products/cheese-knife-1.webp",
+    "image": "/photos/products/premchand-s-ehfhkGVmkvY-unsplash.jpg",
+    "heroImage": "/photos/products/premchand-s-ehfhkGVmkvY-unsplash.jpg",
     "images": [
-      "/photos/products/cheese-knife-1.webp",
-      "/photos/products/cheese-knife-2.webp"
+      "/photos/products/premchand-s-ehfhkGVmkvY-unsplash.jpg"
     ],
     "colors": [
       "Copper",
@@ -4606,11 +4481,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 66,
     "originalPrice": null,
-    "image": "/photos/products/serving-spoon-1.webp",
-    "heroImage": "/photos/products/serving-spoon-1.webp",
+    "image": "/photos/products/priyanka-aggarwal-OlnFC9uCwZ4-unsplash.jpg",
+    "heroImage": "/photos/products/priyanka-aggarwal-OlnFC9uCwZ4-unsplash.jpg",
     "images": [
-      "/photos/products/serving-spoon-1.webp",
-      "/photos/products/serving-spoon-2.webp"
+      "/photos/products/priyanka-aggarwal-OlnFC9uCwZ4-unsplash.jpg"
     ],
     "colors": [
       "Champagne",
@@ -4638,11 +4512,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 314,
     "originalPrice": null,
-    "image": "/photos/products/salt-pepper-set-1.webp",
-    "heroImage": "/photos/products/salt-pepper-set-1.webp",
+    "image": "/photos/products/puscas-adryan-Qy7MWfpXpak-unsplash.jpg",
+    "heroImage": "/photos/products/puscas-adryan-Qy7MWfpXpak-unsplash.jpg",
     "images": [
-      "/photos/products/salt-pepper-set-1.webp",
-      "/photos/products/salt-pepper-set-2.webp"
+      "/photos/products/puscas-adryan-Qy7MWfpXpak-unsplash.jpg"
     ],
     "colors": [
       "Pewter",
@@ -4671,11 +4544,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 196,
     "originalPrice": null,
-    "image": "/photos/products/coaster-set-1.webp",
-    "heroImage": "/photos/products/coaster-set-1.webp",
+    "image": "/photos/products/raamin-ka-uR51HXLO7G0-unsplash.jpg",
+    "heroImage": "/photos/products/raamin-ka-uR51HXLO7G0-unsplash.jpg",
     "images": [
-      "/photos/products/coaster-set-1.webp",
-      "/photos/products/coaster-set-2.webp"
+      "/photos/products/raamin-ka-uR51HXLO7G0-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -4705,11 +4577,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 227,
     "originalPrice": 331,
-    "image": "/photos/products/trinket-dish-1.webp",
-    "heroImage": "/photos/products/trinket-dish-1.webp",
+    "image": "/photos/products/robert-arnar-z0xIHTF5HNk-unsplash.jpg",
+    "heroImage": "/photos/products/robert-arnar-z0xIHTF5HNk-unsplash.jpg",
     "images": [
-      "/photos/products/trinket-dish-1.webp",
-      "/photos/products/trinket-dish-2.webp"
+      "/photos/products/robert-arnar-z0xIHTF5HNk-unsplash.jpg"
     ],
     "colors": [
       "Pewter",
@@ -4739,11 +4610,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 92,
     "originalPrice": null,
-    "image": "/photos/products/perfume-sprayer-1.webp",
-    "heroImage": "/photos/products/perfume-sprayer-1.webp",
+    "image": "/photos/products/robert-richman-vcTKFYNZop4-unsplash.jpg",
+    "heroImage": "/photos/products/robert-richman-vcTKFYNZop4-unsplash.jpg",
     "images": [
-      "/photos/products/perfume-sprayer-1.webp",
-      "/photos/products/perfume-sprayer-2.webp"
+      "/photos/products/robert-richman-vcTKFYNZop4-unsplash.jpg"
     ],
     "colors": [
       "Camel",
@@ -4773,11 +4643,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 99,
     "originalPrice": 122,
-    "image": "/photos/products/brush-set-1.webp",
-    "heroImage": "/photos/products/brush-set-1.webp",
+    "image": "/photos/products/roberto-nickson-rEJxpBskj3Q-unsplash.jpg",
+    "heroImage": "/photos/products/roberto-nickson-rEJxpBskj3Q-unsplash.jpg",
     "images": [
-      "/photos/products/brush-set-1.webp",
-      "/photos/products/brush-set-2.webp"
+      "/photos/products/roberto-nickson-rEJxpBskj3Q-unsplash.jpg"
     ],
     "colors": [
       "Ebony",
@@ -4807,11 +4676,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 138,
     "originalPrice": null,
-    "image": "/photos/products/roller-1.webp",
-    "heroImage": "/photos/products/roller-1.webp",
+    "image": "/photos/products/rodrigo-rodrigues-wolf-r-t-qpVjMpUMSw8-unsplash.jpg",
+    "heroImage": "/photos/products/rodrigo-rodrigues-wolf-r-t-qpVjMpUMSw8-unsplash.jpg",
     "images": [
-      "/photos/products/roller-1.webp",
-      "/photos/products/roller-2.webp"
+      "/photos/products/rodrigo-rodrigues-wolf-r-t-qpVjMpUMSw8-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -4841,11 +4709,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 347,
     "originalPrice": null,
-    "image": "/photos/products/jade-gua-sha-1.webp",
-    "heroImage": "/photos/products/jade-gua-sha-1.webp",
+    "image": "/photos/products/roman-manshin-DMwISkUxH_E-unsplash.jpg",
+    "heroImage": "/photos/products/roman-manshin-DMwISkUxH_E-unsplash.jpg",
     "images": [
-      "/photos/products/jade-gua-sha-1.webp",
-      "/photos/products/jade-gua-sha-2.webp"
+      "/photos/products/roman-manshin-DMwISkUxH_E-unsplash.jpg"
     ],
     "colors": [
       "Stone",
@@ -4874,11 +4741,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 197,
     "originalPrice": null,
-    "image": "/photos/products/mirror-bronze-1.webp",
-    "heroImage": "/photos/products/mirror-bronze-1.webp",
+    "image": "/photos/products/rostislav-budzan-0LuDaMPfSW0-unsplash.jpg",
+    "heroImage": "/photos/products/rostislav-budzan-0LuDaMPfSW0-unsplash.jpg",
     "images": [
-      "/photos/products/mirror-bronze-1.webp",
-      "/photos/products/mirror-bronze-2.webp"
+      "/photos/products/rostislav-budzan-0LuDaMPfSW0-unsplash.jpg"
     ],
     "colors": [
       "Ivory",
@@ -4907,11 +4773,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 285,
     "originalPrice": null,
-    "image": "/photos/products/comb-wood-1.webp",
-    "heroImage": "/photos/products/comb-wood-1.webp",
+    "image": "/photos/products/rosy-h-nguyen-5HrlEGTsaB4-unsplash.jpg",
+    "heroImage": "/photos/products/rosy-h-nguyen-5HrlEGTsaB4-unsplash.jpg",
     "images": [
-      "/photos/products/comb-wood-1.webp",
-      "/photos/products/comb-wood-2.webp"
+      "/photos/products/rosy-h-nguyen-5HrlEGTsaB4-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -4940,11 +4805,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 177,
     "originalPrice": 230,
-    "image": "/photos/products/hair-dryer-hood-1.webp",
-    "heroImage": "/photos/products/hair-dryer-hood-1.webp",
+    "image": "/photos/products/ruan-richard-rodrigues-m7D_mI4bgeI-unsplash.jpg",
+    "heroImage": "/photos/products/ruan-richard-rodrigues-m7D_mI4bgeI-unsplash.jpg",
     "images": [
-      "/photos/products/hair-dryer-hood-1.webp",
-      "/photos/products/hair-dryer-hood-2.webp"
+      "/photos/products/ruan-richard-rodrigues-m7D_mI4bgeI-unsplash.jpg"
     ],
     "colors": [
       "Slate",
@@ -4975,11 +4839,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 74,
     "originalPrice": null,
-    "image": "/photos/products/steam-iron-1.webp",
-    "heroImage": "/photos/products/steam-iron-1.webp",
+    "image": "/photos/products/ryan-lu-hvDd-UCT24c-unsplash.jpg",
+    "heroImage": "/photos/products/ryan-lu-hvDd-UCT24c-unsplash.jpg",
     "images": [
-      "/photos/products/steam-iron-1.webp",
-      "/photos/products/steam-iron-2.webp"
+      "/photos/products/ryan-lu-hvDd-UCT24c-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -5009,11 +4872,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 244,
     "originalPrice": 313,
-    "image": "/photos/products/laundry-basket-1.webp",
-    "heroImage": "/photos/products/laundry-basket-1.webp",
+    "image": "/photos/products/saeed-isavy-i-WLGGm6f0o-unsplash.jpg",
+    "heroImage": "/photos/products/saeed-isavy-i-WLGGm6f0o-unsplash.jpg",
     "images": [
-      "/photos/products/laundry-basket-1.webp",
-      "/photos/products/laundry-basket-2.webp"
+      "/photos/products/saeed-isavy-i-WLGGm6f0o-unsplash.jpg"
     ],
     "colors": [
       "Rose",
@@ -5044,11 +4906,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 249,
     "originalPrice": null,
-    "image": "/photos/products/folded-robe-1.webp",
-    "heroImage": "/photos/products/folded-robe-1.webp",
+    "image": "/photos/products/samuel-regan-asante--F7Unn7bUEo-unsplash.jpg",
+    "heroImage": "/photos/products/samuel-regan-asante--F7Unn7bUEo-unsplash.jpg",
     "images": [
-      "/photos/products/folded-robe-1.webp",
-      "/photos/products/folded-robe-2.webp"
+      "/photos/products/samuel-regan-asante--F7Unn7bUEo-unsplash.jpg"
     ],
     "colors": [
       "Ebony",
@@ -5077,11 +4938,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 137,
     "originalPrice": null,
-    "image": "/photos/products/slipper-1.webp",
-    "heroImage": "/photos/products/slipper-1.webp",
+    "image": "/photos/products/sayan-majhi-Ix-sJLRfh1c-unsplash.jpg",
+    "heroImage": "/photos/products/sayan-majhi-Ix-sJLRfh1c-unsplash.jpg",
     "images": [
-      "/photos/products/slipper-1.webp",
-      "/photos/products/slipper-2.webp"
+      "/photos/products/sayan-majhi-Ix-sJLRfh1c-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -5110,11 +4970,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 355,
     "originalPrice": null,
-    "image": "/photos/products/clog-1.webp",
-    "heroImage": "/photos/products/clog-1.webp",
+    "image": "/photos/products/see-plus-921hnQzFNoc-unsplash.jpg",
+    "heroImage": "/photos/products/see-plus-921hnQzFNoc-unsplash.jpg",
     "images": [
-      "/photos/products/clog-1.webp",
-      "/photos/products/clog-2.webp"
+      "/photos/products/see-plus-921hnQzFNoc-unsplash.jpg"
     ],
     "colors": [
       "Moss",
@@ -5142,11 +5001,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 221,
     "originalPrice": 281,
-    "image": "/photos/products/mule-1.webp",
-    "heroImage": "/photos/products/mule-1.webp",
+    "image": "/photos/products/see-plus-RoH656UZEgY-unsplash.jpg",
+    "heroImage": "/photos/products/see-plus-RoH656UZEgY-unsplash.jpg",
     "images": [
-      "/photos/products/mule-1.webp",
-      "/photos/products/mule-2.webp"
+      "/photos/products/see-plus-RoH656UZEgY-unsplash.jpg"
     ],
     "colors": [
       "Charcoal",
@@ -5176,11 +5034,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 150,
     "originalPrice": null,
-    "image": "/photos/products/loafer-1.webp",
-    "heroImage": "/photos/products/loafer-1.webp",
+    "image": "/photos/products/shahin-khalaji-DCJkSsyaVTM-unsplash.jpg",
+    "heroImage": "/photos/products/shahin-khalaji-DCJkSsyaVTM-unsplash.jpg",
     "images": [
-      "/photos/products/loafer-1.webp",
-      "/photos/products/loafer-2.webp"
+      "/photos/products/shahin-khalaji-DCJkSsyaVTM-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -5211,11 +5068,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 262,
     "originalPrice": null,
-    "image": "/photos/products/oxford-1.webp",
-    "heroImage": "/photos/products/oxford-1.webp",
+    "image": "/photos/products/sharvina-aathymoolam-6iphiqb2zuw-unsplash.jpg",
+    "heroImage": "/photos/products/sharvina-aathymoolam-6iphiqb2zuw-unsplash.jpg",
     "images": [
-      "/photos/products/oxford-1.webp",
-      "/photos/products/oxford-2.webp"
+      "/photos/products/sharvina-aathymoolam-6iphiqb2zuw-unsplash.jpg"
     ],
     "colors": [
       "Sand",
@@ -5244,11 +5100,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 185,
     "originalPrice": null,
-    "image": "/photos/products/bib-shoe-1.webp",
-    "heroImage": "/photos/products/bib-shoe-1.webp",
+    "image": "/photos/products/sharvina-aathymoolam-LmD20Yw5AyE-unsplash.jpg",
+    "heroImage": "/photos/products/sharvina-aathymoolam-LmD20Yw5AyE-unsplash.jpg",
     "images": [
-      "/photos/products/bib-shoe-1.webp",
-      "/photos/products/bib-shoe-2.webp"
+      "/photos/products/sharvina-aathymoolam-LmD20Yw5AyE-unsplash.jpg"
     ],
     "colors": [
       "Champagne",
@@ -5277,11 +5132,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 352,
     "originalPrice": null,
-    "image": "/photos/products/mary-jane-1.webp",
-    "heroImage": "/photos/products/mary-jane-1.webp",
+    "image": "/photos/products/shayan-rostami-26HIcL3_r8E-unsplash.jpg",
+    "heroImage": "/photos/products/shayan-rostami-26HIcL3_r8E-unsplash.jpg",
     "images": [
-      "/photos/products/mary-jane-1.webp",
-      "/photos/products/mary-jane-2.webp"
+      "/photos/products/shayan-rostami-26HIcL3_r8E-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -5311,11 +5165,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 330,
     "originalPrice": 446,
-    "image": "/photos/products/platform-1.webp",
-    "heroImage": "/photos/products/platform-1.webp",
+    "image": "/photos/products/shutter-speed-sTAgKRVpe-E-unsplash.jpg",
+    "heroImage": "/photos/products/shutter-speed-sTAgKRVpe-E-unsplash.jpg",
     "images": [
-      "/photos/products/platform-1.webp",
-      "/photos/products/platform-2.webp"
+      "/photos/products/shutter-speed-sTAgKRVpe-E-unsplash.jpg"
     ],
     "colors": [
       "Bone",
@@ -5345,11 +5198,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 286,
     "originalPrice": null,
-    "image": "/photos/products/wedge-1.webp",
-    "heroImage": "/photos/products/wedge-1.webp",
+    "image": "/photos/products/spacejoy-IH7wPsjwomc-unsplash.jpg",
+    "heroImage": "/photos/products/spacejoy-IH7wPsjwomc-unsplash.jpg",
     "images": [
-      "/photos/products/wedge-1.webp",
-      "/photos/products/wedge-2.webp"
+      "/photos/products/spacejoy-IH7wPsjwomc-unsplash.jpg"
     ],
     "colors": [
       "Blush",
@@ -5380,11 +5232,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 143,
     "originalPrice": null,
-    "image": "/photos/products/stiletto-1.webp",
-    "heroImage": "/photos/products/stiletto-1.webp",
+    "image": "/photos/products/spacejoy-h2_3dL9yLpU-unsplash.jpg",
+    "heroImage": "/photos/products/spacejoy-h2_3dL9yLpU-unsplash.jpg",
     "images": [
-      "/photos/products/stiletto-1.webp",
-      "/photos/products/stiletto-2.webp"
+      "/photos/products/spacejoy-h2_3dL9yLpU-unsplash.jpg"
     ],
     "colors": [
       "Copper",
@@ -5413,11 +5264,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 273,
     "originalPrice": null,
-    "image": "/photos/products/kitten-heel-1.webp",
-    "heroImage": "/photos/products/kitten-heel-1.webp",
+    "image": "/photos/products/swello-VvOuej-fcmU-unsplash.jpg",
+    "heroImage": "/photos/products/swello-VvOuej-fcmU-unsplash.jpg",
     "images": [
-      "/photos/products/kitten-heel-1.webp",
-      "/photos/products/kitten-heel-2.webp"
+      "/photos/products/swello-VvOuej-fcmU-unsplash.jpg"
     ],
     "colors": [
       "Moss",
@@ -5447,11 +5297,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 362,
     "originalPrice": null,
-    "image": "/photos/products/block-heel-1.webp",
-    "heroImage": "/photos/products/block-heel-1.webp",
+    "image": "/photos/products/thom-bradley-4A897lG0g3Y-unsplash.jpg",
+    "heroImage": "/photos/products/thom-bradley-4A897lG0g3Y-unsplash.jpg",
     "images": [
-      "/photos/products/block-heel-1.webp",
-      "/photos/products/block-heel-2.webp"
+      "/photos/products/thom-bradley-4A897lG0g3Y-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -5480,11 +5329,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 210,
     "originalPrice": null,
-    "image": "/photos/products/flat-sandal-1.webp",
-    "heroImage": "/photos/products/flat-sandal-1.webp",
+    "image": "/photos/products/toa-heftiba--abWByT3yg4-unsplash.jpg",
+    "heroImage": "/photos/products/toa-heftiba--abWByT3yg4-unsplash.jpg",
     "images": [
-      "/photos/products/flat-sandal-1.webp",
-      "/photos/products/flat-sandal-2.webp"
+      "/photos/products/toa-heftiba--abWByT3yg4-unsplash.jpg"
     ],
     "colors": [
       "Sage",
@@ -5512,11 +5360,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 165,
     "originalPrice": null,
-    "image": "/photos/products/slide-1.webp",
-    "heroImage": "/photos/products/slide-1.webp",
+    "image": "/photos/products/tron-le-E5zsokLJkVQ-unsplash.jpg",
+    "heroImage": "/photos/products/tron-le-E5zsokLJkVQ-unsplash.jpg",
     "images": [
-      "/photos/products/slide-1.webp",
-      "/photos/products/slide-2.webp"
+      "/photos/products/tron-le-E5zsokLJkVQ-unsplash.jpg"
     ],
     "colors": [
       "Taupe",
@@ -5546,11 +5393,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 395,
     "originalPrice": null,
-    "image": "/photos/products/gladiator-1.webp",
-    "heroImage": "/photos/products/gladiator-1.webp",
+    "image": "/photos/products/vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg",
+    "heroImage": "/photos/products/vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg",
     "images": [
-      "/photos/products/gladiator-1.webp",
-      "/photos/products/gladiator-2.webp"
+      "/photos/products/vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg"
     ],
     "colors": [
       "Black",
@@ -5579,11 +5425,10 @@ export const products: Product[] = [
     "category": "fragrance",
     "price": 154,
     "originalPrice": null,
-    "image": "/photos/products/espadrille-1.webp",
-    "heroImage": "/photos/products/espadrille-1.webp",
+    "image": "/photos/products/valentina-schick-9AS2t3rgGko-unsplash.jpg",
+    "heroImage": "/photos/products/valentina-schick-9AS2t3rgGko-unsplash.jpg",
     "images": [
-      "/photos/products/espadrille-1.webp",
-      "/photos/products/espadrille-2.webp"
+      "/photos/products/valentina-schick-9AS2t3rgGko-unsplash.jpg"
     ],
     "colors": [
       "Bronze",
