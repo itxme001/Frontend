@@ -168,13 +168,41 @@ Lumiere-Store/
 ### Local Development
 The app has a dev fallback — login works out of the box with `admin@lumiere.com` / `admin123`.
 
-For production, generate a secret and add to your hosting platform's environment variables:
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+### Google Sign-In (Recommended for Production)
+
+**Step 1: Get a Google Client ID**
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project (or select existing)
+3. Go to **APIs & Services → Credentials**
+4. Click **Create Credentials → OAuth 2.0 Client ID**
+5. Application type: **Web application**
+6. Name: `Lumière Store`
+7. Under **Authorized JavaScript origins**, add:
+   - `http://localhost:3000` (for local testing)
+   - `https://yourdomain.com` (for production)
+8. Click **Create** → copy the **Client ID**
+
+**Step 2: Add to your environment**
+
+In Vercel Dashboard → Settings → Environment Variables:
 ```
-Set the output as `AUTH_SECRET` in Vercel Dashboard → Settings → Environment Variables.
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=<your-google-client-id>
+AUTH_SECRET=<generated-secret>
+```
+
+Or locally in `.env.local`:
+```bash
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+AUTH_SECRET=7e070e21f24bdbe48c4e8c5dcec8f3acaca41eb3f359a4cda5d324012eefc0f6
+```
 
 > ⚠️ `.env.local` is gitignored — never commit real secrets.
+
+### Login Credentials (Default)
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | `admin@lumiere.com` | `admin123` |
+| Regular user | Sign up via `/signup` | — |
 
 ---
 
