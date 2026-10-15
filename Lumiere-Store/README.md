@@ -221,6 +221,11 @@ AUTH_SECRET=7e070e21f24bdbe48c4e8c5dcec8f3acaca41eb3f359a4cda5d324012eefc0f6
 
 > ⚠️ `.env.local` is gitignored — never commit real secrets.
 
+### Admin Access Control
+- **Only `admin@lumiere.com`** can access `/admin` dashboard
+- Regular users trying to access `/admin` get redirected to `/account` with error message
+- All `/api/admin/*` routes verify admin role server-side
+
 ### Login Credentials (Default)
 | Role | Email | Password |
 |------|-------|----------|
