@@ -110,16 +110,29 @@ export async function verifyRequestCsrf(
 }
 
 async function extractBodyToken(req: Request): Promise<string | null> {
+  // Check header first (modern API approach)
   const header = req.headers.get(CSRF_TOKEN_HEADER.toLowerCase());
   if (header) return header;
+
+  // Check JSON body
   const contentType = req.headers.get("content-type") ?? "";
-  if (!contentType.includes("application/json")) return null;
-  try {
-    const body = await req.json();
-    return (body as Record<string, unknown>)._csrf as string | null;
-  } catch {
-    return null;
+  if (contentType.includes("application/json")) {
+    try {
+      const body = await req.json();
+      return (body as Record<string, unknown>)._csrf as string | null;
+    } catch {
+      return null;
+    }
   }
+
+  // Fallback: form body
+  if (contentType.includes("application/x-www-form-urlencoded")) {
+    const body = await req.text();
+    const params = new URLSearchParams(body);
+    return params.get("_csrf") ?? params.get("csrfToken") ?? null;
+  }
+
+  return null;
 }
 
 // ---------- user persistence (JSON file) ----------
