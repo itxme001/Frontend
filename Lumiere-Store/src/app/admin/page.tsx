@@ -736,6 +736,8 @@ function TopProductsView({ orders }: { orders: DbOrder[] }) {
     </div>
   );
 }
+
+function RevenueChart({ orders }: { orders: DbOrder[] }) {
   const chartData = React.useMemo(() => {
     const m: Record<string, number> = {};
     orders.filter((o) => o.status === "paid").forEach((o) => {
@@ -787,7 +789,7 @@ function TopProductsView({ orders }: { orders: DbOrder[] }) {
             <Tooltip
               contentStyle={{ backgroundColor: "#1e293b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, fontSize: 13 }}
               labelStyle={{ color: "rgba(255,255,255,0.6)", marginBottom: 4 }}
-              formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}
+              formatter={(value) => [`$${Number(value).toLocaleString()}`, "Revenue"]}
             />
             <Bar dataKey="value" fill="#c5a059" radius={[4, 4, 0, 0]} barSize={32} />
           </BarChart>
@@ -818,7 +820,7 @@ function TopProductsView({ orders }: { orders: DbOrder[] }) {
             </Pie>
             <Tooltip
               contentStyle={{ backgroundColor: "#1e293b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8 }}
-              formatter={(value: number, name: string) => [`${value} orders`, name]}
+              formatter={(value, name) => [`${Number(value)} orders`, name as string]}
             />
           </PieChart>
         </ResponsiveContainer>

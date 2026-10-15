@@ -60,7 +60,7 @@ const REVIEWS = [
 ];
 
 const NOTES = [
-  { title: "Why we make thirty-three things", kind: "Craft", image: "/photos/editorial/journal-1.webp" },
+  { title: `Why we make ${products.length} things`, kind: "Craft", image: "/photos/editorial/journal-1.webp" },
   { title: "European linen, and what it costs", kind: "Materials", image: "/photos/editorial/journal-2.webp" },
   { title: "The four hands behind our linen", kind: "People", image: "/photos/editorial/journal-4.webp" },
 ];
@@ -142,7 +142,7 @@ export default function HomePage() {
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-obsidian">
         <Parallax className="absolute inset-0 -z-10" speed={0.08} scale={1.12}>
           <Image
-            src="/photos/editorial/home-hero.webp"
+            src="/photos/editorial/atelier.webp"
             alt=""
             fill
             className="object-cover opacity-40"
@@ -162,17 +162,17 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.25}>
               <h1 className="mt-6 display leading-[0.9] text-silk">
-                <MaskReveal>Thirty-three</MaskReveal>
-                <MaskReveal delay={0.1}>things worth</MaskReveal>
+                <MaskReveal>{products.length} pieces</MaskReveal>
+                <MaskReveal delay={0.1}>crafted with</MaskReveal>
                 <MaskReveal delay={0.2}>
-                  <span className="text-gold-light italic">keeping.</span>
+                  <span className="text-gold-light italic">intention.</span>
                 </MaskReveal>
               </h1>
             </Reveal>
             <Reveal delay={0.4}>
               <p className="mt-8 text-base leading-relaxed text-silk/55 max-w-lg">
-                A small house of considered design. Named makers, traceable materials, and a
-                collection cut deliberately short — because beauty doesn&apos;t need volume.
+                A house of considered design. Named makers, traceable materials, and a
+                collection shaped by discipline — because beauty doesn&apos;t need volume.
               </p>
             </Reveal>
             <Reveal delay={0.55}>
@@ -370,7 +370,7 @@ export default function HomePage() {
           <div className="reveal-up order-2 lg:order-1">
             <p className="label-xs text-gold">Our philosophy</p>
             <h2 className="headline mt-4 text-silk">
-              We make thirty-three things. On purpose.
+              We make {products.length} things. On purpose.
             </h2>
             <p className="mt-6 leading-relaxed text-silk/60">
               Lumière began with a question we could not answer for years: could beautiful things be
