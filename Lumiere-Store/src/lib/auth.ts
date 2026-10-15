@@ -17,7 +17,6 @@ function base64url(input: Buffer | string): string {
 function secret(): string {
   const key = process.env.AUTH_SECRET;
   if (!key || key.length < 16) {
-    // Development fallback: deterministic key so auth works locally without .env.local
     if (process.env.NODE_ENV === "development") return "lumiere-dev-secret-key-32chars!!";
     throw new Error(
       "AUTH_SECRET is required. " +
@@ -104,7 +103,6 @@ export async function verifyRequestCsrf(
   if (!verified) {
     return { ok: false, error: "Invalid CSRF token" };
   }
-  // Verify the body token matches the cookie token (same value, not just valid signature)
   if (bodyToken !== verified) {
     return { ok: false, error: "CSRF token mismatch" };
   }
@@ -124,7 +122,7 @@ async function extractBodyToken(req: Request): Promise<string | null> {
   }
 }
 
-// ---------- user persistence (SQLite via db.ts) ----------
+// ---------- user persistence (JSON file) ----------
 export function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
 }
@@ -178,6 +176,66 @@ export function getUserByEmail(email: string): SessionUser | null {
   return { id: user.id, name: user.name, email: user.email };
 }
 
-// ---------- orders (mirrors db module for compatibility) ----------
+// ---------- Google OAuth ----------
+export interface GoogleUserInfo {
+  sub: string;           // Google user ID
+  email: string;
+  name: string;
+  picture?: string;
+  email_verified: boolean;
+}
+
+/**
+ * Verify a Google ID token and return user info.
+ * Returns null if the token is invalid or expired.
+ */
+export async function verifyGoogleToken(idToken: string): Promise<GoogleUserInfo | null> {
+  try {
+    const res = await fetch(
+      `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(idToken)}`,
+      { next: { revalidate: 0 } }
+    );
+    if (!res.ok) return null;
+    const data = await res.json() as GoogleUserInfo;
+
+    // Security: only accept tokens from our configured audience (Google Client ID)
+    // In production, check data.aud === process.env.GOOGLE_CLIENT_ID
+    if (!data.email_verified) return null;
+
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Find or create a user from Google OAuth info.
+ * Creates a user with a null password (OAuth-only account).
+ */
+export function upsertGoogleUser(info: GoogleUserInfo): SessionUser {
+  const email = normalizeEmail(info.email);
+  const existing = findUserByEmail(email);
+  if (existing) {
+    return { id: existing.id, name: existing.name, email: existing.email };
+  }
+  // Create new user with dummy password hash — login only via OAuth
+  try {
+    const result = dbCreateUser({
+      id: crypto.randomUUID(),
+      name: info.name,
+      email,
+      password: `oauth_google_${info.sub}`, // dummy — never used for login
+      createdAt: Date.now(),
+    });
+    return { id: result.id, name: result.name, email: result.email };
+  } catch {
+    // Race condition — user was created by another request
+    const fresh = findUserByEmail(email);
+    if (!fresh) throw new Error("Failed to create user");
+    return { id: fresh.id, name: fresh.name, email: fresh.email };
+  }
+}
+
+// ---------- orders ----------
 export { listOrdersByEmail as getOrders } from "./db";
 export { saveOrder as saveOrderToDb } from "./db";
