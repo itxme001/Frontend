@@ -4,7 +4,7 @@ import { generateCsrfToken, signCsrfToken, verifyCsrfToken, CSRF_TOKEN_HEADER } 
 import { findAllUsers, findUserByEmail, createUser as dbCreateUser, listOrdersByEmail, hashPassword, verifyPassword } from "./db";
 
 export const SESSION_COOKIE = "lumiere_session";
-const CSRF_COOKIE = "lumiere_csrf";
+export const CSRF_COOKIE = "lumiere_csrf";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 export type SessionUser = { id: string; name: string; email: string };
@@ -17,8 +17,10 @@ function base64url(input: Buffer | string): string {
 function secret(): string {
   const key = process.env.AUTH_SECRET;
   if (!key || key.length < 16) {
+    // Development fallback: deterministic key so auth works locally without .env.local
+    if (process.env.NODE_ENV === "development") return "lumiere-dev-secret-key-32chars!!";
     throw new Error(
-      "AUTH_SECRET is required in production. " +
+      "AUTH_SECRET is required. " +
         "Generate one with: node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\""
     );
   }
