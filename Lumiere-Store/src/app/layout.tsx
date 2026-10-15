@@ -9,6 +9,7 @@ import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { Cursor } from "@/components/motion/cursor";
 import { AppErrorBoundary } from "@/components/ui/error-boundary";
 import { PageTransition } from "@/components/motion/page-transition";
+import "@/lib/seed";
 
 const jost = localFont({
   variable: "--font-jost",
