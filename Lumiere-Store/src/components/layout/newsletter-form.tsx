@@ -37,6 +37,7 @@ export function NewsletterForm() {
           type="email"
           placeholder="Your email"
           aria-label="Email address"
+          suppressHydrationWarning
           className="flex-1 border border-white/15 bg-transparent px-4 py-3 text-sm text-silk placeholder:text-silk/30 outline-none focus:border-gold"
           required
         />
