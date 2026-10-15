@@ -3,28 +3,49 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Award, HandHeart, Leaf, RotateCcw, ShieldCheck, Truck } from "lucide-react";
-import { ProductGrid } from "@/components/catalog/product-grid";
-import { Rating } from "@/components/ui/rating";
-import { Parallax } from "@/components/motion/parallax";
-import { Counter } from "@/components/motion/counter";
-import { Magnetic } from "@/components/motion/cursor";
-import { CurtainImage } from "@/components/motion/curtain-image";
-import { Reveal, Stagger, StaggerItem, MaskReveal } from "@/components/motion/reveal";
-import { COLLECTIONS, countCollection } from "@/data/collections";
-import { CATEGORY_LABELS, products, type ProductCategory } from "@/data/products";
-import { NewsletterForm } from "@/components/layout/newsletter-form";
-import { cn } from "@/lib/utils";
+import { motion, useReducedMotion } from "motion/react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  HandHeart,
+  Leaf,
+  Quote,
+  RotateCcw,
+  ShieldCheck,
+  Sparkles,
+  Truck,
+} from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ProductGrid } from "@/components/catalog/product-grid";
+import { Rating } from "@/components/ui/rating";
+import { MaskReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { Magnetic } from "@/components/motion/cursor";
+import { CurtainImage } from "@/components/motion/curtain-image";
+import { Parallax } from "@/components/motion/parallax";
+import { Counter } from "@/components/motion/counter";
+import { NewsletterForm } from "@/components/layout/newsletter-form";
+import { COLLECTIONS, countCollection } from "@/data/collections";
+import {
+  CATEGORY_LABELS,
+  CATEGORY_TAGLINES,
+  products,
+  type ProductCategory,
+} from "@/data/products";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ------------------------------------------------------------------ */
+/*  Content                                                            */
+/* ------------------------------------------------------------------ */
+
 const TRUST = [
-  { Icon: Truck, text: "Free express shipping over $300" },
-  { Icon: RotateCcw, text: "30-day returns" },
-  { Icon: ShieldCheck, text: "Secure Stripe checkout" },
-  { Icon: Leaf, text: "Plastic-free packaging" },
+  { Icon: Truck, text: "Complimentary express shipping over $300" },
+  { Icon: RotateCcw, text: "30-day returns, no questions asked" },
+  { Icon: ShieldCheck, text: "Secure, encrypted checkout" },
+  { Icon: Leaf, text: "Plastic-free, carbon-offset delivery" },
   { Icon: HandHeart, text: "Made by named artisans" },
   { Icon: Award, text: "Free repairs for two years" },
 ];
@@ -32,239 +53,506 @@ const TRUST = [
 const HOUSE_FACTS = [
   { value: 120, suffix: "+", label: "Artisan partners" },
   { value: 16, suffix: "", label: "Countries sourced" },
-  { value: 92, suffix: "%", label: "Buy again" },
+  { value: 92, suffix: "%", label: "Customers who return" },
 ];
 
 const REVIEWS = [
   {
     quote:
-      "The wool overcoat is the first piece of clothing I would genuinely call an heirloom. Three winters in and it still looks new.",
+      "The wool overcoat is the first piece of clothing I have owned that I would genuinely call an heirloom. Three winters in and it still looks new.",
     name: "Sara Ahmed",
-    detail: "Herringbone Wool Overcoat",
+    detail: "Verified purchase · Wool Overcoat",
     rating: 5,
   },
   {
     quote:
-      "I asked about the origin of the silk and got the mill's name within a day. That transparency is rare in fashion.",
+      "I asked about the origin of the silk and received a straight answer with the mill's name within a day. That transparency is rare.",
     name: "Daniel Okafor",
-    detail: "Silk Charmeuse Blouse",
+    detail: "Verified purchase · Silk Charmeuse Blouse",
     rating: 5,
   },
   {
     quote:
       "Beautiful packaging, no plastic, and the candle arrived intact. It has become the scent of our whole apartment.",
     name: "Mei Lin",
-    detail: "Champagne Gold Candle",
+    detail: "Verified purchase · Champagne Gold Candle",
     rating: 4,
   },
 ];
 
 const NOTES = [
-  { title: `Why we make ${products.length} things`, kind: "Craft", image: "/photos/editorial/journal-1.webp" },
-  { title: "European linen, and what it costs", kind: "Materials", image: "/photos/editorial/journal-2.webp" },
-  { title: "The four hands behind our linen", kind: "People", image: "/photos/editorial/journal-4.webp" },
+  {
+    title: "Why we make thirty-three things",
+    kind: "Craft",
+    read: "6 min read",
+    image: "/photos/editorial/journal-1.webp",
+  },
+  {
+    title: "European linen, and what it truly costs",
+    kind: "Materials",
+    read: "8 min read",
+    image: "/photos/editorial/journal-2.webp",
+  },
+  {
+    title: "The hands behind the atelier",
+    kind: "People",
+    read: "5 min read",
+    image: "/photos/editorial/journal-3.webp",
+  },
 ];
+
+/**
+ * The catalogue's `collection.image` paths are legacy and no longer resolve.
+ * Map each edit to a live editorial photograph so nothing renders broken.
+ */
+const COLLECTION_IMAGES: Record<string, string> = {
+  "summer-2026": "/photos/editorial/journal-featured.webp",
+  "best-sellers": "/photos/editorial/about-hero.webp",
+  "new-in": "/photos/editorial/story-hero.webp",
+  "gift-edit": "/photos/editorial/founderz.webp",
+  essentials: "/photos/editorial/journal-6.webp",
+  "final-sale": "/photos/editorial/journal-4.webp",
+};
+
+const CATEGORY_TILES: { category: ProductCategory; image: string }[] = [
+  { category: "apparel", image: "/photos/editorial/atelier.webp" },
+  { category: "accessories", image: "/photos/editorial/craft.webp" },
+  { category: "living", image: "/photos/editorial/sourcing.webp" },
+  { category: "fragrance", image: "/photos/editorial/packing.webp" },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Motion primitives                                                  */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Staggered word reveal — each word rises out of its own mask with a
+ * short delay. Reduced motion renders the plain, fully-readable line.
+ */
+function WordStagger({
+  words,
+  className,
+  baseDelay = 0,
+}: {
+  words: string[];
+  className?: string;
+  baseDelay?: number;
+}) {
+  const reduce = useReducedMotion();
+
+  if (reduce) return <span className={className}>{words.join(" ")}</span>;
+
+  return (
+    <span className={cn("block", className)}>
+      {words.map((word, i) => (
+        <React.Fragment key={`${word}-${i}`}>
+          <span className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
+            <motion.span
+              className="inline-block will-change-transform"
+              initial={{ y: "112%" }}
+              animate={{ y: "0%" }}
+              transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: baseDelay + i * 0.09 }}
+            >
+              {word}
+            </motion.span>
+          </span>
+          {i < words.length - 1 ? " " : null}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+}
+
+/** Framer-motion hover zoom that simply renders plain under reduced motion. */
+function HoverZoom({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const reduce = useReducedMotion();
+
+  if (reduce) return <div className={className}>{children}</div>;
+
+  return (
+    <motion.div
+      className={className}
+      whileHover={{ scale: 1.07 }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function CategoryTile({
+  category,
+  image,
+  index,
+}: {
+  category: ProductCategory;
+  image: string;
+  index: number;
+}) {
+  const count = products.filter((p) => p.category === category).length;
+
+  return (
+    <Link
+      href={`/shop?cat=${category}`}
+      className="category-tile group relative block h-[24rem] overflow-hidden bg-obsidian sm:h-[28rem] lg:h-[32rem]"
+    >
+      <div className="absolute inset-0">
+        <HoverZoom className="h-full w-full">
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover"
+            unoptimized
+          />
+        </HoverZoom>
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/30 to-obsidian/10" />
+      <div className="relative flex h-full flex-col justify-end p-6 sm:p-8">
+        <span className="label-xs text-gold">0{index + 1}</span>
+        <h3 className="mt-3 font-serif text-3xl leading-tight text-silk sm:text-4xl">
+          {CATEGORY_LABELS[category]}
+        </h3>
+        <p className="mt-2 text-sm text-silk/55">{CATEGORY_TAGLINES[category]}</p>
+        <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+          <span className="text-xs uppercase tracking-[0.16em] text-silk/45">
+            {count} pieces
+          </span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-obsidian">
+            <ArrowUpRight className="h-4 w-4" aria-hidden />
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Homepage                                                           */
+/* ------------------------------------------------------------------ */
 
 export default function HomePage() {
   const featured = products.filter((p) => p.isFeatured).slice(0, 8);
-  const bestsellers = [...products].sort((a, b) => b.reviews - a.reviews).slice(0, 4);
   const categories = Object.keys(CATEGORY_LABELS) as ProductCategory[];
-  const spotlight = products.find((p) => p.slug === "herringbone-wool-overcoat") ?? products[0];
 
-  // ── GSAP ScrollTrigger animations ──
+  /* ── GSAP scroll-triggered animation ─────────────────────────────── */
   React.useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Section reveal animations
-    const reveals = document.querySelectorAll(".reveal-up");
-    reveals.forEach((el) => {
-      gsap.fromTo(
-        el as HTMLElement,
-        { opacity: 0, y: 32 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el as HTMLElement,
-            start: "top 86%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Section headers + standalone blocks — quiet fade up.
+        gsap.utils.toArray<HTMLElement>(".reveal-up").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 36 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 88%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        // Category tiles — gentle stagger up.
+        gsap.utils.toArray<HTMLElement>(".category-tile").forEach((el, i) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 48 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.95,
+              ease: "power3.out",
+              delay: (i % 4) * 0.08,
+              scrollTrigger: {
+                trigger: el,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        // Collection cards — slide in from the right.
+        gsap.utils.toArray<HTMLElement>(".collection-card").forEach((el, i) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0, x: 72 },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.85,
+              ease: "power3.out",
+              delay: (i % 3) * 0.08,
+              scrollTrigger: {
+                trigger: el,
+                start: "top 92%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        // Editorial rules draw themselves in.
+        gsap.utils.toArray<HTMLElement>(".gsap-rule").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { scaleX: 0, transformOrigin: "left center" },
+            {
+              scaleX: 1,
+              duration: 1.2,
+              ease: "power3.inOut",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 94%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      });
+
+      ScrollTrigger.refresh();
     });
 
-    // Horizontal collections scroll — parallax depth on each card
-    const collectionCards = document.querySelectorAll(".collection-card");
-    collectionCards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-
-    // Trust ticker — subtle fade-in
-    const trustSection = document.querySelector("[data-trust-ticker]");
-    if (trustSection) {
-      gsap.fromTo(
-        trustSection,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: trustSection,
-            start: "top 95%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
     }
 
-    ScrollTrigger.refresh();
+    return () => ctx.revert();
   }, []);
 
   return (
     <div className="overflow-x-hidden">
-      {/* ─────────── HERO ─────────── */}
-      <section className="relative isolate min-h-[100svh] overflow-hidden bg-obsidian">
-        <Parallax className="absolute inset-0 -z-10" speed={0.08} scale={1.12}>
+      {/* ═══════════════ 1 · HERO ═══════════════ */}
+      <section className="relative isolate flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-obsidian px-4 py-28 text-center sm:px-6">
+        <Parallax className="absolute inset-0 -z-10" speed={0.12} scale={1.15}>
           <Image
-            src="/photos/editorial/atelier.webp"
+            src="/photos/editorial/home-hero.webp"
             alt=""
             fill
-            className="object-cover opacity-40"
             priority
+            sizes="100vw"
+            className="object-cover"
             unoptimized
           />
         </Parallax>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian/30 via-obsidian/70 to-obsidian" />
-        <div aria-hidden className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-obsidian/45" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-obsidian via-obsidian/35 to-obsidian/10" />
+        <div
+          aria-hidden
+          className="absolute left-1/2 top-0 h-px w-[72%] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+        />
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-4 pb-20 pt-28 sm:px-6 sm:pb-24">
-          <div className="max-w-3xl">
-            <Reveal delay={0.15}>
-              <p className="label-xs text-gold-light">
-                Established 2019 · Milan
-              </p>
-            </Reveal>
-            <Reveal delay={0.25}>
-              <h1 className="mt-6 display leading-[0.9] text-silk">
-                <MaskReveal>{products.length} pieces</MaskReveal>
-                <MaskReveal delay={0.1}>crafted with</MaskReveal>
-                <MaskReveal delay={0.2}>
-                  <span className="text-gold-light italic">intention.</span>
-                </MaskReveal>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.4}>
-              <p className="mt-8 text-base leading-relaxed text-silk/55 max-w-lg">
-                A house of considered design. Named makers, traceable materials, and a
-                collection shaped by discipline — because beauty doesn&apos;t need volume.
-              </p>
-            </Reveal>
-            <Reveal delay={0.55}>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Magnetic>
-                  <Link
-                    href="/shop"
-                    className="inline-flex h-14 items-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_40px_-10px_rgba(200,164,77,0.5)]"
-                  >
-                    Shop the collection
-                  </Link>
-                </Magnetic>
-                <Link
-                  href="/collections"
-                  className="inline-flex h-14 items-center border border-silk/25 px-10 text-xs font-medium uppercase tracking-[0.18em] text-silk transition-all hover:border-gold hover:text-gold"
-                >
-                  Browse edits
-                </Link>
-              </div>
-            </Reveal>
-          </div>
+        <div className="relative w-full max-w-5xl">
+          <p className="label-xs text-gold">
+            <MaskReveal delay={0.1}>Maison Lumière · Est. 2016</MaskReveal>
+          </p>
 
-          <div aria-hidden className="mt-16 flex items-center gap-3 text-silk/30">
-            <span className="relative block h-12 w-px overflow-hidden bg-white/10">
-              <span className="scroll-cue-line absolute inset-x-0 block h-5 bg-gold" />
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.25em]">Scroll to explore</span>
-          </div>
-        </div>
-      </section>
+          <h1 className="display mx-auto mt-8 max-w-4xl text-silk">
+            <WordStagger words={["Quiet", "luxury,"]} baseDelay={0.25} />
+            <WordStagger
+              words={["made", "to", "last."]}
+              baseDelay={0.6}
+              className="mt-2 text-gold-light italic"
+            />
+          </h1>
 
-      {/* ─────────── TRUST TICKER ─────────── */}
-      <section data-trust-ticker className="border-b border-white/5 bg-obsidian py-4">
-        <div className="flex overflow-hidden">
-          {TRUST.map(({ Icon, text }, i) => (
-            <span
-              key={text}
-              className={cn(
-                "flex shrink-0 items-center gap-3 px-10 text-xs uppercase tracking-[0.15em] text-silk/40",
-                i < TRUST.length - 1 && "border-r border-white/10"
-              )}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
+            className="lede mx-auto mt-8 max-w-xl text-silk/65"
+          >
+            Small-batch pieces in traceable silk, linen and leather — cut slowly,
+            finished by hand, and made to outlast the season they were born in.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
+            className="mt-11 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          >
+            <Magnetic>
+              <Link
+                href="/shop"
+                className="inline-flex h-14 items-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_50px_-12px_rgba(200,164,77,0.7)]"
+              >
+                Shop the collection
+              </Link>
+            </Magnetic>
+            <Link
+              href="/story"
+              className="inline-flex h-14 items-center border border-silk/25 px-10 text-xs font-medium uppercase tracking-[0.18em] text-silk transition-all hover:border-gold hover:text-gold"
             >
-              <Icon className="h-3.5 w-3.5 text-gold/70" aria-hidden />
-              {text}
-            </span>
-          ))}
+              Our story
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3">
+          <span className="text-[10px] uppercase tracking-[0.32em] text-silk/40">Scroll</span>
+          <span className="relative block h-14 w-px overflow-hidden bg-white/10">
+            <span className="scroll-cue-line absolute inset-x-0 block h-6 bg-gold" />
+          </span>
         </div>
       </section>
 
-      {/* ─────────── COLLECTIONS ─────────── */}
-      <section className="py-24 bg-background">
+      {/* ═══════════════ 2 · TRUST TICKER ═══════════════ */}
+      <section data-trust-ticker className="reveal-up border-y border-border bg-shell py-5">
+        <div className="overflow-hidden">
+          <div className="marquee-track items-center">
+            {[0, 1].map((copy) => (
+              <div
+                key={copy}
+                className="flex shrink-0 items-center"
+                aria-hidden={copy === 1}
+              >
+                {TRUST.map(({ Icon, text }) => (
+                  <span
+                    key={text}
+                    className="flex shrink-0 items-center gap-3 border-r border-border px-8 text-[11px] uppercase tracking-[0.18em] text-slate-500"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-gold-ink" aria-hidden />
+                    {text}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ 3 · FEATURED PRODUCTS ═══════════════ */}
+      <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
-          <div className="reveal-up mb-14 flex items-end justify-between gap-4">
+          <header className="reveal-up mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="label-xs text-gold-ink">New arrivals</p>
+              <h2 className="headline mt-3">New &amp; noteworthy</h2>
+            </div>
+            <Link
+              href="/shop"
+              className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-500 transition-colors hover:text-gold-ink"
+            >
+              View all {products.length} pieces
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1"
+                aria-hidden
+              />
+            </Link>
+          </header>
+
+          <ProductGrid items={featured} />
+        </div>
+      </section>
+
+      <div className="gsap-rule mx-auto h-px w-[min(1400px,92%)] bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+
+      {/* ═══════════════ 4 · CATEGORY SHOWCASE ═══════════════ */}
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+          <header className="reveal-up mb-12 max-w-2xl">
+            <p className="label-xs text-gold-ink">The house</p>
+            <h2 className="headline mt-3">Four ways in</h2>
+            <p className="mt-5 leading-relaxed text-slate-500">
+              Apparel, objects and scent — each drawn from the same short list of
+              fibres, and each made to be kept rather than replaced.
+            </p>
+          </header>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {CATEGORY_TILES.map(({ category, image }, index) => (
+              <CategoryTile
+                key={category}
+                category={category}
+                image={image}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ 5 · COLLECTIONS PREVIEW ═══════════════ */}
+      <section className="border-y border-border bg-shell py-20 sm:py-28">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+          <header className="reveal-up mb-10 flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="label-xs text-gold-ink">Curated edits</p>
-              <h2 className="headline mt-2">Six ways in</h2>
+              <h2 className="headline mt-3">Six ways to shop the house</h2>
             </div>
             <Link
               href="/collections"
-              className="group inline-flex items-center gap-2 text-sm text-slate-500 transition-colors hover:text-gold-ink"
+              className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-500 transition-colors hover:text-gold-ink"
             >
               Every collection
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1"
+                aria-hidden
+              />
             </Link>
-          </div>
+          </header>
+        </div>
 
-          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+        {/* Horizontal rail — native scroll on mobile, parallax depth throughout */}
+        <div className="overflow-x-auto overscroll-x-contain pb-2 scrollbar-hide snap-x snap-mandatory">
+          <div className="flex w-max gap-5 px-4 sm:px-6 lg:px-8">
             {COLLECTIONS.map((collection, index) => (
               <Link
                 key={collection.slug}
                 href={`/shop?collection=${collection.slug}`}
-                className={cn(
-                  "collection-card group relative flex shrink-0 flex-col justify-end overflow-hidden bg-obsidian p-6 snap-start",
-                  index % 2 === 0 ? "h-[32rem] w-[22rem]" : "h-[28rem] w-[22rem] sm:w-[24rem]"
-                )}
+                className="collection-card group relative block h-[28rem] w-[20rem] shrink-0 snap-start overflow-hidden bg-obsidian sm:h-[32rem] sm:w-[24rem]"
               >
-                <Image
-                  src={collection.image}
-                  alt=""
-                  fill
-                  className="object-cover opacity-50 transition-transform duration-700 ease-out group-hover:scale-110"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 22vw"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent" />
-                <div className="relative z-10">
-                  <p className="label-xs text-gold">{collection.tagline}</p>
-                  <h3 className="mt-2 font-serif text-3xl text-silk">{collection.title}</h3>
-                  <p className="mt-2 line-clamp-2 text-sm text-silk/50">{collection.description}</p>
-                  <p className="mt-4 text-xs uppercase tracking-[0.16em] text-silk/40">
-                    {countCollection(collection, products)} pieces
+                <Parallax className="absolute inset-0" speed={0.1} scale={1.15}>
+                  <Image
+                    src={COLLECTION_IMAGES[collection.slug] ?? collection.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 84vw, (max-width: 1024px) 52vw, 24vw"
+                    className="object-cover"
+                    unoptimized
+                  />
+                </Parallax>
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/30 to-obsidian/10" />
+
+                <div className="relative flex h-full flex-col justify-end p-7">
+                  <span className="label-xs text-gold">
+                    0{index + 1} · {collection.tagline}
+                  </span>
+                  <h3 className="mt-3 font-serif text-2xl text-silk sm:text-3xl">
+                    {collection.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-silk/55">
+                    {collection.description}
                   </p>
+                  <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+                    <span className="text-xs uppercase tracking-[0.16em] text-silk/45">
+                      {countCollection(collection, products)} pieces
+                    </span>
+                    <ArrowRight
+                      className="h-4 w-4 text-gold transition-transform duration-500 group-hover:translate-x-1"
+                      aria-hidden
+                    />
+                  </div>
                 </div>
               </Link>
             ))}
@@ -272,177 +560,114 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────── SPOTLIGHT ─────────── */}
-      <section className="border-y border-border bg-mist">
-        <div className="mx-auto grid max-w-[1400px] lg:grid-cols-2">
-          <CurtainImage
-            src={spotlight.heroImage ?? spotlight.image}
-            alt={spotlight.name}
-            ratio="4/5"
-            className="aspect-[4/5] lg:aspect-auto lg:h-full lg:min-h-[48rem]"
-            priority
-          />
-          <div className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:py-24">
-            <Reveal>
-              <p className="label-xs text-gold-ink">The piece we are proudest of</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="headline mt-4">{spotlight.name}</h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mt-6 max-w-lg leading-relaxed text-slate-500">{spotlight.description}</p>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-border pt-8 text-sm sm:grid-cols-4">
-                <div>
-                  <dt className="text-slate-500">Material</dt>
-                  <dd className="mt-1 font-medium">{spotlight.material}</dd>
-                </div>
-                <div>
-                  <dt className="text-slate-500">Rating</dt>
-                  <dd className="mt-1 font-medium">{spotlight.rating} · {spotlight.reviews}</dd>
-                </div>
-                <div>
-                  <dt className="text-slate-500">Stock</dt>
-                  <dd className="mt-1 font-medium">{spotlight.stock} left</dd>
-                </div>
-                <div>
-                  <dt className="text-slate-500">Price</dt>
-                  <dd className="mt-1 font-serif text-gold-ink">${spotlight.price.toLocaleString()}</dd>
-                </div>
-              </dl>
-            </Reveal>
-
-            <Reveal delay={0.4}>
-              <div className="mt-10 flex flex-wrap items-center gap-6">
-                <Link
-                  href={`/shop?q=${encodeURIComponent(spotlight.name)}`}
-                  className="inline-flex h-14 items-center bg-foreground px-8 text-xs font-medium uppercase tracking-[0.16em] text-background transition-all hover:bg-gold-ink hover:shadow-lg"
-                >
-                  View this piece
-                </Link>
-                <Rating value={spotlight.rating} count={spotlight.reviews} />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────── CATEGORIES ─────────── */}
-      <section className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6">
-        <div className="reveal-up mb-12 flex items-end justify-between gap-4">
-          <h2 className="headline">Four ways into the house</h2>
-          <Link href="/shop" className="text-sm text-slate-500 underline underline-offset-4 hover:text-gold-ink">
-            All {products.length} pieces
-          </Link>
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-3">
-          <div className="reveal-up lg:col-span-2 lg:row-span-2">
-            <CategoryTile category={categories[0]} hero />
-          </div>
-          {categories.slice(1).map((category) => (
-            <div key={category} className="reveal-up">
-              <CategoryTile category={category} />
+      {/* ═══════════════ 6 · BRAND STORY ═══════════════ */}
+      <section className="border-b border-border bg-mist py-20 sm:py-28">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20">
+          <div className="reveal-up relative order-2 lg:order-1">
+            <CurtainImage
+              src="/photos/editorial/founder.webp"
+              alt="Ayesha Rahman, founder of Lumière, in the atelier"
+              ratio="3/4"
+            />
+            <div className="absolute -bottom-6 -right-4 hidden bg-obsidian px-7 py-6 sm:block lg:-right-8">
+              <p className="font-serif text-3xl text-gold">2016</p>
+              <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-silk/50">
+                Founded in Lahore
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ─────────── FEATURED ─────────── */}
-      <section className="mx-auto max-w-[1400px] px-4 pb-24 sm:px-6">
-        <div className="reveal-up mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="label-xs text-gold-ink">New arrivals</p>
-            <h2 className="headline mt-2">New & noteworthy</h2>
           </div>
-          <Link href="/shop" className="text-sm text-slate-500 underline underline-offset-4 hover:text-gold-ink">
-            View all
-          </Link>
-        </div>
-        <ProductGrid items={featured} />
-      </section>
 
-      {/* ─────────── HOUSE STORY ─────────── */}
-      <section className="border-y border-white/10 bg-obsidian py-24">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-16 px-4 sm:px-6 lg:grid-cols-2">
-          <div className="reveal-up order-2 lg:order-1">
-            <p className="label-xs text-gold">Our philosophy</p>
-            <h2 className="headline mt-4 text-silk">
-              We make {products.length} things. On purpose.
-            </h2>
-            <p className="mt-6 leading-relaxed text-silk/60">
-              Lumière began with a question we could not answer for years: could beautiful things be
-              made without taking from the people who make them? So we built the opposite of a
-              fast-fashion label. Small runs, short supply chains, and a name for every pair of
-              hands involved.
-            </p>
+          <div className="order-1 lg:order-2">
+            <Reveal>
+              <p className="label-xs text-gold-ink">The house</p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="headline mt-4">
+                A house built on{" "}
+                <span className="italic text-gold-ink">intention</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="lede mt-6">
+                Lumière began with a question we could not answer for years: could
+                beautiful things be made without taking from the people who make
+                them? So we built the opposite of a fast-fashion label — small
+                runs, a short supply chain, and a name for every pair of hands
+                involved.
+              </p>
+            </Reveal>
 
-            <dl className="mt-12 grid grid-cols-3 gap-8 border-t border-white/10 pt-10">
+            <dl className="mt-12 grid grid-cols-3 gap-8 border-t border-border pt-10">
               {HOUSE_FACTS.map((fact) => (
                 <div key={fact.label}>
                   <Counter
                     value={fact.value}
                     suffix={fact.suffix}
-                    className="block font-serif text-4xl tabular-nums text-gold"
+                    className="block font-serif text-3xl tabular-nums text-gold-ink sm:text-4xl"
                   />
-                  <span className="mt-2 block text-sm text-silk/50">{fact.label}</span>
+                  <span className="mt-2 block text-[11px] uppercase tracking-[0.14em] text-slate-500">
+                    {fact.label}
+                  </span>
                 </div>
               ))}
             </dl>
 
-            <Reveal delay={0.3}>
+            <Reveal delay={0.24}>
               <Link
                 href="/about"
-                className="reveal-up mt-12 inline-flex h-14 items-center border border-silk/20 px-8 text-xs font-medium uppercase tracking-[0.16em] text-silk transition-all hover:border-gold hover:text-gold"
+                className="group mt-12 inline-flex h-14 items-center gap-3 border border-foreground/15 px-8 text-xs font-medium uppercase tracking-[0.16em] text-foreground transition-all hover:border-gold-ink hover:text-gold-ink"
               >
                 More about the house
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1"
+                  aria-hidden
+                />
               </Link>
             </Reveal>
           </div>
-
-          <div className="reveal-up order-1 lg:order-2">
-            <CurtainImage src="/photos/editorial/atelier.webp" alt="The Lumière atelier" ratio="3/4" />
-          </div>
         </div>
       </section>
 
-      {/* ─────────── BESTSELLERS ─────────── */}
-      <section className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6">
-        <div className="reveal-up mb-12 flex items-end justify-between gap-4">
-          <div>
-            <p className="label-xs text-gold-ink">Customer favorites</p>
-            <h2 className="headline mt-2">Most loved</h2>
-          </div>
-          <Link href="/shop" className="text-sm text-slate-500 underline underline-offset-4 hover:text-gold-ink">
-            View all
-          </Link>
-        </div>
-        <ProductGrid items={bestsellers} />
-      </section>
-
-      {/* ─────────── REVIEWS ─────────── */}
-      <section className="border-y border-border bg-mist py-24">
+      {/* ═══════════════ 7 · TESTIMONIALS ═══════════════ */}
+      <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
-          <div className="reveal-up mb-14 max-w-2xl">
-            <p className="label-xs text-gold-ink">Verified reviews</p>
-            <h2 className="headline mt-2">2,547 verified reviews</h2>
-            <p className="mt-4 leading-relaxed text-slate-500">
-              Every review comes from a confirmed order, including the four-star ones.
-            </p>
-          </div>
+          <header className="reveal-up mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="label-xs text-gold-ink">Verified reviews</p>
+              <h2 className="headline mt-3">Loved, then loved again</h2>
+              <p className="mt-5 leading-relaxed text-slate-500">
+                Every review below comes from a confirmed order. We publish the
+                four-star ones too.
+              </p>
+            </div>
+            <div className="flex flex-col items-start gap-2 sm:items-end">
+              <Rating value={4.9} count={2547} />
+              <span className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
+                4.9 average across {categories.length} departments
+              </span>
+            </div>
+          </header>
 
-          <Stagger className="grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
+          <Stagger className="grid gap-6 lg:grid-cols-3">
             {REVIEWS.map((review, i) => (
-              <StaggerItem key={review.name} as="figure" className="flex flex-col bg-background p-8">
-                <Rating value={review.rating} />
-                <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/85">
+              <StaggerItem
+                as="figure"
+                key={review.name}
+                className="flex h-full flex-col border border-border bg-card p-8"
+              >
+                <div className="flex items-center justify-between">
+                  <Rating value={review.rating} />
+                  <span className="label-xs text-slate-400">0{i + 1}</span>
+                </div>
+                <Quote className="mt-6 h-6 w-6 text-gold/50" aria-hidden />
+                <blockquote className="mt-4 flex-1 font-serif text-xl leading-relaxed text-foreground/85">
                   &ldquo;{review.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 border-t border-border pt-5 text-sm">
-                  <strong className="font-medium">{review.name}</strong>
-                  <p className="mt-1 text-slate-500">{review.detail}</p>
+                <figcaption className="mt-8 border-t border-border pt-5">
+                  <p className="font-medium">{review.name}</p>
+                  <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-500">
+                    {review.detail}
+                  </p>
                 </figcaption>
               </StaggerItem>
             ))}
@@ -450,77 +675,108 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────── JOURNAL ─────────── */}
-      <section className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6">
-        <div className="reveal-up mb-12 flex items-end justify-between gap-4">
-          <div>
-            <p className="label-xs text-gold-ink">From the journal</p>
-            <h2 className="headline mt-2">Notes on slow craft</h2>
-          </div>
-          <Link
-            href="/journal"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-500 transition-colors hover:text-gold-ink"
-          >
-            All notes
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </Link>
-        </div>
+      {/* ═══════════════ 8 · JOURNAL PREVIEW ═══════════════ */}
+      <section className="border-t border-border bg-shell py-20 sm:py-28">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+          <header className="reveal-up mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="label-xs text-gold-ink">From the journal</p>
+              <h2 className="headline mt-3">Notes on slow craft</h2>
+            </div>
+            <Link
+              href="/journal"
+              className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-500 transition-colors hover:text-gold-ink"
+            >
+              All notes
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1"
+                aria-hidden
+              />
+            </Link>
+          </header>
 
-        <Stagger className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {NOTES.map((note) => (
-            <StaggerItem key={note.title} as="article">
-              <Link href="/journal" className="group block">
-                <div className="overflow-hidden bg-mist">
-                  <Image
-                    src={note.image}
-                    alt=""
-                    width={400}
-                    height={267}
-                    className="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    unoptimized
-                  />
-                </div>
-                <p className="label-xs mt-4">{note.kind}</p>
-                <h3 className="mt-2 max-w-[24ch] font-serif text-2xl leading-snug">{note.title}</h3>
-              </Link>
-            </StaggerItem>
-          ))}
-        </Stagger>
+          <Stagger className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {NOTES.map((note) => (
+              <StaggerItem as="article" key={note.title}>
+                <Link href="/journal" className="group block">
+                  <div className="overflow-hidden bg-mist">
+                    <HoverZoom className="aspect-[3/2] w-full">
+                      <Image
+                        src={note.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </HoverZoom>
+                  </div>
+                  <div className="mt-5 flex items-center gap-3">
+                    <span className="label-xs text-gold-ink">{note.kind}</span>
+                    <span aria-hidden className="h-px w-6 bg-gold/40" />
+                    <span className="text-[11px] uppercase tracking-[0.14em] text-slate-400">
+                      {note.read}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 max-w-[26ch] font-serif text-2xl leading-snug text-foreground transition-colors group-hover:text-gold-ink">
+                    {note.title}
+                  </h3>
+                </Link>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
       </section>
 
-      {/* ─────────── NEWSLETTER ─────────── */}
-      <section className="border-y border-border bg-obsidian py-24">
+      {/* ═══════════════ 9 · NEWSLETTER ═══════════════ */}
+      <section className="border-y border-white/10 bg-obsidian py-20 sm:py-28">
         <NewsletterForm />
       </section>
 
-      {/* ─────────── CLOSING ─────────── */}
+      {/* ═══════════════ 10 · FINAL CTA ═══════════════ */}
       <section className="relative isolate overflow-hidden bg-obsidian">
-        <Parallax className="absolute inset-0 -z-10" speed={0.06} scale={1.1}>
+        <Parallax className="absolute inset-0 -z-10" speed={0.08} scale={1.15}>
           <Image
-            src="/photos/editorial/journal-featured.webp"
+            src="/photos/editorial/home-hero.webp"
             alt=""
             fill
-            className="object-cover opacity-20"
+            sizes="100vw"
+            className="object-cover opacity-30"
             unoptimized
           />
         </Parallax>
-        <div className="relative mx-auto max-w-3xl px-4 py-32 text-center sm:px-6">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian/60 via-obsidian/40 to-obsidian" />
+        <div
+          aria-hidden
+          className="absolute left-1/2 top-0 h-px w-[72%] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent"
+        />
+
+        <div className="relative mx-auto max-w-3xl px-4 py-28 text-center sm:px-6 sm:py-36">
           <Reveal>
-            <h2 className="display text-silk">Buy less.</h2>
+            <span className="label-xs inline-flex items-center gap-2 text-gold">
+              <Sparkles className="h-3.5 w-3.5" aria-hidden />
+              The house of Lumière
+            </span>
           </Reveal>
-          <Reveal delay={0.15}>
-            <p className="reveal-up mx-auto mt-8 max-w-lg text-lg leading-relaxed text-silk/60">
-              Free express shipping over $300, 30-day returns, and a care team that answers within
-              one business day.
+          <Reveal delay={0.1}>
+            <h2 className="display mt-6 text-silk">
+              Buy less.
+              <br />
+              <span className="italic text-gold-light">Choose well.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-8 max-w-lg text-lg leading-relaxed text-silk/60">
+              Free express shipping over $300, 30-day returns, and a care team
+              that answers within one business day.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="reveal-up mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+            <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
               <Magnetic>
                 <Link
                   href="/shop"
-                  className="inline-flex h-14 w-full items-center justify-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_50px_-10px_rgba(200,164,77,0.6)] sm:w-auto"
+                  className="inline-flex h-14 w-full items-center justify-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_50px_-12px_rgba(200,164,77,0.7)] sm:w-auto"
                 >
                   Start shopping
                 </Link>
@@ -536,42 +792,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  );
-}
-
-function CategoryTile({ category, hero = false }: { category: ProductCategory; hero?: boolean }) {
-  const piece = products.find((p) => p.category === category);
-  const count = products.filter((p) => p.category === category).length;
-
-  return (
-    <Link
-      href={`/shop?cat=${category}`}
-      className={cn(
-        "reveal-up group relative flex items-end overflow-hidden bg-obsidian p-6",
-        hero ? "h-[28rem] lg:h-[36rem]" : "h-[16rem]"
-      )}
-    >
-      <Image
-        src={`/photos/products/${piece?.slug ?? "lumiere-couture-gown"}-1.webp`}
-        alt=""
-        fill
-        className="object-cover opacity-55 transition-transform duration-700 ease-out group-hover:scale-105"
-        sizes={hero ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 640px) 100vw, 33vw"}
-        unoptimized
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent" />
-      <div className="relative z-10 flex w-full items-end justify-between gap-4">
-        <div>
-          <h3 className={cn("font-serif text-silk", hero ? "text-4xl" : "text-2xl")}>
-            {CATEGORY_LABELS[category]}
-          </h3>
-          <p className="mt-1 text-sm text-silk/50">{count} pieces</p>
-        </div>
-        <ArrowUpRight
-          className="h-5 w-5 shrink-0 text-gold transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
-          aria-hidden
-        />
-      </div>
-    </Link>
   );
 }

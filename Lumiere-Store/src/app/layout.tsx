@@ -9,6 +9,7 @@ import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { Cursor } from "@/components/motion/cursor";
 import { AppErrorBoundary } from "@/components/ui/error-boundary";
 import { PageTransition } from "@/components/motion/page-transition";
+import { WhatsAppChat } from "@/components/whatsapp-chat";
 import "@/lib/seed";
 
 const jost = localFont({
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
       "Conscious elegance, curated design and secure worldwide checkout. Shop 82+ pieces across apparel, accessories, living and fragrance.",
     images: [
       {
-        url: "/photos/editorial/home-hero.webp",
+        url: "/photos/editorial/atelier.webp",
         width: 1920,
         height: 1080,
         alt: "Lumière luxury fashion collection",
@@ -80,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lumière — Luxury Fashion & Boutique",
     description: "Conscious elegance, curated design and secure worldwide checkout.",
-    images: ["/photos/editorial/home-hero.webp"],
+    images: ["/photos/editorial/atelier.webp"],
   },
   robots: {
     index: true,
@@ -122,10 +123,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               description: "Luxury fashion and boutique e-commerce experience",
               url: "https://lumiere.store",
               logo: "https://lumiere.store/logo.png",
-              sameAs: ["https://instagram.com/lumiere", "https://pinterest.com/lumiere"],
+              sameAs: ["https://instagram.com/wtf__sheri"],
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+1-800-LUMIERE",
+                telephone: "+92-305-7168742",
                 contactType: "customer service",
                 availableLanguage: ["English"],
               },
@@ -134,7 +135,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 itemOffered: {
                   "@type": "CollectionPage",
                   name: "Lumière Collection",
-                  description: "82+ luxury fashion pieces",
+                  description: "155+ luxury fashion pieces",
                 },
               },
             }),
@@ -159,6 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Footer />
             </PageTransition>
           </AppErrorBoundary>
+          <WhatsAppChat />
         </Providers>
       </body>
     </html>

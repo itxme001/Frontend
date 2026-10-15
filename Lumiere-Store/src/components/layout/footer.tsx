@@ -2,15 +2,15 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowUp, AtSign, CreditCard, Globe, Send, Share2 } from "lucide-react";
+import { ArrowUp, AtSign, CreditCard, Globe, Send, Share2, Phone, Mail, MapPin } from "lucide-react";
 import { useToast } from "@/components/ui/toast";
 import { CATEGORY_LABELS, type ProductCategory } from "@/data/products";
 
 const SOCIALS = [
-  { label: "Instagram", Icon: AtSign },
-  { label: "Pinterest", Icon: Share2 },
-  { label: "Journal RSS", Icon: Globe },
-  { label: "Newsletter", Icon: Send },
+  { label: "Instagram", Icon: AtSign, href: "https://instagram.com/wtf__sheri" },
+  { label: "WhatsApp", Icon: Send, href: "https://wa.me/923057168742" },
+  { label: "Email", Icon: Mail, href: "mailto:itxme204@gmail.com" },
+  { label: "Pinterest", Icon: Share2, href: "#" },
 ];
 
 const SHOP_LINKS = [
@@ -130,6 +130,21 @@ export function Footer() {
                 <Icon className="h-4 w-4" aria-hidden />
               </Link>
             ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="tel:+923057168742" className="flex items-center gap-1.5 text-silk/60 transition-colors hover:text-gold">
+              <Phone className="h-3.5 w-3.5" aria-hidden />
+              0305 7168742
+            </a>
+            <a href="mailto:itxme204@gmail.com" className="flex items-center gap-1.5 text-silk/60 transition-colors hover:text-gold">
+              <Mail className="h-3.5 w-3.5" aria-hidden />
+              itxme204@gmail.com
+            </a>
+            <span className="flex items-center gap-1.5 text-silk/60">
+              <MapPin className="h-3.5 w-3.5" aria-hidden />
+              Samanabad, Faisalabad
+            </span>
           </div>
 
           <div className="flex items-center gap-6">

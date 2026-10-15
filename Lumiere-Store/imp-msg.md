@@ -27,11 +27,12 @@ Production pe "admin123" ko strong password se replace karo aur phir Mongo colle
 
 | Field | Location | File |
 |-------|----------|------|
-| Contact email | `hello@lumiere.com` | `src/app/contact/page.tsx`, `src/components/layout/footer.tsx`, `src/components/contact-form.tsx` |
-| Support email | `support@lumiere.com` | email templates (`src/lib/email.ts`) |
-| Phone | `+1 (212) 555-0184` | `footer.tsx`, `contact/page.tsx` |
-| Address | showroom address | `footer.tsx`, `contact/page.tsx` |
-| Newsletter sender | `newsletter@lumiere.com` | `src/components/layout/newsletter-form.tsx`, `lib/email.ts` |
+| Contact email | `itxme204@gmail.com` | `src/app/contact/page.tsx`, `src/components/layout/footer.tsx`, `src/components/contact-form.tsx` |
+| Support email | `itxme204@gmail.com` | email templates (`src/lib/email.ts`) |
+| Phone / WhatsApp | `03057168742` | `footer.tsx`, `contact/page.tsx`, WhatsApp chat widget |
+| Address | Samanabad Faisalabad, Opposite Meezan Bank | `footer.tsx`, `contact/page.tsx` |
+| Instagram | `@wtf__sheri` | `footer.tsx` |
+| Newsletter sender | `itxme204@gmail.com` | `newsletter-form.tsx`, `lib/email.ts` |
 
 ### API (where email actually goes)
 - **`RESEND_API_KEY`** env var set karo (https://resend.com/api-keys).
