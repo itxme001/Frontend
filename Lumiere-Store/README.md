@@ -57,7 +57,7 @@ Lumiere-Store/
 │   │   ├── cart/drawer.tsx       # Cart slide-out
 │   │   └── auth/                 # AuthModal, AuthLayout
 │   ├── data/
-│   │   ├── products.ts           # 📦 82 product definitions
+│   │   ├── products.ts           # 📦 155+ unique product definitions
 │   │   └── collections.ts        # 6 editorial collections
 │   ├── lib/
 │   │   ├── db.ts                 # JSON file database (orders/users)
@@ -85,14 +85,14 @@ Lumiere-Store/
 ### Colors
 | Token | Hex | Use |
 |-------|-----|-----|
-| `--color-background` | `#ffffff` | Page background |
-| `--color-foreground` | `#0a0a0a` | Body text |
-| `--color-gold` | `#b8942e` | Primary accent / CTAs |
-| `--color-gold-light` | `#d4b96a` | Gold hover states |
-| `--color-gold-dark` | `#8a6d1a` | Text-safe gold (7:1 contrast) |
-| `--color-obsidian` | `#0a0a0a` | Dark sections / hero |
-| `--color-mist` | `#f7f6f3` | Soft neutral surface |
-| `--color-border` | `#e8e6e1` | Dividers |
+| `--color-background` | `#FBF9F5` | Warm beige canvas (primary background) |
+| `--color-foreground` | `#111111` | Deep matte charcoal (text) |
+| `--color-gold` | `#C5A059` | Muted champagne gold (primary accent) |
+| `--color-gold-light` | `#D4AF37` | Brighter gold (hover/highlights) |
+| `--color-gold-dark` | `#806226` | Text-safe gold (5.5:1 contrast on beige) |
+| `--color-obsidian` | `#111111` | Dark sections / hero background |
+| `--color-mist` | `#F4EFE6` | Warmer neutral surface |
+| `--color-border` | `#E6DFD1` | Warm dividers |
 
 ### Typography
 - **Display:** Playfair Display (serif) — headlines, large numbers
