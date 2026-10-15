@@ -64,7 +64,7 @@ function fmtDate(d: string) {
 // ─── Main Page ───────────────────────────────────────────────────────
 export default function AdminPage() {
   const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, isAdmin } = useAuth();
   const { toast } = useToast();
 
   const [activeTab, setActiveTab] = React.useState<Tab>("dashboard");
@@ -80,15 +80,20 @@ export default function AdminPage() {
   const [productForm, setProductForm] = React.useState<Partial<DbProduct>>({});
   const [savingProduct, setSavingProduct] = React.useState(false);
 
-  // ── Auth guard ──
+  // ── Auth guard — only admins can access ──
   React.useEffect(() => {
     if (authLoading) return;
     if (!user) {
       router.push("/login");
       return;
     }
-    // Check admin — server-side check happens in API
-  }, [user, authLoading, router]);
+    // Non-admin users get redirected
+    if (!isAdmin) {
+      toast({ title: "Access Denied", description: "Only administrators can access this page.", variant: "error" });
+      router.push("/account");
+      return;
+    }
+  }, [user, authLoading, router, isAdmin, toast]);
 
   // ── Fetch all data ──
   React.useEffect(() => {
