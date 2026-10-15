@@ -163,6 +163,21 @@ Lumiere-Store/
 
 ---
 
+## 🔐 Authentication Setup
+
+### Local Development
+The app has a dev fallback — login works out of the box with `admin@lumiere.com` / `admin123`.
+
+For production, generate a secret and add to your hosting platform's environment variables:
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+Set the output as `AUTH_SECRET` in Vercel Dashboard → Settings → Environment Variables.
+
+> ⚠️ `.env.local` is gitignored — never commit real secrets.
+
+---
+
 ## 🧭 Key Pages & Routes
 
 | Route | Description |
