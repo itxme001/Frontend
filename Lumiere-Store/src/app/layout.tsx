@@ -97,13 +97,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0a0a0a",
-  colorScheme: "light dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jost.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${jost.variable} ${playfair.variable}`} suppressHydrationWarning data-theme="light">
       <head>
         <link rel="preconnect" href="https://api.stripe.com" crossOrigin="anonymous" />
         <link rel="preload" href="/photos/editorial/home-hero.webp" as="image" />

@@ -10,6 +10,7 @@ import { Parallax } from "@/components/motion/parallax";
 import { Counter } from "@/components/motion/counter";
 import { Magnetic } from "@/components/motion/cursor";
 import { CurtainImage } from "@/components/motion/curtain-image";
+import { Reveal, Stagger, StaggerItem, MaskReveal } from "@/components/motion/reveal";
 import { COLLECTIONS, countCollection } from "@/data/collections";
 import { CATEGORY_LABELS, products, type ProductCategory } from "@/data/products";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
@@ -70,81 +71,128 @@ export default function HomePage() {
   const categories = Object.keys(CATEGORY_LABELS) as ProductCategory[];
   const spotlight = products.find((p) => p.slug === "herringbone-wool-overcoat") ?? products[0];
 
-  // GSAP scroll animations
+  // ── GSAP ScrollTrigger animations ──
   React.useEffect(() => {
     if (typeof window === "undefined") return;
-    gsap.registerPlugin(ScrollTrigger);
 
-    // Fade up all section headers
+    // Section reveal animations
     const reveals = document.querySelectorAll(".reveal-up");
     reveals.forEach((el) => {
       gsap.fromTo(
         el as HTMLElement,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 32 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: el as HTMLElement,
-            start: "top 88%",
+            start: "top 86%",
             toggleActions: "play none none reverse",
           },
         }
       );
     });
+
+    // Horizontal collections scroll — parallax depth on each card
+    const collectionCards = document.querySelectorAll(".collection-card");
+    collectionCards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    // Trust ticker — subtle fade-in
+    const trustSection = document.querySelector("[data-trust-ticker]");
+    if (trustSection) {
+      gsap.fromTo(
+        trustSection,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: trustSection,
+            start: "top 95%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+
+    ScrollTrigger.refresh();
   }, []);
 
   return (
     <div className="overflow-x-hidden">
-      {/* ─────────── HERO: Full-bleed cinematic ─────────── */}
+      {/* ─────────── HERO ─────────── */}
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-obsidian">
         <Parallax className="absolute inset-0 -z-10" speed={0.08} scale={1.12}>
           <Image
             src="/photos/editorial/home-hero.webp"
             alt=""
             fill
-            className="object-cover opacity-45"
+            className="object-cover opacity-40"
             priority
             unoptimized
           />
         </Parallax>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian/20 via-obsidian/60 to-obsidian" />
-        <div aria-hidden className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian/30 via-obsidian/70 to-obsidian" />
+        <div aria-hidden className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
         <div className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-4 pb-20 pt-28 sm:px-6 sm:pb-24">
           <div className="max-w-3xl">
-            <p className="label-xs text-gold-light opacity-0 animate-fade-up" style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
-              Established 2019 · Milan
-            </p>
-            <h1 className="mt-6 display leading-[0.9] text-silk opacity-0 animate-fade-up" style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}>
-              Thirty-three
-              <br />
-              things worth
-              <br />
-              <span className="text-gold-light italic">keeping.</span>
-            </h1>
-            <p className="mt-8 text-base leading-relaxed text-silk/55 max-w-lg opacity-0 animate-fade-up" style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}>
-              A small house of considered design. Named makers, traceable materials, and a
-              collection cut deliberately short — because beauty doesn&apos;t need volume.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.65s", animationFillMode: "forwards" }}>
-              <Magnetic>
+            <Reveal delay={0.15}>
+              <p className="label-xs text-gold-light">
+                Established 2019 · Milan
+              </p>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <h1 className="mt-6 display leading-[0.9] text-silk">
+                <MaskReveal>Thirty-three</MaskReveal>
+                <MaskReveal delay={0.1}>things worth</MaskReveal>
+                <MaskReveal delay={0.2}>
+                  <span className="text-gold-light italic">keeping.</span>
+                </MaskReveal>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.4}>
+              <p className="mt-8 text-base leading-relaxed text-silk/55 max-w-lg">
+                A small house of considered design. Named makers, traceable materials, and a
+                collection cut deliberately short — because beauty doesn&apos;t need volume.
+              </p>
+            </Reveal>
+            <Reveal delay={0.55}>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Magnetic>
+                  <Link
+                    href="/shop"
+                    className="inline-flex h-14 items-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_40px_-10px_rgba(200,164,77,0.5)]"
+                  >
+                    Shop the collection
+                  </Link>
+                </Magnetic>
                 <Link
-                  href="/shop"
-                  className="inline-flex h-14 items-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_40px_-10px_rgba(200,164,77,0.5)]"
+                  href="/collections"
+                  className="inline-flex h-14 items-center border border-silk/25 px-10 text-xs font-medium uppercase tracking-[0.18em] text-silk transition-all hover:border-gold hover:text-gold"
                 >
-                  Shop the collection
+                  Browse edits
                 </Link>
-              </Magnetic>
-              <Link
-                href="/collections"
-                className="inline-flex h-14 items-center border border-silk/25 px-10 text-xs font-medium uppercase tracking-[0.18em] text-silk transition-all hover:border-gold hover:text-gold"
-              >
-                Browse edits
-              </Link>
-            </div>
+              </div>
+            </Reveal>
           </div>
 
           <div aria-hidden className="mt-16 flex items-center gap-3 text-silk/30">
@@ -157,7 +205,7 @@ export default function HomePage() {
       </section>
 
       {/* ─────────── TRUST TICKER ─────────── */}
-      <section className="border-b border-white/5 bg-obsidian py-4">
+      <section data-trust-ticker className="border-b border-white/5 bg-obsidian py-4">
         <div className="flex overflow-hidden">
           {TRUST.map(({ Icon, text }, i) => (
             <span
@@ -174,7 +222,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────── COLLECTIONS: Horizontal scroll ─────────── */}
+      {/* ─────────── COLLECTIONS ─────────── */}
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           <div className="reveal-up mb-14 flex items-end justify-between gap-4">
@@ -197,7 +245,7 @@ export default function HomePage() {
                 key={collection.slug}
                 href={`/shop?collection=${collection.slug}`}
                 className={cn(
-                  "group relative flex shrink-0 flex-col justify-end overflow-hidden bg-obsidian p-6 snap-start",
+                  "collection-card group relative flex shrink-0 flex-col justify-end overflow-hidden bg-obsidian p-6 snap-start",
                   index % 2 === 0 ? "h-[32rem] w-[22rem]" : "h-[28rem] w-[22rem] sm:w-[24rem]"
                 )}
               >
@@ -224,7 +272,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────── SPOTLIGHT: One hero piece ─────────── */}
+      {/* ─────────── SPOTLIGHT ─────────── */}
       <section className="border-y border-border bg-mist">
         <div className="mx-auto grid max-w-[1400px] lg:grid-cols-2">
           <CurtainImage
@@ -235,43 +283,53 @@ export default function HomePage() {
             priority
           />
           <div className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:py-24">
-            <p className="reveal-up label-xs text-gold-ink">The piece we are proudest of</p>
-            <h2 className="reveal-up headline mt-4">{spotlight.name}</h2>
-            <p className="reveal-up mt-6 max-w-lg leading-relaxed text-slate-500">{spotlight.description}</p>
+            <Reveal>
+              <p className="label-xs text-gold-ink">The piece we are proudest of</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="headline mt-4">{spotlight.name}</h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-lg leading-relaxed text-slate-500">{spotlight.description}</p>
+            </Reveal>
 
-            <dl className="reveal-up mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-border pt-8 text-sm sm:grid-cols-4">
-              <div>
-                <dt className="text-slate-500">Material</dt>
-                <dd className="mt-1 font-medium">{spotlight.material}</dd>
-              </div>
-              <div>
-                <dt className="text-slate-500">Rating</dt>
-                <dd className="mt-1 font-medium">{spotlight.rating} · {spotlight.reviews}</dd>
-              </div>
-              <div>
-                <dt className="text-slate-500">Stock</dt>
-                <dd className="mt-1 font-medium">{spotlight.stock} left</dd>
-              </div>
-              <div>
-                <dt className="text-slate-500">Price</dt>
-                <dd className="mt-1 font-serif text-gold-ink">${spotlight.price.toLocaleString()}</dd>
-              </div>
-            </dl>
+            <Reveal delay={0.3}>
+              <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-border pt-8 text-sm sm:grid-cols-4">
+                <div>
+                  <dt className="text-slate-500">Material</dt>
+                  <dd className="mt-1 font-medium">{spotlight.material}</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500">Rating</dt>
+                  <dd className="mt-1 font-medium">{spotlight.rating} · {spotlight.reviews}</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500">Stock</dt>
+                  <dd className="mt-1 font-medium">{spotlight.stock} left</dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500">Price</dt>
+                  <dd className="mt-1 font-serif text-gold-ink">${spotlight.price.toLocaleString()}</dd>
+                </div>
+              </dl>
+            </Reveal>
 
-            <div className="reveal-up mt-10 flex flex-wrap items-center gap-6">
-              <Link
-                href={`/shop?q=${encodeURIComponent(spotlight.name)}`}
-                className="reveal-up inline-flex h-14 items-center bg-foreground px-8 text-xs font-medium uppercase tracking-[0.16em] text-background transition-all hover:bg-gold-ink hover:shadow-lg"
-              >
-                View this piece
-              </Link>
-              <Rating value={spotlight.rating} count={spotlight.reviews} />
-            </div>
+            <Reveal delay={0.4}>
+              <div className="mt-10 flex flex-wrap items-center gap-6">
+                <Link
+                  href={`/shop?q=${encodeURIComponent(spotlight.name)}`}
+                  className="inline-flex h-14 items-center bg-foreground px-8 text-xs font-medium uppercase tracking-[0.16em] text-background transition-all hover:bg-gold-ink hover:shadow-lg"
+                >
+                  View this piece
+                </Link>
+                <Rating value={spotlight.rating} count={spotlight.reviews} />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ─────────── CATEGORIES: Asymmetric grid ─────────── */}
+      {/* ─────────── CATEGORIES ─────────── */}
       <section className="mx-auto max-w-[1400px] px-4 py-24 sm:px-6">
         <div className="reveal-up mb-12 flex items-end justify-between gap-4">
           <h2 className="headline">Four ways into the house</h2>
@@ -303,17 +361,17 @@ export default function HomePage() {
             View all
           </Link>
         </div>
-        <div className="stagger-children">
-          <ProductGrid items={featured} />
-        </div>
+        <ProductGrid items={featured} />
       </section>
 
-      {/* ─────────── HOUSE STORY: Dark editorial ─────────── */}
+      {/* ─────────── HOUSE STORY ─────────── */}
       <section className="border-y border-white/10 bg-obsidian py-24">
         <div className="mx-auto grid max-w-[1400px] items-center gap-16 px-4 sm:px-6 lg:grid-cols-2">
           <div className="reveal-up order-2 lg:order-1">
             <p className="label-xs text-gold">Our philosophy</p>
-            <h2 className="headline mt-4 text-silk">We make thirty-three things. On purpose.</h2>
+            <h2 className="headline mt-4 text-silk">
+              We make thirty-three things. On purpose.
+            </h2>
             <p className="mt-6 leading-relaxed text-silk/60">
               Lumière began with a question we could not answer for years: could beautiful things be
               made without taking from the people who make them? So we built the opposite of a
@@ -334,12 +392,14 @@ export default function HomePage() {
               ))}
             </dl>
 
-            <Link
-              href="/about"
-              className="reveal-up mt-12 inline-flex h-14 items-center border border-silk/20 px-8 text-xs font-medium uppercase tracking-[0.16em] text-silk transition-all hover:border-gold hover:text-gold"
-            >
-              More about the house
-            </Link>
+            <Reveal delay={0.3}>
+              <Link
+                href="/about"
+                className="reveal-up mt-12 inline-flex h-14 items-center border border-silk/20 px-8 text-xs font-medium uppercase tracking-[0.16em] text-silk transition-all hover:border-gold hover:text-gold"
+              >
+                More about the house
+              </Link>
+            </Reveal>
           </div>
 
           <div className="reveal-up order-1 lg:order-2">
@@ -359,9 +419,7 @@ export default function HomePage() {
             View all
           </Link>
         </div>
-        <div className="stagger-children">
-          <ProductGrid items={bestsellers} />
-        </div>
+        <ProductGrid items={bestsellers} />
       </section>
 
       {/* ─────────── REVIEWS ─────────── */}
@@ -375,9 +433,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="stagger-children grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
+          <Stagger className="grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
             {REVIEWS.map((review, i) => (
-              <figure key={review.name} className="flex flex-col bg-background p-8">
+              <StaggerItem key={review.name} as="figure" className="flex flex-col bg-background p-8">
                 <Rating value={review.rating} />
                 <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/85">
                   &ldquo;{review.quote}&rdquo;
@@ -386,9 +444,9 @@ export default function HomePage() {
                   <strong className="font-medium">{review.name}</strong>
                   <p className="mt-1 text-slate-500">{review.detail}</p>
                 </figcaption>
-              </figure>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -408,25 +466,27 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="stagger-children grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {NOTES.map((note) => (
-            <Link key={note.title} href="/journal" className="group block">
-              <div className="overflow-hidden bg-mist">
-                <Image
-                  src={note.image}
-                  alt=""
-                  width={400}
-                  height={267}
-                  className="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  unoptimized
-                />
-              </div>
-              <p className="label-xs mt-4">{note.kind}</p>
-              <h3 className="mt-2 max-w-[24ch] font-serif text-2xl leading-snug">{note.title}</h3>
-            </Link>
+            <StaggerItem key={note.title} as="article">
+              <Link href="/journal" className="group block">
+                <div className="overflow-hidden bg-mist">
+                  <Image
+                    src={note.image}
+                    alt=""
+                    width={400}
+                    height={267}
+                    className="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    unoptimized
+                  />
+                </div>
+                <p className="label-xs mt-4">{note.kind}</p>
+                <h3 className="mt-2 max-w-[24ch] font-serif text-2xl leading-snug">{note.title}</h3>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {/* ─────────── NEWSLETTER ─────────── */}
@@ -441,32 +501,38 @@ export default function HomePage() {
             src="/photos/editorial/journal-featured.webp"
             alt=""
             fill
-            className="object-cover opacity-25"
+            className="object-cover opacity-20"
             unoptimized
           />
         </Parallax>
         <div className="relative mx-auto max-w-3xl px-4 py-32 text-center sm:px-6">
-          <h2 className="reveal-up display text-silk">Buy less.</h2>
-          <p className="reveal-up mx-auto mt-8 max-w-lg text-lg leading-relaxed text-silk/60">
-            Free express shipping over $300, 30-day returns, and a care team that answers within
-            one business day.
-          </p>
-          <div className="reveal-up mt-12 flex flex-col justify-center gap-4 sm:flex-row">
-            <Magnetic>
+          <Reveal>
+            <h2 className="display text-silk">Buy less.</h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="reveal-up mx-auto mt-8 max-w-lg text-lg leading-relaxed text-silk/60">
+              Free express shipping over $300, 30-day returns, and a care team that answers within
+              one business day.
+            </p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="reveal-up mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+              <Magnetic>
+                <Link
+                  href="/shop"
+                  className="inline-flex h-14 w-full items-center justify-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_50px_-10px_rgba(200,164,77,0.6)] sm:w-auto"
+                >
+                  Start shopping
+                </Link>
+              </Magnetic>
               <Link
-                href="/shop"
-                className="inline-flex h-14 w-full items-center justify-center bg-gold px-10 text-xs font-medium uppercase tracking-[0.18em] text-obsidian transition-all hover:bg-gold-light hover:shadow-[0_0_50px_-10px_rgba(200,164,77,0.6)] sm:w-auto"
+                href="/contact"
+                className="inline-flex h-14 w-full items-center justify-center border border-silk/25 px-10 text-xs font-medium uppercase tracking-[0.18em] text-silk transition-all hover:border-gold hover:text-gold sm:w-auto"
               >
-                Start shopping
+                Talk to us
               </Link>
-            </Magnetic>
-            <Link
-              href="/contact"
-              className="inline-flex h-14 w-full items-center justify-center border border-silk/25 px-10 text-xs font-medium uppercase tracking-[0.18em] text-silk transition-all hover:border-gold hover:text-gold sm:w-auto"
-            >
-              Talk to us
-            </Link>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>
@@ -481,7 +547,7 @@ function CategoryTile({ category, hero = false }: { category: ProductCategory; h
     <Link
       href={`/shop?cat=${category}`}
       className={cn(
-        "group relative flex items-end overflow-hidden bg-obsidian p-6",
+        "reveal-up group relative flex items-end overflow-hidden bg-obsidian p-6",
         hero ? "h-[28rem] lg:h-[36rem]" : "h-[16rem]"
       )}
     >

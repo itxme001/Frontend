@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, Package, Search } from "lucide-react";
 import { Sheet } from "@/components/ui/sheet";
 import { CurrencySwitcher } from "@/components/layout/currency-switcher";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { PRIMARY_NAV, SECONDARY_LINKS } from "@/lib/navigation";
 import { CATEGORY_LABELS, type ProductCategory } from "@/data/products";
 import { COLLECTIONS } from "@/data/collections";
@@ -175,9 +174,8 @@ export function MobileNav({ open, onOpenChange, onSearch }: MobileNavProps) {
       </div>
 
       {/* Preferences */}
-      <div className="mt-7 space-y-5 border-t border-border pt-6">
+      <div className="mt-7 border-t border-border pt-6">
         <CurrencySwitcher />
-        <ThemeToggle withLabel />
       </div>
     </Sheet>
   );

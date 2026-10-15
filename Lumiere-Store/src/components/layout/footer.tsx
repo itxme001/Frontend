@@ -46,7 +46,7 @@ const ACCOUNT_LINKS = [
 export function Footer() {
   const { toast } = useToast();
   const [email, setEmail] = React.useState("");
-  const [year, setYear] = React.useState("");
+  const [year, setYear] = React.useState<string>("");
 
   React.useEffect(() => {
     setYear(String(new Date().getFullYear()));
@@ -88,6 +88,7 @@ export function Footer() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
+              suppressHydrationWarning
               className="min-w-0 flex-1 border-b border-white/25 bg-transparent px-1 py-3 text-base text-silk outline-none transition-colors placeholder:text-silk/35 focus:border-gold"
             />
             <button
