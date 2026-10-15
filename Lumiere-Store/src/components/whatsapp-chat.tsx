@@ -23,7 +23,7 @@ export function WhatsAppChat() {
   const [customMessage, setCustomMessage] = React.useState("");
   const [showHint, setShowHint] = React.useState(false);
 
-  React.useEffect => {
+  React.useEffect(() => {
     // Show a subtle hint after 3 seconds on first visit
     const timer = setTimeout(() => {
       if (!localStorage.getItem("lumiere:wa-hint-seen")) {

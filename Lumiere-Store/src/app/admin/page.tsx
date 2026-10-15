@@ -166,7 +166,10 @@ function pctChange(current: number, previous: number): number | null {
 
 /** The last six calendar months, ascending, each with a short label. */
 function useLastSixMonths() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
   return React.useMemo(() => {
+    if (!mounted) return [] as { key: string; label: string }[];
     const now = new Date();
     const out: { key: string; label: string }[] = [];
     for (let i = 5; i >= 0; i--) {
@@ -177,7 +180,7 @@ function useLastSixMonths() {
       });
     }
     return out;
-  }, []);
+  }, [mounted]);
 }
 
 // ──────────────────────────────────────────────────────────────────────────
