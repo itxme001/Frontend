@@ -187,7 +187,7 @@ function ImageBlock({ src, alt, ratio }: { src: string; alt: string; ratio: stri
 
   return (
     <div className={`${aspect} w-full overflow-hidden bg-mist`}>
-      <Image src={src} alt={alt} width={600} height={400} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" unoptimized />
+      <Image src={src} alt={alt} width={600} height={400} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
     </div>
   );
 }

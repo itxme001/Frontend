@@ -255,7 +255,6 @@ export default function CheckoutPage() {
                   width={44}
                   height={56}
                   className="h-14 w-11 rounded object-cover"
-                  unoptimized
                 />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-obsidian">{item.name}</p>

@@ -17,14 +17,24 @@ export function ContactForm() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSending(true);
-    await new Promise((r) => setTimeout(r, 700));
-    setSending(false);
-    toast({
-      title: "Message sent",
-      description: `Thanks ${form.name.split(" ")[0] || "there"}, our team will reply within 24 hours.`,
-      variant: "success",
-    });
-    setForm({ name: "", email: "", subject: "", message: "" });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      toast({
+        title: "Message sent",
+        description: `Thanks ${form.name.split(" ")[0] || "there"}, our team will reply within 24 hours.`,
+        variant: "success",
+      });
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      toast({ title: "Failed to send", description: "Please try again later.", variant: "error" });
+    } finally {
+      setSending(false);
+    }
   }
 
   return (

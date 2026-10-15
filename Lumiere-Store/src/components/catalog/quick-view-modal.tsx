@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { X } from "lucide-react";
 import { getProduct, CATEGORY_LABELS } from "@/data/products";
 import { useCart } from "@/store/cart-store";
 import { useToast } from "@/components/ui/toast";
@@ -31,6 +32,14 @@ export function QuickViewModal({ productId, open, onOpenChange }: QuickViewModal
       setActiveImage(0);
     }
   }, [open, product]);
+
+  // Body scroll lock
+  React.useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [open]);
 
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -90,7 +99,7 @@ export function QuickViewModal({ productId, open, onOpenChange }: QuickViewModal
           aria-label="Close"
           className="absolute right-3 top-3 z-20 rounded-full bg-card/90 px-2 text-2xl leading-none text-slate-400 shadow-sm transition-colors hover:text-obsidian"
         >
-          &times;
+          <X className="h-5 w-5" />
         </button>
 
         <div className="bg-silk p-4">
@@ -100,7 +109,6 @@ export function QuickViewModal({ productId, open, onOpenChange }: QuickViewModal
             width={320}
             height={400}
             className="mx-auto aspect-[4/5] w-full rounded-lg object-cover"
-            unoptimized
           />
           {images.length > 1 && (
             <div className="mt-3 flex gap-2">
@@ -120,7 +128,6 @@ export function QuickViewModal({ productId, open, onOpenChange }: QuickViewModal
                     width={56}
                     height={64}
                     className="h-full w-full object-cover"
-                    unoptimized
                   />
                 </button>
               ))}
@@ -155,6 +162,7 @@ export function QuickViewModal({ productId, open, onOpenChange }: QuickViewModal
                     key={c}
                     type="button"
                     onClick={() => setColor(c)}
+                    aria-pressed={color === c}
                     className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
                       color === c ? "border-gold bg-gold/10 text-obsidian" : "border-border text-slate-500 hover:border-gold"
                     }`}
@@ -175,6 +183,7 @@ export function QuickViewModal({ productId, open, onOpenChange }: QuickViewModal
                     key={s}
                     type="button"
                     onClick={() => setSize(s)}
+                    aria-pressed={size === s}
                     className={`min-w-11 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
                       size === s ? "border-gold bg-gold/10 text-obsidian" : "border-border text-slate-500 hover:border-gold"
                     }`}

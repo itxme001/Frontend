@@ -117,6 +117,9 @@ export function Catalog({ initialCategory, initialQuery, initialCollection }: Ca
     if (typeof window === "undefined" || !gridRef) return;
     gsap.registerPlugin(ScrollTrigger);
 
+    // Kill any existing ScrollTriggers before creating new ones
+    ScrollTrigger.getAll().forEach(t => t.kill());
+
     const cards = gridRef.querySelectorAll("[data-product-card]");
     if (!cards.length) return;
 
@@ -212,7 +215,6 @@ export function Catalog({ initialCategory, initialQuery, initialCollection }: Ca
             fill
             className="object-cover opacity-30"
             priority
-            unoptimized
           />
         </div>
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian/50 via-obsidian/80 to-obsidian" />
@@ -237,7 +239,6 @@ export function Catalog({ initialCategory, initialQuery, initialCollection }: Ca
               width={160}
               height={128}
               className="h-32 w-full object-cover sm:h-28 sm:w-40"
-              unoptimized
             />
             <div className="flex-1 p-5 sm:py-4">
               <span className="label-xs text-gold-ink">{collection.tagline}</span>

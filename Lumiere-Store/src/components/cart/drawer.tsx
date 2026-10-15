@@ -20,12 +20,47 @@ interface CartDrawerProps {
 export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
   const { items, removeItem, updateQuantity, subtotal, itemCount, clearCart, wishlist } = useCart();
   const { format } = useCurrency();
+  const closeBtnRef = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
+    if (!open) return;
+
+    // Focus the close button when drawer opens
+    closeBtnRef.current?.focus();
+
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") onOpenChange(false);
+      if (e.key === "Escape") {
+        onOpenChange(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // Focus trap: cycle through focusable elements within the drawer
+      const drawer = document.querySelector('[role="dialog"][aria-label="Shopping bag"]');
+      if (!drawer) return;
+
+      const focusable = drawer.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     }
-    if (open) document.addEventListener("keydown", onKey);
+
+    document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onOpenChange]);
 
@@ -60,6 +95,7 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
             )}
           </div>
           <button
+            ref={closeBtnRef}
             type="button"
             onClick={() => onOpenChange(false)}
             aria-label="Close bag"
@@ -98,7 +134,6 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
                       fill
                       className="object-cover"
                       sizes="80px"
-                      unoptimized
                     />
                   </div>
                   <div className="min-w-0 flex-1">

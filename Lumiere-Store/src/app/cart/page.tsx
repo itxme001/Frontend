@@ -63,7 +63,6 @@ export default function CartPage() {
                     width={96}
                     height={112}
                     className="h-28 w-24 rounded-lg object-cover"
-                    unoptimized
                   />
                   <div className="flex min-w-0 flex-1 flex-col">
                     <div className="flex justify-between gap-3">

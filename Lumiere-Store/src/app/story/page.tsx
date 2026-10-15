@@ -294,7 +294,6 @@ export default function StoryPage() {
                     width={400}
                     height={208}
                     className="h-52 w-full object-cover"
-                    unoptimized
                   />
                 </Parallax>
                 <div className="p-6">

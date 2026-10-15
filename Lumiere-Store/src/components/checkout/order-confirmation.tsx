@@ -6,7 +6,7 @@ import { CircleCheck } from "lucide-react";
 import { useCart } from "@/store/cart-store";
 import { Button } from "@/components/ui/button";
 import { useCurrency } from "@/store/currency-context";
-import { saveOrder as dbSaveOrder, type StoredOrder, setPendingOrder, takePendingOrder } from "@/lib/db-client";
+import { saveOrder as dbSaveOrder, type StoredOrder, setPendingOrder, takePendingOrder, getOrders } from "@/lib/db-client";
 
 export function OrderConfirmation({ orderId }: { orderId: string }) {
   const { clearCart, hydrated } = useCart();
@@ -15,12 +15,20 @@ export function OrderConfirmation({ orderId }: { orderId: string }) {
   const [ready, setReady] = React.useState(false);
 
   React.useEffect(() => {
+    // First try the one-shot pending order from checkout
     const pending = takePendingOrder();
     if (pending) {
       const paid: StoredOrder = { ...pending, id: orderId || pending.id, status: "paid" };
       dbSaveOrder(paid);
       setOrder(paid);
       clearCart();
+    } else {
+      // Fallback: look up the order by ID from saved orders (handles page refresh)
+      const orders = getOrders();
+      const found = orders.find((o) => o.id === orderId);
+      if (found) {
+        setOrder(found);
+      }
     }
     setReady(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps

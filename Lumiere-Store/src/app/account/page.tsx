@@ -175,7 +175,6 @@ export default function AccountPage() {
                       width={80}
                       height={96}
                       className="h-24 w-20 object-cover"
-                      unoptimized
                     />
                     <div className="flex min-w-0 flex-1 flex-col">
                       <p className="truncate font-serif text-obsidian">{product.name}</p>

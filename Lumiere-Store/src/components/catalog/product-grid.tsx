@@ -74,12 +74,12 @@ export function ProductGrid({ items, title, emptyMessage }: ProductGridProps) {
   }
 
   function handleWishlist(product: Product) {
+    const wasWishlisted = isWishlisted(product.id);
     toggleWishlist(product.id);
-    const saved = isWishlisted(product.id);
     toast({
-      title: saved ? "Saved to wishlist" : "Removed from wishlist",
+      title: wasWishlisted ? "Removed from wishlist" : "Saved to wishlist",
       description: product.name,
-      variant: saved ? "success" : "info",
+      variant: wasWishlisted ? "info" : "success",
     });
   }
 

@@ -52,7 +52,6 @@ export function CurtainImage({
           sizes="100vw"
           className={cn("object-cover", imgClassName)}
           priority={priority}
-          unoptimized
         />
       </div>
     );
@@ -74,7 +73,6 @@ export function CurtainImage({
         sizes="100vw"
         className={cn("object-cover", imgClassName)}
         priority={priority}
-        unoptimized
         style={{ transform: "scale(1.18)", transition: "transform 1.25s cubic-bezier(0.16,1,0.3,1)" }}
         // eslint-disable-next-line react-hooks/rules-of-hooks
       />

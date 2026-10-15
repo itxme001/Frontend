@@ -121,15 +121,14 @@ export function Footer() {
 
           <div className="flex items-center gap-2">
             {SOCIALS.map(({ label, Icon }) => (
-              <button
+              <Link
                 key={label}
-                type="button"
+                href="#"
                 aria-label={label}
-                onClick={() => toast({ title: label, description: `Find Lumière on ${label}.`, variant: "info" })}
                 className="flex h-10 w-10 items-center justify-center border border-white/15 text-silk/60 transition-colors hover:border-gold hover:bg-gold hover:text-obsidian"
               >
                 <Icon className="h-4 w-4" aria-hidden />
-              </button>
+              </Link>
             ))}
           </div>
 

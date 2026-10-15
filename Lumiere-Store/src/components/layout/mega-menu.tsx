@@ -100,7 +100,6 @@ export function MegaPanel({ menu, open }: { menu: MegaMenu; open: boolean }) {
                   width={180}
                   height={225}
                   className="aspect-[4/5] w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-                  unoptimized
                 />
                 </div>
                 <p className="label-xs mt-3">{tile.tagline}</p>
