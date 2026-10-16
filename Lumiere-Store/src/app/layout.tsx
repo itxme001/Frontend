@@ -10,6 +10,7 @@ import { Cursor } from "@/components/motion/cursor";
 import { AppErrorBoundary } from "@/components/ui/error-boundary";
 import { PageTransition } from "@/components/motion/page-transition";
 import { WhatsAppChat } from "@/components/whatsapp-chat";
+import { Analytics } from "@vercel/analytics/next";
 import "@/lib/seed";
 
 const jost = localFont({
@@ -162,6 +163,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </AppErrorBoundary>
           <WhatsAppChat />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
