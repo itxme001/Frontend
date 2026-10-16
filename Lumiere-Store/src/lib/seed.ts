@@ -28,8 +28,13 @@ export async function seedDatabase() {
       });
       console.log("✅ Admin user created:", ADMIN_EMAIL);
     }
-  } catch (err) {
-    console.error("Seed failed (non-fatal):", err);
+  } catch (err: any) {
+    // Duplicate key = admin already exists, which is fine
+    if (err?.code === 11000) {
+      console.log("✅ Admin user already exists:", ADMIN_EMAIL);
+    } else {
+      console.error("Seed failed (non-fatal):", err);
+    }
   }
 }
 
