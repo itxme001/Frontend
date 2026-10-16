@@ -141,15 +141,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   }, []);
 
-  const isAdmin = React.useMemo(() => {
-    return user?.role === "admin" || user?.email === "admin@lumiere.com";
-  }, [user]);
+  /**
+   * Admin is decided by the server: `/api/auth/me`, login and Google sign-in
+   * all return the `role` field straight from the database, so this mirror
+   * never drifts from what the API will actually allow.
+   */
+  const isAdmin = user?.role === "admin";
 
   const value = React.useMemo<AuthState>(
     () => ({ user, loading, isAdmin, login, signup, loginWithGoogle, logout, refresh }),
     [user, loading, isAdmin, login, signup, loginWithGoogle, logout, refresh]
   );
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

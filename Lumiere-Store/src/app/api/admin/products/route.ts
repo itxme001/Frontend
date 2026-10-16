@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { getSessionUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { connectDB } from "@/lib/mongodb";
-import { Product } from "@/models/Product";
+import { Product, type ProductDoc } from "@/models/Product";
 import { products as defaultProducts } from "@/data/products";
 
 /**
@@ -9,29 +9,31 @@ import { products as defaultProducts } from "@/data/products";
  * POST /api/admin/products  → create product
  * PUT  /api/admin/products  → update product
  * DELETE /api/admin/products?id= → delete product
+ *
+ * Every verb requires an administrator session — the merged list leaks
+ * unpublished stock levels, so GET is not public.
  */
-async function isAdmin(userEmail: string | undefined) {
-  return userEmail === "admin@lumiere.com";
-}
 
 export async function GET() {
-  const user = await getSessionUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const guard = await requireAdmin();
+  if (!guard.ok) {
+    return NextResponse.json({ error: guard.error }, { status: guard.status });
+  }
 
   await connectDB();
   const dbProducts = await Product.find().lean();
-  const dbIds = new Set(dbProducts.map((p: any) => p.id));
-  const merged = [...dbProducts];
+  const dbIds = new Set(dbProducts.map((p) => p.id));
+  const merged: ProductDoc[] = [...dbProducts];
   for (const def of defaultProducts) {
-    if (!dbIds.has(def.id)) merged.push(def as any);
+    if (!dbIds.has(def.id)) merged.push(def as unknown as ProductDoc);
   }
-  return NextResponse.json({ products: merged });
+  return NextResponse.json({ products: merged }, { headers: { "Cache-Control": "private, no-store" } });
 }
 
 export async function POST(req: Request) {
-  const user = await getSessionUser();
-  if (!user || !(await isAdmin(user.email))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const guard = await requireAdmin();
+  if (!guard.ok) {
+    return NextResponse.json({ error: guard.error }, { status: guard.status });
   }
 
   await connectDB();
@@ -91,9 +93,9 @@ export async function POST(req: Request) {
 }
 
 export async function PUT(req: Request) {
-  const user = await getSessionUser();
-  if (!user || !(await isAdmin(user.email))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const guard = await requireAdmin();
+  if (!guard.ok) {
+    return NextResponse.json({ error: guard.error }, { status: guard.status });
   }
 
   await connectDB();
@@ -111,9 +113,9 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  const user = await getSessionUser();
-  if (!user || !(await isAdmin(user.email))) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const guard = await requireAdmin();
+  if (!guard.ok) {
+    return NextResponse.json({ error: guard.error }, { status: guard.status });
   }
 
   await connectDB();

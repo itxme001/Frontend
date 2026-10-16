@@ -37,7 +37,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Email and password are required." }, { status: 400 });
   }
 
-  const user = await authenticate(email, password);
+  let user: Awaited<ReturnType<typeof authenticate>>;
+  try {
+    user = await authenticate(email, password);
+  } catch {
+    // Database unreachable — report a service problem rather than surfacing
+    // an unhandled 500 stack trace to the customer.
+    return NextResponse.json(
+      { error: "We couldn't reach the store just now. Please try again in a moment." },
+      { status: 503 }
+    );
+  }
   if (!user) {
     // Generic message — don't leak whether the email exists.
     return NextResponse.json({ error: "Incorrect email or password." }, { status: 401 });

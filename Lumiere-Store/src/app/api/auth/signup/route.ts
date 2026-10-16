@@ -37,7 +37,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Name, email and password are required." }, { status: 400 });
   }
 
-  const result = await createUser({ name, email, password });
+  let result: Awaited<ReturnType<typeof createUser>>;
+  try {
+    result = await createUser({ name, email, password });
+  } catch {
+    // Database unreachable — a service problem, not a validation error.
+    return NextResponse.json(
+      { error: "We couldn't reach the store just now. Please try again in a moment." },
+      { status: 503 }
+    );
+  }
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }

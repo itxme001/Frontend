@@ -7,7 +7,37 @@ export const SESSION_COOKIE = "lumiere_session";
 export const CSRF_COOKIE = "lumiere_csrf";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-export type SessionUser = { id: string; name: string; email: string };
+export type SessionUser = { id: string; name: string; email: string; role?: "user" | "admin" };
+
+/**
+ * The single admin identity. Overridable via `ADMIN_EMAIL` env var so the
+ * store owner is never locked to a hardcoded address.
+ */
+export const ADMIN_EMAIL = (process.env.ADMIN_EMAIL ?? "admin@lumiere.com").toLowerCase();
+
+/**
+ * Server-side admin check used by every `/api/admin/*` route and the
+ * `/admin` layout. Role from the DB is authoritative; the email match is a
+ * fallback for sessions issued before the role field was added.
+ */
+export function isAdminUser(user: SessionUser | null | undefined): boolean {
+  if (!user) return false;
+  if (user.role === "admin") return true;
+  return user.email.trim().toLowerCase() === ADMIN_EMAIL;
+}
+
+/**
+ * Guard for admin-only route handlers.
+ * Returns either the authorised user or a ready-to-send error response.
+ */
+export async function requireAdmin(): Promise<
+  { ok: true; user: SessionUser } | { ok: false; status: 401 | 403; error: string }
+> {
+  const user = await getSessionUser();
+  if (!user) return { ok: false, status: 401, error: "Unauthorized" };
+  if (!isAdminUser(user)) return { ok: false, status: 403, error: "Forbidden" };
+  return { ok: true, user };
+}
 
 // ---------- session tokens ----------
 function base64url(input: Buffer | string): string {
@@ -50,7 +80,8 @@ export function verifySession(
   try {
     const data = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
     if (!data.exp || data.exp < Date.now()) return null;
-    return { id: data.id, name: data.name, email: data.email };
+    const role = data.role === "admin" ? "admin" : data.role === "user" ? "user" : undefined;
+    return { id: data.id, name: data.name, email: data.email, role };
   } catch {
     return null;
   }
@@ -166,7 +197,7 @@ export async function createUser(input: CreateUserInput): Promise<AuthResult> {
 
   try {
     const result = await dbCreateUser({ id: crypto.randomUUID(), name, email, password: input.password, createdAt: Date.now() });
-    return { ok: true, user: { id: result.id, name: result.name, email: result.email } };
+    return { ok: true, user: { id: result.id, name: result.name, email: result.email, role: result.role } };
   } catch (e) {
     if (e instanceof Error && e.message === "email_exists") {
       return { ok: false, error: "An account with this email already exists." };
@@ -182,18 +213,19 @@ export async function authenticate(
   const user = await findUserByEmail(normalizeEmail(email));
   if (!user) return null;
   if (!verifyPassword(password, user.passwordHash)) return null;
-  return { id: user.id, name: user.name, email: user.email };
+  return { id: user.id, name: user.name, email: user.email, role: user.role };
 }
 
 export async function getUserByEmail(email: string): Promise<SessionUser | null> {
   const user = await findUserByEmail(normalizeEmail(email));
   if (!user) return null;
-  return { id: user.id, name: user.name, email: user.email };
+  return { id: user.id, name: user.name, email: user.email, role: user.role };
 }
 
 // ---------- Google OAuth ----------
 export interface GoogleUserInfo {
   sub: string;           // Google user ID
+  aud: string;           // The Client ID this token was minted for
   email: string;
   name: string;
   picture?: string;
@@ -213,9 +245,12 @@ export async function verifyGoogleToken(idToken: string): Promise<GoogleUserInfo
     if (!res.ok) return null;
     const data = await res.json() as GoogleUserInfo;
 
-    // Security: only accept tokens from our configured audience (Google Client ID)
-    // In production, check data.aud === process.env.GOOGLE_CLIENT_ID
-    if (!data.email_verified) return null;
+    // Security: only accept tokens minted for OUR Google Client ID.
+    // Without this check, a token from any other Google app could sign in
+    // as any email address (account takeover).
+    const audience = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? process.env.GOOGLE_CLIENT_ID;
+    if (audience && data.aud !== audience) return null;
+    if (data.email_verified !== true) return null;
 
     return data;
   } catch {
@@ -231,7 +266,7 @@ export async function upsertGoogleUser(info: GoogleUserInfo): Promise<SessionUse
   const email = normalizeEmail(info.email);
   const existing = await findUserByEmail(email);
   if (existing) {
-    return { id: existing.id, name: existing.name, email: existing.email };
+    return { id: existing.id, name: existing.name, email: existing.email, role: existing.role };
   }
   // Create new user with dummy password hash — login only via OAuth
   try {
@@ -242,12 +277,12 @@ export async function upsertGoogleUser(info: GoogleUserInfo): Promise<SessionUse
       password: `oauth_google_${info.sub}`, // dummy — never used for login
       createdAt: Date.now(),
     });
-    return { id: result.id, name: result.name, email: result.email };
+    return { id: result.id, name: result.name, email: result.email, role: result.role };
   } catch {
     // Race condition — user was created by another request
     const fresh = await findUserByEmail(email);
     if (!fresh) throw new Error("Failed to create user");
-    return { id: fresh.id, name: fresh.name, email: fresh.email };
+    return { id: fresh.id, name: fresh.name, email: fresh.email, role: fresh.role };
   }
 }
 

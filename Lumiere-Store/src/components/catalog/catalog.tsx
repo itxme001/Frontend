@@ -353,7 +353,7 @@ export function Catalog({ initialCategory, initialQuery, initialCollection }: Ca
             {query ? (
               <>
                 {" "}
-                for <span className="italic text-foreground">"{query}"</span>
+                for <span className="italic text-foreground">&ldquo;{query}&rdquo;</span>
               </>
             ) : null}
           </p>

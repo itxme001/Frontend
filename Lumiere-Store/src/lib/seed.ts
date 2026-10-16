@@ -7,7 +7,7 @@ import { connectDB } from "@/lib/mongodb";
 import { User } from "@/models/User";
 import { hashPassword } from "@/lib/db";
 
-const ADMIN_EMAIL = "admin@lumiere.com";
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL ?? "admin@lumiere.com").toLowerCase();
 
 export async function seedDatabase() {
   if (!process.env.MONGODB_URI) {
@@ -22,15 +22,19 @@ export async function seedDatabase() {
         id: "admin-001",
         name: "Admin",
         email: ADMIN_EMAIL,
-        passwordHash: hashPassword("admin123"),
+        passwordHash: hashPassword(process.env.ADMIN_PASSWORD ?? "admin123"),
         role: "admin",
         createdAt: Date.now(),
       });
       console.log("✅ Admin user created:", ADMIN_EMAIL);
+    } else if (existing.role !== "admin") {
+      // Upgrade a pre-existing admin record so role-based checks work.
+      await User.updateOne({ email: ADMIN_EMAIL }, { $set: { role: "admin" } });
+      console.log("✅ Admin role restored for:", ADMIN_EMAIL);
     }
-  } catch (err: any) {
+  } catch (err) {
     // Duplicate key = admin already exists, which is fine
-    if (err?.code === 11000) {
+    if (err && typeof err === "object" && "code" in err && (err as { code?: number }).code === 11000) {
       console.log("✅ Admin user already exists:", ADMIN_EMAIL);
     } else {
       console.error("Seed failed (non-fatal):", err);

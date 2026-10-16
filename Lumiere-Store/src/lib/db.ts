@@ -35,16 +35,32 @@ export interface StoredUser {
   name: string;
   email: string;
   passwordHash: string;
+  /** `admin` is required to reach /admin or any /api/admin/* route. */
+  role: "user" | "admin";
   createdAt: number;
 }
 
-function toStoredUser(doc: any): StoredUser {
+/** Structural shape of a raw `User` document — avoids `any` while staying
+ *  tolerant of legacy records that predate some schema fields. */
+interface UserRecord {
+  id?: unknown;
+  name?: unknown;
+  email?: unknown;
+  passwordHash?: unknown;
+  role?: unknown;
+  createdAt?: unknown;
+}
+
+function toStoredUser(doc: UserRecord): StoredUser {
+  const created = doc.createdAt;
+  const parsed = typeof created === "number" ? created : new Date(created as string | number | Date).getTime();
   return {
-    id: String(doc.id),
-    name: String(doc.name),
-    email: String(doc.email),
-    passwordHash: String(doc.passwordHash),
-    createdAt: typeof doc.createdAt === "number" ? doc.createdAt : new Date(doc.createdAt).getTime(),
+    id: String(doc.id ?? ""),
+    name: String(doc.name ?? ""),
+    email: String(doc.email ?? ""),
+    passwordHash: String(doc.passwordHash ?? ""),
+    role: doc.role === "admin" ? "admin" : "user",
+    createdAt: Number.isFinite(parsed) ? parsed : Date.now(),
   };
 }
 
@@ -60,7 +76,9 @@ export async function findUserByEmail(email: string): Promise<StoredUser | undef
   return doc ? toStoredUser(doc) : undefined;
 }
 
-export async function createUser(user: Omit<StoredUser, "passwordHash"> & { password: string }): Promise<StoredUser> {
+export async function createUser(
+  user: Omit<StoredUser, "passwordHash" | "role"> & { password: string; role?: "user" | "admin" }
+): Promise<StoredUser> {
   await connectDB();
   const existing = await User.findOne({ email: user.email.trim().toLowerCase() }).lean();
   if (existing) throw new Error("email_exists");
@@ -70,6 +88,7 @@ export async function createUser(user: Omit<StoredUser, "passwordHash"> & { pass
     name: user.name.trim(),
     email: user.email.trim().toLowerCase(),
     passwordHash: hashPassword(user.password),
+    role: user.role === "admin" ? "admin" : "user",
     createdAt: typeof user.createdAt === "number" ? user.createdAt : Date.now(),
   });
   await record.save();
@@ -101,27 +120,54 @@ export interface StoredOrder {
   stripeSessionId?: string;
 }
 
-function toStoredOrder(doc: any): StoredOrder {
+/** Structural shapes of a raw `Order` document (keeps `any` out of the mapper). */
+interface OrderRecord {
+  id?: unknown;
+  date?: unknown;
+  status?: unknown;
+  items?: unknown;
+  subtotal?: unknown;
+  shipping?: unknown;
+  tax?: unknown;
+  total?: unknown;
+  email?: unknown;
+  customerName?: unknown;
+  stripeSessionId?: unknown;
+}
+
+interface OrderItemRecord {
+  id?: unknown;
+  name?: unknown;
+  price?: unknown;
+  quantity?: unknown;
+  image?: unknown;
+  color?: unknown;
+  size?: unknown;
+}
+
+function toStoredOrder(doc: OrderRecord): StoredOrder {
+  const rawItems = Array.isArray(doc.items) ? (doc.items as OrderItemRecord[]) : [];
+  const status = doc.status;
   return {
-    id: String(doc.id),
-    date: String(doc.date),
-    status: doc.status,
-    items: (doc.items ?? []).map((it: any) => ({
-      id: String(it.id),
-      name: String(it.name),
-      price: Number(it.price),
-      quantity: Number(it.quantity),
+    id: String(doc.id ?? ""),
+    date: String(doc.date ?? ""),
+    status: status === "paid" || status === "demo" ? status : "pending",
+    items: rawItems.map((it) => ({
+      id: String(it.id ?? ""),
+      name: String(it.name ?? ""),
+      price: Number(it.price ?? 0),
+      quantity: Number(it.quantity ?? 0),
       image: String(it.image ?? ""),
-      color: it.color,
-      size: it.size,
+      color: typeof it.color === "string" ? it.color : undefined,
+      size: typeof it.size === "string" ? it.size : undefined,
     })),
     subtotal: Number(doc.subtotal ?? 0),
     shipping: Number(doc.shipping ?? 0),
     tax: Number(doc.tax ?? 0),
     total: Number(doc.total ?? 0),
-    email: doc.email,
-    customerName: doc.customerName,
-    stripeSessionId: doc.stripeSessionId,
+    email: typeof doc.email === "string" ? doc.email : undefined,
+    customerName: typeof doc.customerName === "string" ? doc.customerName : undefined,
+    stripeSessionId: typeof doc.stripeSessionId === "string" ? doc.stripeSessionId : undefined,
   };
 }
 

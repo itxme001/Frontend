@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSessionUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { findAllUsers } from "@/lib/db";
 
 /**
@@ -8,22 +8,18 @@ import { findAllUsers } from "@/lib/db";
  * Admin-only endpoint.
  */
 export async function GET() {
-  const user = await getSessionUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  // Check admin access
-  const allUsers = await findAllUsers();
-  const isAdmin = allUsers.some((u) => u.email === user.email && u.email === "admin@lumiere.com");
-  if (!isAdmin) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const guard = await requireAdmin();
+  if (!guard.ok) {
+    return NextResponse.json({ error: guard.error }, { status: guard.status });
   }
 
+  const allUsers = await findAllUsers();
   const users = allUsers.map((u) => ({
     id: u.id,
     name: u.name,
     email: u.email,
-    role: u.email === "admin@lumiere.com" ? "admin" : "user",
+    role: u.role,
     createdAt: new Date(u.createdAt).toISOString(),
   }));
-  return NextResponse.json({ users });
+  return NextResponse.json({ users }, { headers: { "Cache-Control": "private, no-store" } });
 }

@@ -203,11 +203,11 @@ export default function AdminPage() {
   const [fetchState, setFetchState] = React.useState<FetchState>("loading");
   const [error, setError] = React.useState<string | null>(null);
 
-  // ── Auth guard ──
+  // ── Auth guard (UX only — the real gate is src/app/admin/layout.tsx) ──
   React.useEffect(() => {
     if (authLoading) return;
     if (!user) {
-      router.push("/login");
+      router.replace("/login?next=/admin");
       return;
     }
     if (!isAdmin) {
@@ -216,7 +216,7 @@ export default function AdminPage() {
         description: "Only administrators can access this page.",
         variant: "error",
       });
-      router.push("/account");
+      router.replace("/account");
     }
   }, [user, authLoading, isAdmin, router, toast]);
 
@@ -256,12 +256,15 @@ export default function AdminPage() {
   }, []);
 
   React.useEffect(() => {
-    // Initial data fetch — intentionally the one synchronous trigger for this screen.
+    // Never fetch admin data until the session is known AND confirmed admin —
+    // the server would 403 it anyway, but don't leak the attempt or show a
+    // permanent skeleton to a rejected user.
+    if (authLoading || !isAdmin) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void load();
-  }, [load]);
+  }, [load, authLoading, isAdmin]);
 
-  const loading = authLoading || fetchState === "loading";
+  const loading = authLoading || (isAdmin && fetchState === "loading");
 
   // ── Derived analytics ──
   const analytics = React.useMemo(() => buildAnalytics(orders, users, products, months), [

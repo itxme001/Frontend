@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import { getSessionUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { findAllOrders } from "@/lib/db";
 
+/** Admin-only: every customer's orders contain names, emails and addresses. */
 export async function GET() {
-  const user = await getSessionUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const guard = await requireAdmin();
+  if (!guard.ok) {
+    return NextResponse.json({ error: guard.error }, { status: guard.status });
+  }
 
   const orders = await findAllOrders();
-  return NextResponse.json({ orders });
+  return NextResponse.json({ orders }, { headers: { "Cache-Control": "private, no-store" } });
 }
