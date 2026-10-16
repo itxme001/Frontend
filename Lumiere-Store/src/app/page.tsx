@@ -109,7 +109,7 @@ const COLLECTION_IMAGES: Record<string, string> = {
   "summer-2026": "/photos/editorial/journal-featured.webp",
   "best-sellers": "/photos/editorial/about-hero.webp",
   "new-in": "/photos/editorial/story-hero.webp",
-  "gift-edit": "/photos/editorial/founderz.webp",
+  "gift-edit": "/photos/editorial/founder.webp",
   essentials: "/photos/editorial/journal-6.webp",
   "final-sale": "/photos/editorial/journal-4.webp",
 };
@@ -700,7 +700,7 @@ export default function HomePage() {
               <StaggerItem as="article" key={note.title}>
                 <Link href="/journal" className="group block">
                   <div className="overflow-hidden bg-mist">
-                    <HoverZoom className="aspect-[3/2] w-full">
+                    <HoverZoom className="relative aspect-[3/2] w-full overflow-hidden">
                       <Image
                         src={note.image}
                         alt=""
